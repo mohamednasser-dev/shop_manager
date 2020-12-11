@@ -6,5 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Supplier extends Model
 {
-    //
+    protected $fillable = [
+        'name','phone','address','user_id'
+    ];
+
+
+    public function employee()
+    {
+        return $this->hasOne('App\Models\User', 'id', 'user_id');
+    }
 }

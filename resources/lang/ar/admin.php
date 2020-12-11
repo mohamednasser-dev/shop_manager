@@ -15,7 +15,17 @@ return [
     'public_delete' => 'حذف',
     'public_cancel' => 'الغاء',
     'actions' => 'العمليات',
-
+    'category_name' => 'اسم التصنيف',
+    'category' => 'التصنيف',
+    'quantity' => 'الكميه',
+    'alarm_quantity' => 'كميه التنبيه',
+    'price' => 'السعر',
+    'purchas_price' => 'سعر التكلفه',
+    'barcode' => 'بار كود',
+    'measur_unit' => 'وحده القياس',
+    'employee' => 'الموظف',
+    'bases' => 'المواد الخام',
+    'add_bases' => 'اضافه ماده خام',
 
     'categories' => 'التصنيفات',
     'type' => 'النوع',

@@ -17,6 +17,15 @@
 
 		Route::resource('categories', 'Admin\categoryController');
 		Route::get('categories/{id}/delete', 'Admin\categoryController@destroy');
+
+		Route::resource('bases', 'Admin\baseController');
+		Route::post('editbases', 'Admin\baseController@update');
+		Route::get('bases/{id}/delete', 'Admin\baseController@destroy');
+
+
+		Route::resource('supplier', 'Admin\supllierController');
+		Route::post('editsupplier', 'Admin\supllierController@update');
+		Route::get('supplier/{id}/delete', 'Admin\supllierController@destroy');
 	});
 
 

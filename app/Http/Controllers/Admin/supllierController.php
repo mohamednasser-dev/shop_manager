@@ -3,16 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Category;
+use App\Models\Supplier;
 use Illuminate\Http\Request;
-use Exception;
+use Illuminate\Support\Facades\Auth;
 
-
-class categoryController extends Controller
+class supllierController extends Controller
 {
-    public function __construct(){
-        $this->middleware('auth');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -20,8 +16,8 @@ class categoryController extends Controller
      */
     public function index()
     {
-        $categories =Category::paginate(10);
-        return view('admin.category.category',compact('categories'));
+        $supllier = Supplier::paginate(10);
+        return view('admin.supllier.index', compact('supllier'));
 
     }
 
@@ -45,13 +41,15 @@ class categoryController extends Controller
     {
         $data = $this->validate(\request(),
             [
-                'name' => 'required|unique:categories',
-                'type' => 'required|in:base,product',
+                'name' => 'required|unique:suppliers',
+                'phone' => 'required|unique:suppliers',
+                'address' => 'required',
             ]);
-        $user = Category::create($data);
+        $data['user_id'] = Auth::user()->id;
+        $user = Supplier::create($data);
         $user->save();
         session()->flash('success', trans('admin.addedsuccess'));
-        return redirect(url('categories'));
+        return redirect(url('supplier'));
     }
 
     /**
@@ -62,7 +60,8 @@ class categoryController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = Supplier::where('id', $id)->first();
+        return response()->json(['data' => $data]);
     }
 
     /**
@@ -83,9 +82,17 @@ class categoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $data = $this->validate(\request(),
+            [
+                'name' => 'required|unique:suppliers,name,'.$request->id,
+                'phone' => 'required|unique:suppliers,phone,'.$request->id,
+                'address' => 'required',
+            ]);
+        $user = Supplier::whereId($request->id)->update($data);
+        session()->flash('success', trans('admin.updatSuccess'));
+        return redirect(url('supplier'));
     }
 
     /**
@@ -96,13 +103,14 @@ class categoryController extends Controller
      */
     public function destroy($id)
     {
-        $user = Category::where('id', $id)->first();
+        $user = Supplier::where('id', $id)->first();
         try {
             $user->delete();
             session()->flash('success', trans('admin.deleteSuccess'));
         }catch(Exception $exception){
-            session()->flash('danger', 'لا يمكن حذف تصنيف به منتجات او مواد خام');
+            session()->flash('danger', 'لا يمكن حذف المورد');
         }
         return back();
     }
+
 }

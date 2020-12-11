@@ -12,11 +12,11 @@
 	Route::get('/home', 'HomeController@index')->name('home');
 	Route::group(['middleware' => ['auth','admin']], function () {
 			//  users  routes
-		Route::resource('users', 'Admin\usersController');
-		Route::get('users/{id}/delete', 'Admin\usersController@destroy');
+		Route::resource('users', 'Admin\UsersController');
+		Route::get('users/{id}/delete', 'Admin\UsersController@destroy');
 
-		Route::resource('categories', 'Admin\CategoryController');
-		Route::get('categories/{id}/delete', 'Admin\CategoryController@destroy');
+		Route::resource('buy', 'Admin\BuyController');
+		Route::get('buy/{id}/delete', 'Admin\BuyController@destroy');
 	});
 
 

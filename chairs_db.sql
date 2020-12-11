@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 10, 2020 at 09:27 AM
+-- Generation Time: Dec 11, 2020 at 06:01 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.9
 
@@ -24,6 +24,114 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `bases`
+--
+
+CREATE TABLE `bases` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `quantity` bigint(20) NOT NULL,
+  `alarm_quantity` bigint(20) NOT NULL DEFAULT 1,
+  `price` double(8,2) NOT NULL,
+  `purchas_price` double(8,2) NOT NULL,
+  `barcode` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `measur_unit` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `category_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `user_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bill_products`
+--
+
+CREATE TABLE `bill_products` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `product_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `bill_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `quantity` bigint(20) NOT NULL,
+  `price` double(8,2) NOT NULL,
+  `total` double(8,2) NOT NULL,
+  `date` date NOT NULL,
+  `user_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `categories`
+--
+
+CREATE TABLE `categories` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type` enum('base','product') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'base',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `customers`
+--
+
+CREATE TABLE `customers` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `phone` bigint(20) NOT NULL,
+  `address` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `customer_bills`
+--
+
+CREATE TABLE `customer_bills` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `cust_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `bill_num` bigint(20) NOT NULL,
+  `total` double(8,2) NOT NULL,
+  `pay` double(8,2) NOT NULL,
+  `remain` double(8,2) NOT NULL,
+  `total_profit` double(8,2) NOT NULL,
+  `date` date NOT NULL,
+  `type` enum('buy','back') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'buy',
+  `user_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `customer_payments`
+--
+
+CREATE TABLE `customer_payments` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `money` double(8,2) NOT NULL,
+  `bill_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `cust_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `user_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `failed_jobs`
 --
 
@@ -39,23 +147,18 @@ CREATE TABLE `failed_jobs` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `manual_pass_resets`
+-- Table structure for table `inboxes`
 --
 
-CREATE TABLE `manual_pass_resets` (
+CREATE TABLE `inboxes` (
   `id` bigint(20) UNSIGNED NOT NULL,
+  `user_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `message` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `manual_pass_resets`
---
-
-INSERT INTO `manual_pass_resets` (`id`, `email`, `token`, `created_at`, `updated_at`) VALUES
-(1, 'kareem@gmail.com', '9461', '2020-11-10 15:30:58', '2020-11-10 15:31:08');
 
 -- --------------------------------------------------------
 
@@ -77,7 +180,61 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (1, '2014_10_12_000000_create_users_table', 1),
 (2, '2014_10_12_100000_create_password_resets_table', 1),
 (3, '2019_08_19_000000_create_failed_jobs_table', 1),
-(26, '2020_11_10_165129_create_manual_pass_resets_table', 6);
+(4, '2020_12_11_113354_create_permission_tables', 1),
+(5, '2020_12_11_114108_create_customers_table', 1),
+(6, '2020_12_11_114148_create_suppliers_table', 1),
+(7, '2020_12_11_114149_create_categories_table', 1),
+(8, '2020_12_11_114245_create_customer_bills_table', 1),
+(9, '2020_12_11_114246_create_customer_payments_table', 1),
+(10, '2020_12_11_114435_create_bases_table', 1),
+(11, '2020_12_11_114437_create_supplier_sales_table', 1),
+(12, '2020_12_11_114438_create_supplier_bill_bases_table', 1),
+(13, '2020_12_11_114439_create_supplier_payments_table', 1),
+(14, '2020_12_11_114624_create_products_table', 1),
+(15, '2020_12_11_114625_create_product_bases_table', 1),
+(16, '2020_12_11_114813_create_bill_products_table', 1),
+(17, '2020_12_11_114829_create_inboxes_table', 1),
+(18, '2020_12_11_114845_create_outgoings_table', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `model_has_permissions`
+--
+
+CREATE TABLE `model_has_permissions` (
+  `permission_id` bigint(20) UNSIGNED NOT NULL,
+  `model_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `model_id` bigint(20) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `model_has_roles`
+--
+
+CREATE TABLE `model_has_roles` (
+  `role_id` bigint(20) UNSIGNED NOT NULL,
+  `model_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `model_id` bigint(20) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `outgoings`
+--
+
+CREATE TABLE `outgoings` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `cost` double(8,2) NOT NULL,
+  `date` date NOT NULL,
+  `user_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -86,20 +243,159 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 --
 
 CREATE TABLE `password_resets` (
-  `id` int(10) UNSIGNED NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `password_resets`
+-- Table structure for table `permissions`
 --
 
-INSERT INTO `password_resets` (`id`, `email`, `token`, `created_at`) VALUES
-(1, 'amera@gmail.com', '$2y$10$4C4BkkW8CnL//at5sa2ch.DhX6v8zE7Mcqe5SnkXIyJJDigGg/Zci', '2020-11-10 10:28:38'),
-(17, 'kareem@gmail.com', '$2y$10$Zzqv1nORjv9pjnip/H8Y9.ZENAHFOo6vMK8WwQy3X6S9JLMyHUQza', '2020-11-10 16:02:53'),
-(26, 'user4@gmail.com', '$2y$10$cuygRl21x7kUV8OsC2KCvOoUQFwjzIuK0Va4WnKYxGC4MPuYXYyra', '2020-11-22 15:25:41');
+CREATE TABLE `permissions` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `guard_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `products`
+--
+
+CREATE TABLE `products` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `barcode` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `quantity` bigint(20) NOT NULL,
+  `alarm_quantity` bigint(20) NOT NULL DEFAULT 1,
+  `price` double(8,2) NOT NULL,
+  `total_cost` double(8,2) NOT NULL,
+  `gomla_percent` double(8,2) NOT NULL,
+  `part_percent` double(8,2) NOT NULL,
+  `category_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `user_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `product_bases`
+--
+
+CREATE TABLE `product_bases` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `base_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `product_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `quantity` bigint(20) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `roles`
+--
+
+CREATE TABLE `roles` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `guard_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `role_has_permissions`
+--
+
+CREATE TABLE `role_has_permissions` (
+  `permission_id` bigint(20) UNSIGNED NOT NULL,
+  `role_id` bigint(20) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `suppliers`
+--
+
+CREATE TABLE `suppliers` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `phone` bigint(20) NOT NULL,
+  `address` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `supplier_bill_bases`
+--
+
+CREATE TABLE `supplier_bill_bases` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `quantity` bigint(20) NOT NULL,
+  `purchas_price` double(8,2) NOT NULL,
+  `total` double(8,2) NOT NULL,
+  `barcode` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `date` date NOT NULL,
+  `supplier_sale_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `supplier_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `base_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `user_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `supplier_payments`
+--
+
+CREATE TABLE `supplier_payments` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `money` double(8,2) NOT NULL,
+  `bill_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `supplier_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `user_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `supplier_sales`
+--
+
+CREATE TABLE `supplier_sales` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `supplier_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `bill_num` bigint(20) NOT NULL,
+  `total` double(8,2) NOT NULL,
+  `pay` double(8,2) NOT NULL,
+  `remain` double(8,2) NOT NULL,
+  `date` date NOT NULL,
+  `user_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -110,16 +406,12 @@ INSERT INTO `password_resets` (`id`, `email`, `token`, `created_at`) VALUES
 CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `gender` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `points` bigint(20) DEFAULT 0,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT 'default_avatar.jpg',
-  `api_token` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `type` enum('admin','user','monitor','editor') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'user',
+  `type` enum('admin','user') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'user',
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -129,30 +421,60 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `address`, `gender`, `phone`, `points`, `email`, `email_verified_at`, `password`, `image`, `api_token`, `type`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'admin', NULL, 'mal', '01201636129', 0, 'admin@admin.com', NULL, '$2y$10$MhZXXgZipzVXZn/wiH7lW.eR/aJb1PyjMBDqLwFdldeUMkofB6iBG', NULL, NULL, 'admin', NULL, NULL, NULL),
-(4, 'monitor', NULL, NULL, NULL, 0, 'monitor@gmail.com', NULL, '$2y$10$MhZXXgZipzVXZn/wiH7lW.eR/aJb1PyjMBDqLwFdldeUMkofB6iBG', NULL, NULL, 'monitor', NULL, '2020-10-29 01:01:28', '2020-10-29 01:01:28'),
-(5, 'kareem', NULL, NULL, NULL, 0, 'ahmed@gmail.com', NULL, '$2y$10$.qOdLRLM8zo40f9id.VoceQE8qwdgcWx4uGIKLc1w24CqSjk7neH.', NULL, NULL, 'monitor', NULL, '2020-11-04 22:40:12', '2020-11-04 22:40:12'),
-(6, 'kareem', NULL, NULL, NULL, 0, 'kareem@gmail.com', NULL, '$2y$10$HdFY2D60.0TNH5pwaCye4ep2sl/oPH/uOEMAQ3w1lvR22vu9ETy.G', NULL, 'tjUMtoAwOJHZ7A7n42Bs2gxRyF5yqOZowMCDklgRhpQx2EPfXEX0AISLDjPH', 'user', NULL, '2020-11-05 05:23:49', '2020-11-10 15:47:31'),
-(7, 'User', '005', 'femal', '01094641332', 15, 'user@gmail.com', NULL, '$2y$10$MhZXXgZipzVXZn/wiH7lW.eR/aJb1PyjMBDqLwFdldeUMkofB6iBG', 'img_1604917144.jpg', 'DZF3KMy08VDTTUelCbzAI4DTh1PdeLwWPp6NI8Lg6A80vwD8KUBf9PEqrj0O', 'user', NULL, '2020-11-05 05:25:17', '2020-12-03 07:28:42'),
-(8, 'editor', NULL, NULL, NULL, 0, 'editor@editor.com', NULL, '$2y$10$Q7SGtpapWZxXrKM0QerKX.aEhoRVGqdVLFuPVdYUuQYyp7r1hlnP2', NULL, NULL, 'editor', NULL, '2020-11-07 23:21:01', '2020-11-07 23:21:01'),
-(9, 'user1', NULL, NULL, NULL, 100, 'user1@gmail.com', NULL, '$2y$10$2J9vOpO9AUTRJYMwwKK74.EQ3MKRdcDZQuYNvgsP6ZtXy2GZKuP2m', 'default_avatar.jpg', 'Ec5tGsxPk1SVrawgXfXpVlz1UJKELBzMrnXotCdY75PEmaPDF6bmeRHoEiMl', 'user', NULL, '2020-11-11 11:27:30', '2020-11-11 11:27:30'),
-(10, 'user2', NULL, NULL, NULL, 95, 'user2@gmail.com', NULL, '$2y$10$M0b0GFufjrgJ2kKolX.bCOKYw9tGP7s8IfiStXvoVeLXrsP1VAYK6', 'default_avatar.jpg', 'GrSDeXf9tHoPC4YUHdYA4JPZHAXqdSGKz8VMArTjnpSmjlr1gCUSbuJlXRSx', 'user', NULL, '2020-11-11 11:27:45', '2020-11-11 11:27:45'),
-(11, 'user3', NULL, NULL, NULL, 90, 'user3@gmail.com', NULL, '$2y$10$ft33ArIWG47VblhVr06VXOSUCn/RLCvtrGKUFsA7q5tupRZcPQtoW', 'default_avatar.jpg', 'PSoNAU3kYn62E7SeD68L5FWVNUWAcHfKwrsOIORbLcLOl0ZT4yrNaIz6GoXR', 'user', NULL, '2020-11-11 11:27:54', '2020-11-11 11:27:54'),
-(12, 'amera', '005', 'femal', '01201636125', 85, 'user4@gmail.com', NULL, '$2y$10$7.xrOPqPLuC.ktKeqPrHs.hxl6KKLZHtk4eCM2lUlJA35a2G2U9gO', 'default_avatar.jpg', 'ScRLeGTwBBtg9N09st2ZvSeqal5e9bAskAc2chofn93uXR3zqzyHTCwq5drd', 'user', NULL, '2020-11-11 11:28:04', '2020-11-17 10:13:31'),
-(13, 'user5', NULL, NULL, NULL, 80, 'user5@gmail.com', NULL, '$2y$10$53pz8iNf2KUp/MNl/zXxQu2q0.hODUBqEBHJmf0BSQKjGI.NLzq8G', 'default_avatar.jpg', 'ld3uzXyZG8loQXTrN2GvTDTicNvrumMr7ZhfHObt3OtGdVXe0FPnX1Ex672H', 'user', NULL, '2020-11-11 11:28:14', '2020-11-11 11:28:14'),
-(14, 'user6', NULL, NULL, NULL, 75, 'user6@gmail.com', NULL, '$2y$10$8WLQtbZLV6h7/Z2sePEQZOLmMQs/YjYWIrSdUscUlLzesbDSD4peO', 'default_avatar.jpg', 'IUICawTJNebgmJxMHuYvAufnm6JQAmF1CRy0ZaC9TlmZH9Jr91oCxQ0axWHz', 'user', NULL, '2020-11-11 11:28:27', '2020-12-03 07:30:01'),
-(15, 'user7', NULL, NULL, NULL, 70, 'user7@gmail.com', NULL, '$2y$10$leRnjpVFUMs9fPnE.LkGV./IgWbk1ChOyd0wSG46WFQzmXFJpI8xu', 'default_avatar.jpg', 'kdFQyAN0j1XKQ1t85M7YNV1FatBgEvoz1sQaQJWhPnuVmnE5wSOakskN40nZ', 'user', NULL, '2020-11-11 11:28:35', '2020-11-19 13:18:33'),
-(16, 'user8', NULL, NULL, NULL, 65, 'user8@gmail.com', NULL, '$2y$10$05QkFtAuvIsEywZ6AkgE/e.76gB5osxPJgmpXkJP6ChaD2wK4udCm', 'default_avatar.jpg', 'Fl2mvMKLnf6yzvbQXoe8JL5EXLQgkUmLjayVF0Gx1HNBQysYwcoRSek14S7o', 'user', NULL, '2020-11-11 11:28:43', '2020-12-07 09:13:02'),
-(17, 'user9', NULL, NULL, NULL, 60, 'user9@gmail.com', NULL, '$2y$10$USv1H1NiUtDD7LnRAdqsbeXvcXbJO56japDF/.SAakMWjr2wV460K', 'default_avatar.jpg', 'vD4E5uaXbWCNkFUpKkBlxHtvrx5qihXIVOFS5oPwDjrBGolltfsQBRNTzGd4', 'user', NULL, '2020-11-11 11:28:53', '2020-11-11 11:28:53'),
-(18, 'user10', NULL, NULL, NULL, 55, 'user10@gmail.com', NULL, '$2y$10$Hhf3BPr6z1NN0xX/LMGLz.AomKfoH5Xlhm4bXqoiOsX9t5zNLra5y', 'default_avatar.jpg', 'yF2p824Y8mFPNuWIIx2BUCSLJ9isbLMByNzbObjk8SRGAJ6rqSxpbkROHnTD', 'user', NULL, '2020-11-11 11:29:07', '2020-11-11 11:29:07'),
-(19, 'user11', NULL, NULL, NULL, 50, 'user11@gmail.com', NULL, '$2y$10$BEEfAkinX69zLOPozhqQyOYCm0C4Gb.hRdanxKPxPvqwFuaX7ht2u', 'default_avatar.jpg', 'OrdEjFWvF0gwLBHapgZyWNoUcrCKooQZfs9CZja7iSoN2oH9NJpWATjd1E9b', 'user', NULL, '2020-11-11 11:29:15', '2020-11-11 11:29:15'),
-(20, 'amera', '005', 'femal', '01094641442', 45, 'amera@gmail.com', NULL, '$2y$10$LhaYZ6IMwXl7frdPlb2mE.MohDjsWbLGmHx.6Y02IthFaidbdPzzO', 'default_avatar.jpg', 'xNutkSzo1TJDr4TbBpVthhKFm13BDP0vsgOPUi1hKLbg7z324dd2cFwQ6aRB', 'user', NULL, '2020-11-11 11:29:25', '2020-11-11 12:24:51'),
-(21, 'user13', NULL, NULL, NULL, 0, 'user13@gmail.com', NULL, '$2y$10$lb8P9l.RI6b/vP1RfMDcTeqmRRMx.lV9BzikrhXqT1K.IFng1gd3e', 'default_avatar.jpg', NULL, 'user', NULL, '2020-11-11 14:20:52', '2020-11-11 14:20:52');
+INSERT INTO `users` (`id`, `name`, `phone`, `image`, `email`, `email_verified_at`, `password`, `type`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'admin', '01201636129', NULL, 'admin@admin.com', NULL, '$2y$10$MhZXXgZipzVXZn/wiH7lW.eR/aJb1PyjMBDqLwFdldeUMkofB6iBG', 'admin', NULL, '2020-12-11 12:30:21', '2020-12-11 12:30:21');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `bases`
+--
+ALTER TABLE `bases`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `bases_barcode_unique` (`barcode`),
+  ADD KEY `bases_category_id_foreign` (`category_id`),
+  ADD KEY `bases_user_id_foreign` (`user_id`);
+
+--
+-- Indexes for table `bill_products`
+--
+ALTER TABLE `bill_products`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `bill_products_product_id_foreign` (`product_id`),
+  ADD KEY `bill_products_bill_id_foreign` (`bill_id`),
+  ADD KEY `bill_products_user_id_foreign` (`user_id`);
+
+--
+-- Indexes for table `categories`
+--
+ALTER TABLE `categories`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `customers`
+--
+ALTER TABLE `customers`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `customers_user_id_foreign` (`user_id`);
+
+--
+-- Indexes for table `customer_bills`
+--
+ALTER TABLE `customer_bills`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `customer_bills_cust_id_foreign` (`cust_id`),
+  ADD KEY `customer_bills_user_id_foreign` (`user_id`);
+
+--
+-- Indexes for table `customer_payments`
+--
+ALTER TABLE `customer_payments`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `customer_payments_bill_id_foreign` (`bill_id`),
+  ADD KEY `customer_payments_cust_id_foreign` (`cust_id`),
+  ADD KEY `customer_payments_user_id_foreign` (`user_id`);
 
 --
 -- Indexes for table `failed_jobs`
@@ -161,11 +483,10 @@ ALTER TABLE `failed_jobs`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `manual_pass_resets`
+-- Indexes for table `inboxes`
 --
-ALTER TABLE `manual_pass_resets`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `email` (`email`);
+ALTER TABLE `inboxes`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `migrations`
@@ -174,11 +495,102 @@ ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `model_has_permissions`
+--
+ALTER TABLE `model_has_permissions`
+  ADD PRIMARY KEY (`permission_id`,`model_id`,`model_type`),
+  ADD KEY `model_has_permissions_model_id_model_type_index` (`model_id`,`model_type`);
+
+--
+-- Indexes for table `model_has_roles`
+--
+ALTER TABLE `model_has_roles`
+  ADD PRIMARY KEY (`role_id`,`model_id`,`model_type`),
+  ADD KEY `model_has_roles_model_id_model_type_index` (`model_id`,`model_type`);
+
+--
+-- Indexes for table `outgoings`
+--
+ALTER TABLE `outgoings`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `outgoings_user_id_foreign` (`user_id`);
+
+--
 -- Indexes for table `password_resets`
 --
 ALTER TABLE `password_resets`
-  ADD PRIMARY KEY (`id`),
   ADD KEY `password_resets_email_index` (`email`);
+
+--
+-- Indexes for table `permissions`
+--
+ALTER TABLE `permissions`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `products`
+--
+ALTER TABLE `products`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `products_barcode_unique` (`barcode`),
+  ADD KEY `products_category_id_foreign` (`category_id`),
+  ADD KEY `products_user_id_foreign` (`user_id`);
+
+--
+-- Indexes for table `product_bases`
+--
+ALTER TABLE `product_bases`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `product_bases_base_id_foreign` (`base_id`),
+  ADD KEY `product_bases_product_id_foreign` (`product_id`);
+
+--
+-- Indexes for table `roles`
+--
+ALTER TABLE `roles`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `role_has_permissions`
+--
+ALTER TABLE `role_has_permissions`
+  ADD PRIMARY KEY (`permission_id`,`role_id`),
+  ADD KEY `role_has_permissions_role_id_foreign` (`role_id`);
+
+--
+-- Indexes for table `suppliers`
+--
+ALTER TABLE `suppliers`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `suppliers_user_id_foreign` (`user_id`);
+
+--
+-- Indexes for table `supplier_bill_bases`
+--
+ALTER TABLE `supplier_bill_bases`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `supplier_bill_bases_supplier_sale_id_foreign` (`supplier_sale_id`),
+  ADD KEY `supplier_bill_bases_supplier_id_foreign` (`supplier_id`),
+  ADD KEY `supplier_bill_bases_base_id_foreign` (`base_id`),
+  ADD KEY `supplier_bill_bases_user_id_foreign` (`user_id`);
+
+--
+-- Indexes for table `supplier_payments`
+--
+ALTER TABLE `supplier_payments`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `supplier_payments_bill_id_foreign` (`bill_id`),
+  ADD KEY `supplier_payments_supplier_id_foreign` (`supplier_id`),
+  ADD KEY `supplier_payments_user_id_foreign` (`user_id`);
+
+--
+-- Indexes for table `supplier_sales`
+--
+ALTER TABLE `supplier_sales`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `supplier_sales_bill_num_unique` (`bill_num`),
+  ADD KEY `supplier_sales_supplier_id_foreign` (`supplier_id`),
+  ADD KEY `supplier_sales_user_id_foreign` (`user_id`);
 
 --
 -- Indexes for table `users`
@@ -192,34 +604,227 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `bases`
+--
+ALTER TABLE `bases`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `bill_products`
+--
+ALTER TABLE `bill_products`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `categories`
+--
+ALTER TABLE `categories`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `customers`
+--
+ALTER TABLE `customers`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `customer_bills`
+--
+ALTER TABLE `customer_bills`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `customer_payments`
+--
+ALTER TABLE `customer_payments`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `manual_pass_resets`
+-- AUTO_INCREMENT for table `inboxes`
 --
-ALTER TABLE `manual_pass_resets`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+ALTER TABLE `inboxes`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
--- AUTO_INCREMENT for table `password_resets`
+-- AUTO_INCREMENT for table `outgoings`
 --
-ALTER TABLE `password_resets`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+ALTER TABLE `outgoings`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `permissions`
+--
+ALTER TABLE `permissions`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `products`
+--
+ALTER TABLE `products`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `product_bases`
+--
+ALTER TABLE `product_bases`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `roles`
+--
+ALTER TABLE `roles`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `suppliers`
+--
+ALTER TABLE `suppliers`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `supplier_bill_bases`
+--
+ALTER TABLE `supplier_bill_bases`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `supplier_payments`
+--
+ALTER TABLE `supplier_payments`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `supplier_sales`
+--
+ALTER TABLE `supplier_sales`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `bases`
+--
+ALTER TABLE `bases`
+  ADD CONSTRAINT `bases_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE SET NULL,
+  ADD CONSTRAINT `bases_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE SET NULL;
+
+--
+-- Constraints for table `bill_products`
+--
+ALTER TABLE `bill_products`
+  ADD CONSTRAINT `bill_products_bill_id_foreign` FOREIGN KEY (`bill_id`) REFERENCES `customer_bills` (`id`) ON DELETE SET NULL,
+  ADD CONSTRAINT `bill_products_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE SET NULL,
+  ADD CONSTRAINT `bill_products_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE SET NULL;
+
+--
+-- Constraints for table `customers`
+--
+ALTER TABLE `customers`
+  ADD CONSTRAINT `customers_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE SET NULL;
+
+--
+-- Constraints for table `customer_bills`
+--
+ALTER TABLE `customer_bills`
+  ADD CONSTRAINT `customer_bills_cust_id_foreign` FOREIGN KEY (`cust_id`) REFERENCES `customers` (`id`) ON DELETE SET NULL,
+  ADD CONSTRAINT `customer_bills_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE SET NULL;
+
+--
+-- Constraints for table `customer_payments`
+--
+ALTER TABLE `customer_payments`
+  ADD CONSTRAINT `customer_payments_bill_id_foreign` FOREIGN KEY (`bill_id`) REFERENCES `customer_bills` (`id`) ON DELETE SET NULL,
+  ADD CONSTRAINT `customer_payments_cust_id_foreign` FOREIGN KEY (`cust_id`) REFERENCES `customers` (`id`) ON DELETE SET NULL,
+  ADD CONSTRAINT `customer_payments_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE SET NULL;
+
+--
+-- Constraints for table `model_has_permissions`
+--
+ALTER TABLE `model_has_permissions`
+  ADD CONSTRAINT `model_has_permissions_permission_id_foreign` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `model_has_roles`
+--
+ALTER TABLE `model_has_roles`
+  ADD CONSTRAINT `model_has_roles_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `outgoings`
+--
+ALTER TABLE `outgoings`
+  ADD CONSTRAINT `outgoings_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE SET NULL;
+
+--
+-- Constraints for table `products`
+--
+ALTER TABLE `products`
+  ADD CONSTRAINT `products_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE SET NULL,
+  ADD CONSTRAINT `products_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE SET NULL;
+
+--
+-- Constraints for table `product_bases`
+--
+ALTER TABLE `product_bases`
+  ADD CONSTRAINT `product_bases_base_id_foreign` FOREIGN KEY (`base_id`) REFERENCES `bases` (`id`) ON DELETE SET NULL,
+  ADD CONSTRAINT `product_bases_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE SET NULL;
+
+--
+-- Constraints for table `role_has_permissions`
+--
+ALTER TABLE `role_has_permissions`
+  ADD CONSTRAINT `role_has_permissions_permission_id_foreign` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `role_has_permissions_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `suppliers`
+--
+ALTER TABLE `suppliers`
+  ADD CONSTRAINT `suppliers_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE SET NULL;
+
+--
+-- Constraints for table `supplier_bill_bases`
+--
+ALTER TABLE `supplier_bill_bases`
+  ADD CONSTRAINT `supplier_bill_bases_base_id_foreign` FOREIGN KEY (`base_id`) REFERENCES `bases` (`id`) ON DELETE SET NULL,
+  ADD CONSTRAINT `supplier_bill_bases_supplier_id_foreign` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE SET NULL,
+  ADD CONSTRAINT `supplier_bill_bases_supplier_sale_id_foreign` FOREIGN KEY (`supplier_sale_id`) REFERENCES `supplier_sales` (`id`) ON DELETE SET NULL,
+  ADD CONSTRAINT `supplier_bill_bases_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE SET NULL;
+
+--
+-- Constraints for table `supplier_payments`
+--
+ALTER TABLE `supplier_payments`
+  ADD CONSTRAINT `supplier_payments_bill_id_foreign` FOREIGN KEY (`bill_id`) REFERENCES `supplier_bill_bases` (`id`) ON DELETE SET NULL,
+  ADD CONSTRAINT `supplier_payments_supplier_id_foreign` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE SET NULL,
+  ADD CONSTRAINT `supplier_payments_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE SET NULL;
+
+--
+-- Constraints for table `supplier_sales`
+--
+ALTER TABLE `supplier_sales`
+  ADD CONSTRAINT `supplier_sales_supplier_id_foreign` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE SET NULL,
+  ADD CONSTRAINT `supplier_sales_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE SET NULL;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

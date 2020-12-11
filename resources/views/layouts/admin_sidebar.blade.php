@@ -4,39 +4,42 @@
             <!-- Sidebar navigation-->
             <nav class="sidebar-nav">
                 <ul id="sidebarnav">
-                    <li> 
+                    <li>
                         <a class="waves-effect waves-dark" href="{{url('home')}}" aria-expanded="false"><i class="mdi mdi-home"></i><span class="hide-menu">{{trans('admin.nav_home')}}</span></a>
                     </li>
-                    <li> 
-                        <a class="waves-effect waves-dark" href="" aria-expanded="false"><i class="mdi mdi-account-location"></i><span class="hide-menu">{{trans('admin.nav_buy')}}</span></a>        
+                    <li>
+                        <a class="waves-effect waves-dark" href="" aria-expanded="false"><i class="mdi mdi-account-location"></i><span class="hide-menu">{{trans('admin.nav_buy')}}</span></a>
                     </li>
-                    <li> 
-                        <a class="waves-effect waves-dark" href="" aria-expanded="false"><i class="mdi mdi-account-location"></i><span class="hide-menu">{{trans('admin.nav_products')}}</span></a>        
+                    <li>
+                        <a class="waves-effect waves-dark" href="{{url('categories')}}" aria-expanded="false"><i class="mdi mdi-account-location"></i><span class="hide-menu">{{trans('admin.categories')}}</span></a>
                     </li>
-                    <li> 
-                        <a class="waves-effect waves-dark" href="" aria-expanded="false"><i class="mdi mdi-account-location"></i><span class="hide-menu">{{trans('admin.nav_bases')}}</span></a>        
+                    <li>
+                        <a class="waves-effect waves-dark" href="" aria-expanded="false"><i class="mdi mdi-account-location"></i><span class="hide-menu">{{trans('admin.nav_products')}}</span></a>
                     </li>
-                    <li> 
-                        <a class="waves-effect waves-dark" href="" aria-expanded="false"><i class="mdi mdi-account-location"></i><span class="hide-menu">{{trans('admin.nav_customers')}}</span></a>        
+                    <li>
+                        <a class="waves-effect waves-dark" href="" aria-expanded="false"><i class="mdi mdi-account-location"></i><span class="hide-menu">{{trans('admin.nav_bases')}}</span></a>
                     </li>
-                    <li> 
-                        <a class="waves-effect waves-dark" href="" aria-expanded="false"><i class="mdi mdi-account-location"></i><span class="hide-menu">{{trans('admin.nav_suppliers')}}</span></a>        
+                    <li>
+                        <a class="waves-effect waves-dark" href="" aria-expanded="false"><i class="mdi mdi-account-location"></i><span class="hide-menu">{{trans('admin.nav_customers')}}</span></a>
                     </li>
-                    <li> 
+                    <li>
+                        <a class="waves-effect waves-dark" href="" aria-expanded="false"><i class="mdi mdi-account-location"></i><span class="hide-menu">{{trans('admin.nav_suppliers')}}</span></a>
+                    </li>
+                    <li>
                         <a class="has-arrow waves-effect waves-dark" href="{{url('users')}}" aria-expanded="false"><i class="mdi mdi-account-location"></i><span class="hide-menu">{{trans('admin.nav_users')}}</span></a>
                         <ul aria-expanded="false" class="collapse">
                             <li><a href="{{url('users')}}">{{trans('admin.view_users')}}</a></li>
                             <li><a href="{{url('users/create')}} ">{{trans('admin.add_new_user')}}</a></li>
-                        </ul>        
+                        </ul>
                     </li>
-                    <li> 
-                        <a class="waves-effect waves-dark" href="" aria-expanded="false"><i class="mdi mdi-account-location"></i><span class="hide-menu">{{trans('admin.nav_bills')}}</span></a>        
+                    <li>
+                        <a class="waves-effect waves-dark" href="" aria-expanded="false"><i class="mdi mdi-account-location"></i><span class="hide-menu">{{trans('admin.nav_bills')}}</span></a>
                     </li>
-                    <li> 
-                        <a class="waves-effect waves-dark" href="" aria-expanded="false"><i class="mdi mdi-account-location"></i><span class="hide-menu">{{trans('admin.nav_income')}}</span></a>        
+                    <li>
+                        <a class="waves-effect waves-dark" href="" aria-expanded="false"><i class="mdi mdi-account-location"></i><span class="hide-menu">{{trans('admin.nav_income')}}</span></a>
                     </li>
-                    <li> 
-                        <a class="waves-effect waves-dark" href="" aria-expanded="false"><i class="mdi mdi-account-location"></i><span class="hide-menu">{{trans('admin.nav_outgoing')}}</span></a>        
+                    <li>
+                        <a class="waves-effect waves-dark" href="" aria-expanded="false"><i class="mdi mdi-account-location"></i><span class="hide-menu">{{trans('admin.nav_outgoing')}}</span></a>
                     </li>
                 </ul>
             </nav>

@@ -6,8 +6,8 @@ return [
     'public_Edit' => 'تعديل',
     'public_Save' => 'حفظ',
     'public_Cancel' => 'الغاء',
-    'Public_HashNum' => '#', 
-    'website_title' => 'عنوان الموقع',    
+    'Public_HashNum' => '#',
+    'website_title' => 'عنوان الموقع',
     'Public_See_more' => 'رؤية المزيد',
     'deleteConfirmation' => 'هل انت متاكد من الحذف ؟',
     'preventAlert' => 'لا تملك الصلاحية لدخول هذه الصفحة !!!',
@@ -15,6 +15,13 @@ return [
     'public_delete' => 'حذف',
     'public_cancel' => 'الغاء',
     'actions' => 'العمليات',
+
+
+    'categories' => 'التصنيفات',
+    'type' => 'النوع',
+    'base' => 'مواد خام',
+    'product' => 'منتجات',
+    'add_category' => 'اضافة تصنيف',
     // messages
     'addedsuccess' => 'تم الاضافة بنجاح',
     'statuschanged' => 'تم تعديل الحالة',
@@ -42,8 +49,8 @@ return [
     //users
     'name' => 'الاسم',
     'user_info' => 'بيانات الموظف',
-    
-    
+
+
     //login
     'email' => 'البريد الالكترونى',
     'password' => 'كلمة المرور',

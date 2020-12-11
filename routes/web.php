@@ -15,10 +15,14 @@
 		Route::resource('users', 'Admin\UsersController');
 		Route::get('users/{id}/delete', 'Admin\UsersController@destroy');
 
-<<<<<<< HEAD
 		Route::resource('buy', 'Admin\BuyController');
 		Route::get('buy/{id}/delete', 'Admin\BuyController@destroy');
-=======
+
+		Route::resource('base_bills', 'Admin\baseBillsController');
+		Route::get('base_bills/{id}/delete', 'Admin\baseBillsController@destroy');
+		Route::get('select2-autocomplete-ajax', 'Admin\baseBillsController@dataAjax');
+		Route::get('select2-autocomplete-ajax-base', 'Admin\baseBillsController@dataAjax_base');
+
 		Route::resource('categories', 'Admin\categoryController');
 		Route::get('categories/{id}/delete', 'Admin\categoryController@destroy');
 
@@ -30,7 +34,6 @@
 		Route::resource('supplier', 'Admin\supllierController');
 		Route::post('editsupplier', 'Admin\supllierController@update');
 		Route::get('supplier/{id}/delete', 'Admin\supllierController@destroy');
->>>>>>> 66864544c9e2d1c40c10b376ffa4883fa4af7726
 	});
 
 

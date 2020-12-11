@@ -4,16 +4,18 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
-class BuyController extends Controller
+use App\Models\Supplier;
+use App\Models\Base;
+class baseBillsController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(){
-        return view('admin.buy.buy');
+    public function index()
+    {
+        return view('admin.base_bills.base_bills');
     }
 
     /**
@@ -80,5 +82,32 @@ class BuyController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function dataAjax(Request $request){
+        $data = Supplier::select("id", "name")->get();
+
+        if ($request->has('q')) {
+            $search = $request->q;
+            $data = Supplier
+                ::select("id", "name")
+                ->where('name', 'LIKE', "%$search%")
+                ->orWhere('phone', 'LIKE', "%$search%")
+                ->get();
+        }
+        return response()->json($data);
+    }
+    public function dataAjax_base(Request $request){
+        $data = Base::select("id", "name")->get();
+
+        if ($request->has('q')) {
+            $search = $request->q;
+            $data = Base
+                ::select("id", "name")
+                ->where('name', 'LIKE', "%$search%")
+                ->orWhere('phone', 'LIKE', "%$search%")
+                ->get();
+        }
+        return response()->json($data);
     }
 }

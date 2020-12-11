@@ -26,7 +26,6 @@
                             <tr>
                                 <th class="text-lg-center">{{trans('admin.user_name')}}</th>
                                 <th class="text-lg-center">{{trans('admin.email')}}</th>
-                                <th class="text-lg-center">{{trans('admin.points')}}</th>
                                 <th class="text-lg-center">{{trans('admin.actions')}}</th>
                             </tr>
                         </thead>
@@ -35,7 +34,6 @@
                             <tr>
                                 <td class="text-lg-center">{{$user->name}}</td>
                                 <td class="text-lg-center">{{$user->email}}</td>
-                                <td class="text-lg-center">{{$user->points}}</td>
                                 <td class="text-lg-center">
                                     <form method="get" id='delete-form-{{ $user->id }}'
                                           action="{{url('users/'.$user->id.'/delete')}}"
@@ -59,6 +57,7 @@
                         @endforeach
                         </tbody>
                     </table>
+                    {{$users->links()}}
                 </div>
             </div>
         </div>

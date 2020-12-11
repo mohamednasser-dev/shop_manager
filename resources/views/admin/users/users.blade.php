@@ -24,7 +24,7 @@
                     <table id="myTable" class="table full-color-table full-primary-table">
                         <thead>
                             <tr>
-                                <th class="text-lg-center">{{trans('admin.user_name')}}</th>
+                                <th class="text-lg-center">{{trans('admin.name')}}</th>
                                 <th class="text-lg-center">{{trans('admin.email')}}</th>
                                 <th class="text-lg-center">{{trans('admin.actions')}}</th>
                             </tr>

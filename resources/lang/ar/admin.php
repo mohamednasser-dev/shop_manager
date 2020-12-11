@@ -15,8 +15,10 @@ return [
     'public_delete' => 'حذف',
     'public_cancel' => 'الغاء',
     'actions' => 'العمليات',
+    //category
     'category_name' => 'اسم التصنيف',
     'category' => 'التصنيف',
+    //Base
     'quantity' => 'الكميه',
     'alarm_quantity' => 'كميه التنبيه',
     'price' => 'السعر',
@@ -32,6 +34,18 @@ return [
     'base' => 'مواد خام',
     'product' => 'منتجات',
     'add_category' => 'اضافة تصنيف',
+    'product_name' => 'اسم المنتج',
+    'pay' => 'المدفوع',
+    'total' => 'الاجمالى',
+    'remain' => 'الباقى',
+    'search_by_barcode' => 'بحث بالباركود',
+    'search_by_product_name' => 'بحث باسم المنتج',
+    'bill_num' => 'رقم الفاتوره',
+    'date' => 'التاريخ',
+    'cust_name' => 'اسم العميل',
+    'supplier_name' => 'اسم المورد',
+    'open_new_bill' => 'فتح فاتوره جديده',
+   
     // messages
     'addedsuccess' => 'تم الاضافة بنجاح',
     'statuschanged' => 'تم تعديل الحالة',
@@ -46,10 +60,13 @@ return [
     'nav_buy' => 'البيع',
     'nav_products' => 'المنتجات',
     'nav_bases' => 'الخام',
+    'nav_base_bills' => 'فواتير الخام',
     'nav_customers' => 'العملاء',
     'nav_suppliers' => 'الموردين',
     'nav_users' => 'الموظفين',
     'view_users' => 'رؤيه الموظفين',
+    'view_bases' => 'رؤيه الخام',
+    
     'add_new_user' => 'اضافة موظف جدييد',
     'nav_bills' => 'الفواتير',
     'nav_income' => 'الدخل',

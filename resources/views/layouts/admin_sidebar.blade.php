@@ -18,11 +18,9 @@
                     <li> 
                         <a class="has-arrow waves-effect waves-dark" href="" aria-expanded="false"><i class="mdi mdi-account-location"></i><span class="hide-menu">{{trans('admin.nav_bases')}}</span></a>    
                         <ul aria-expanded="false" class="collapse">
+                            <li><a href="{{url('bases')}}">{{trans('admin.view_bases')}}</a></li>
                             <li><a href="{{url('base_bills')}}">{{trans('admin.nav_base_bills')}}</a></li>
                         </ul>  
-                    </li>
-                    <li>
-                        <a class="waves-effect waves-dark" href="{{url('bases')}}" aria-expanded="false"><i class="mdi mdi-account-location"></i><span class="hide-menu">{{trans('admin.nav_bases')}}</span></a>
                     </li>
                     <li>
                         <a class="waves-effect waves-dark" href="" aria-expanded="false"><i class="mdi mdi-account-location"></i><span class="hide-menu">{{trans('admin.nav_customers')}}</span></a>

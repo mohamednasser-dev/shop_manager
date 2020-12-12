@@ -118,7 +118,7 @@ class baseController extends Controller
             $user->delete();
             session()->flash('success', trans('admin.deleteSuccess'));
         }catch(Exception $exception){
-            session()->flash('danger', 'لا يمكن حذف  مواد خام مستخدمه فى منتجات');
+            session()->flash('danger', '!لا يمكن حذف  مواد خام مستخدمه فى منتجات');
         }
         return back();
     }

@@ -16,9 +16,9 @@ class CreateProductBasesTable extends Migration
         Schema::create('product_bases', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('base_id')->unsigned()->nullable();
-            $table->foreign('base_id')->references('id')->on('bases')->onDelete('set null');
+            $table->foreign('base_id')->references('id')->on('bases')->onDelete('restrict');
             $table->bigInteger('product_id')->unsigned()->nullable();
-            $table->foreign('product_id')->references('id')->on('products')->onDelete('set null');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('restrict');
             $table->bigInteger('quantity');
             $table->timestamps();
         });

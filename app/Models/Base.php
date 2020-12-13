@@ -18,4 +18,9 @@ class Base extends Model
     {
         return $this->hasOne('App\Models\User', 'id', 'user_id');
     }
+
+    public function products()
+    {
+        return $this->belongsToMany(Product::class, 'product_bases', 'base_id', 'product_id');
+    }
 }

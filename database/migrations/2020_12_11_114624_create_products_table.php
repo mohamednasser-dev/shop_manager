@@ -17,7 +17,7 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('barcode')->unique();
-            $table->bigInteger('quantity');
+            $table->bigInteger('quantity')->default(0);
             $table->bigInteger('alarm_quantity')->default(1);
             $table->float('price');
             $table->float('total_cost');

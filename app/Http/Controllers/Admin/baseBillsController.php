@@ -3,9 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use App\Models\SupplierBillBase;
+use App\Models\SupplierSale;
 use Illuminate\Http\Request;
 use App\Models\Supplier;
 use App\Models\Base;
+use Carbon\Carbon;
 class baseBillsController extends Controller
 {
     /**
@@ -15,7 +19,17 @@ class baseBillsController extends Controller
      */
     public function index()
     {
-        return view('admin.base_bills.base_bills');
+        $suppliers = Supplier::all();
+        $supplier_sales = SupplierSale::all();
+        if(count($supplier_sales) == 0){
+            $bill_num = 1 ;
+             $supplier_sales_selected = null;
+            return view('admin.base_bills.base_bills',compact('bill_num','supplier_sales_selected','suppliers'));
+        }else{
+            $supplier_sales_selected = SupplierSale::latest('bill_num')->first();
+            $bill_num = $supplier_sales_selected->bill_num ;
+            return view('admin.base_bills.base_bills',compact('bill_num','supplier_sales_selected','suppliers'));
+        }
     }
 
     /**
@@ -36,7 +50,25 @@ class baseBillsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //to get today date
+        $mytime = Carbon::now();
+        $today =  Carbon::parse($mytime->toDateTimeString())->format('Y-m-d');
+        $data = $this->validate(\request(),
+            [
+                'bill_num' => 'required',
+                'supplier_id' => 'required|exists:suppliers,id'
+            ]);
+        $supplier_sales = SupplierSale::all();
+        if(count($supplier_sales) == 0){
+            $data['bill_num'] = 1;
+        }else{
+            $data['bill_num'] = $request->bill_num + 1;
+        }
+        $data['date'] = $today;
+        $data['user_id'] = Auth::user()->id;
+        SupplierSale::create($data);
+        session()->flash('success', trans('admin.addedsuccess'));
+        return redirect(url('base_bills'));
     }
 
     /**

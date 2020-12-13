@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class BuyController extends Controller
 {
@@ -13,7 +14,15 @@ class BuyController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
-        return view('admin.buy.buy');
+        $mytime = Carbon::now();
+        $today =  Carbon::parse($mytime->toDateTimeString())->format('Y-m-d');
+        return view('admin.buy.buy',compact('today'));
+    }
+
+    public function buy_bills(){
+        $mytime = Carbon::now();
+        $today =  Carbon::parse($mytime->toDateTimeString())->format('Y-m-d');
+        return view('admin.buy_bills.buy_bills',compact('today'));
     }
 
     /**

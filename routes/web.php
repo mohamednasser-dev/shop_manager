@@ -15,14 +15,25 @@
 		Route::resource('users', 'Admin\UsersController');
 		Route::get('users/{id}/delete', 'Admin\UsersController@destroy');
 
+		Route::resource('roles','Admin\roleController');
+		Route::get('/roles/edit/{id}', 'Admin\roleController@edit')->name('roles.edit');
+		Route::post('/roles/update_permission/{id}', 'Admin\roleController@update')->name('roles.update_permission');
+		Route::post('roles/store_permission','Admin\roleController@store_permission')->name('roles.store_permission');
+	    Route::get('/roles/destroy/{id}', 'Admin\roleController@destroy')->name('roles.destroy');
+
+
 		Route::resource('buy', 'Admin\BuyController');
 		Route::get('buy/{id}/delete', 'Admin\BuyController@destroy');
+		Route::get('buy_bills', 'Admin\BuyController@buy_bills');
 
 		Route::resource('base_bills', 'Admin\baseBillsController');
 		Route::get('base_bills/{id}/delete', 'Admin\baseBillsController@destroy');
 		Route::get('select2-autocomplete-ajax', 'Admin\baseBillsController@dataAjax');
 		Route::get('select2-autocomplete-ajax-base', 'Admin\baseBillsController@dataAjax_base');
 //categories
+
+		Route::resource('supplier_Bill_Base', 'Admin\supplierBillBaseController');
+
 		Route::resource('categories', 'Admin\categoryController');
 		Route::get('categories/{id}/delete', 'Admin\categoryController@destroy');
 //bases

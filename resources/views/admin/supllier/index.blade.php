@@ -10,11 +10,11 @@
 @section('content')
     <div class="row page-titles">
         <div class="col-md-5 align-self-center">
-            <h3 class="text-themecolor">{{trans('admin.supllier')}}</h3>
+            <h3 class="text-themecolor">{{trans('admin.nav_suppliers')}}</h3>
         </div>
         <div class="col-md-7 align-self-center">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item">{{trans('admin.supllier')}}</li>
+                <li class="breadcrumb-item">{{trans('admin.nav_suppliers')}}</li>
                 <li class="breadcrumb-item active"><a href="{{url('home')}}">{{trans('admin.nav_home')}}</a></li>
             </ol>
         </div>
@@ -26,9 +26,8 @@
                 <div class="card-header">
                     <button alt="default" data-toggle="modal" data-target="#responsive-modal"
                             class="btn btn-info btn-bg">
-                        {{trans('admin.add_supllier')}}
+                        {{trans('admin.add_supplier')}}
                     </button>
-
                 </div>
                 <div class="card-body">
                     <!-- Start home table -->
@@ -51,7 +50,6 @@
                                 <td class="text-center">{{$user->phone}}</td>
                                 <td class="text-center">{{$user->address}}</td>
                                 <td class="text-center">{{$user->employee->name}}</td>
-
 
                                 <td class="text-lg-center">
                                     <a class='btn btn-raised btn-success btn-sml'

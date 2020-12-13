@@ -15,15 +15,20 @@ return [
     'public_delete' => 'حذف',
     'public_cancel' => 'الغاء',
     'actions' => 'العمليات',
+
     //category
     'category_name' => 'اسم التصنيف',
     'category' => 'التصنيف',
+
     //Base
     'quantity' => 'الكميه',
+    'base_info' => 'بيانات الخام',
     'alarm_quantity' => 'كميه التنبيه',
     'price' => 'السعر',
     'purchas_price' => 'سعر التكلفه',
     'barcode' => 'بار كود',
+    'choose_base' => 'اختار الخام',
+    'choose_supplier' => 'اخنتار المورد',
     'measur_unit' => 'وحده القياس',
     'employee' => 'الموظف',
     'bases' => 'المواد الخام',
@@ -55,6 +60,9 @@ return [
     'adsAddedSuccess' => 'تم اضافة الاعلان بتجاح',
     'adsExisting' => 'هذا المنتج يوجد له اعلان بالفعل',
     'formationAdded' => 'تم اضافة تشكيل الفريق بنجاح',
+    'error' => 'يوجد خطأ',
+    
+
     //navigation  sidebar
     'nav_home' => 'الصفحة الرئيسية',
     'nav_buy' => 'البيع',
@@ -65,8 +73,8 @@ return [
     'nav_suppliers' => 'الموردين',
     'nav_users' => 'الموظفين',
     'view_users' => 'رؤيه الموظفين',
+    'nav_permissions' => 'الصلاحيات',
     'view_bases' => 'رؤيه الخام',
-    
     'add_new_user' => 'اضافة موظف جدييد',
     'nav_bills' => 'الفواتير',
     'nav_income' => 'الدخل',
@@ -76,6 +84,28 @@ return [
     //users
     'name' => 'الاسم',
     'user_info' => 'بيانات الموظف',
+
+    //roles
+    'add_new_role' => 'اضافة وضيفة',
+    'add_new_permission' => 'اضافة صلاحيات',
+    'role_name' => 'اسم الوظيفة',
+    'permission' => 'الصلاحية',
+    'edit_role' => 'تعديل الصلاحية',
+    
+    //Suppliers
+    'add_supplier' => 'اضافة مورد',
+    'phone' => 'رقم الهاتف',
+    'address' => 'العنوان',
+
+    //Buy Bills
+
+    'Search_area' => 'البحث',
+    'search_by_cust_name' => 'بحث باسم العميل',
+    'search_by_date' => 'بحث باليوم',
+    'search_by_bill_num' => 'بحث برقم الفاتوره',
+    'choose_cust' => 'اختار عميل',
+    'address' => 'العنوان',
+    'address' => 'العنوان',
 
 
     //login

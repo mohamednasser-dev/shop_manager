@@ -39,7 +39,7 @@
                         <label for="example-text-input"
                                class="col-md-2 col-form-label">{{trans('admin.alarm_quantity')}}</label>
                         <div class="col-md-10">
-                            {{ Form::text('alarm_quantity',old('alarm_quantity'),["class"=>"form-control" ,"required",'placeholder'=>trans('admin.alarm_quantity')]) }}
+                            {{ Form::number('alarm_quantity',old('alarm_quantity'),["class"=>"form-control" ,"required",'placeholder'=>trans('admin.alarm_quantity')]) }}
                         </div>
                     </div>
                     {{ Form::hidden('price',0,["class"=>"form-control" ,"required",'placeholder'=>trans('admin.price')]) }}

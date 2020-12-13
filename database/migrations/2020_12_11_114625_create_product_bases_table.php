@@ -18,7 +18,7 @@ class CreateProductBasesTable extends Migration
             $table->bigInteger('base_id')->unsigned()->nullable();
             $table->foreign('base_id')->references('id')->on('bases')->onDelete('restrict');
             $table->bigInteger('product_id')->unsigned()->nullable();
-            $table->foreign('product_id')->references('id')->on('products')->onDelete('restrict');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->bigInteger('quantity');
             $table->timestamps();
         });

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Base;
 use App\Models\Product;
+use App\Models\ProductBase;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -46,27 +47,40 @@ class productComponentsController extends Controller
     {
         $data = $this->validate(\request(),
             [
-                'name' => 'required|unique:bases',
+                'name' => 'required|unique:products',
                 'barcode' => 'required',
                 'alarm_quantity' => 'required',
                 'price' => 'required',
-                'total_cost' => 'required|unique:bases',
+                'total_cost' => 'required',
                 'gomla_percent' => 'required',
                 'part_percent' => 'required',
                 'category_id' => 'required',
 //                for pivot
-                'quantity' => 'required',
-                'base_id' => 'required',
+                'quantity*' => 'required',
+                'base_id*' => 'required',
 
             ]);
         $data['user_id'] = Auth::user()->id;
         $data['quantity'] = 0;
+        $data['total_cost'] = 0;
         $product = Product::create($data);
         foreach ($request->rows as $row) {
+            $row['product_id'] = $product->id;
+            ProductBase::create($row);
 
         }
+        $base_products = ProductBase::where('product_id',$product->id)->get();
+        $total_cost = 0;
+        foreach ($base_products as $base_product ){
+            $base = Base::where('id',$base_product->base_id)->first();
+            $total_cost = $total_cost + $base->price * $base_product->quantity;
+
+        }
+        $product = Product::where('id',$product->id)->update(['total_cost'=>$total_cost]);
+//        $product->total_cost = $total_cost;
+//        $product->save();
         session()->flash('success', trans('admin.addedsuccess'));
-        return redirect(url('bases'));
+        return redirect(url('products'));
 
     }
 
@@ -78,7 +92,7 @@ class productComponentsController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -112,6 +126,14 @@ class productComponentsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = Product::where('id', $id)->first();
+        try {
+            $user->delete();
+            session()->flash('success', trans('admin.deleteSuccess'));
+        }catch(Exception $exception){
+            session()->flash('danger', '!لا يمكن حذف المنتج');
+        }
+        return back();
     }
+
 }

@@ -14,8 +14,6 @@
         <!-- /.card-header -->
     <div class="app-content content container-fluid">
         <div class="content-wrapper">
-            @include('layouts.errors')
-            @include('layouts.messages')
             <!-- Headings -->
             <section id="html-headings-default" class="row match-height">
                 <div class="col-sm-12 col-md-9">
@@ -26,7 +24,7 @@
                                 <div class="form-group m-t-40 row">
                                     <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.cust_name')}}</label>
                                     <div class="col-md-10">
-                                      {{ Form::text('name',null,["class"=>"form-control" ,"required"]) }}
+                                      {{ Form::text('name',null,["class"=>"form-control center" ,"required"]) }}
                                     </div>
                                 </div>
                             </div>
@@ -40,13 +38,13 @@
                                     <div class="col-md-6">
                                         <div>
                                             <label>{{trans('admin.search_by_product_name')}}</label>
-                                            {!! Form::text('name','',['class'=>'form-control']) !!}
+                                            {!! Form::text('name','',['class'=>'form-control center']) !!}
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div>
                                             <label>{{trans('admin.search_by_barcode')}}</label>
-                                            {!! Form::text('barcode','',['class'=>'form-control']) !!}
+                                            {!! Form::text('barcode','',['class'=>'form-control center']) !!}
                                         </div>
                                     </div>
                                 </div> 
@@ -91,9 +89,7 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
-
                 <div class="col-sm-12 col-md-3">
                     <div class="card">
                         <div class="card-body" style="text-align: center;">
@@ -101,32 +97,32 @@
                                 <div class="row col-md-12" >
                                     <div>
                                         <label>{{trans('admin.date')}}</label>
-                                        {!! Form::date('datee','1',['class'=>'form-control']) !!}
+                                        {!! Form::date('date',$today,['class'=>'form-control']) !!}
                                     </div>
                                 </div>
                                 <div class="row col-md-12" >
                                     <div>
                                         <label>{{trans('admin.bill_num')}}</label>
-                                        {!! Form::text('bill_num','1',['class'=>'form-control']) !!}
+                                        {!! Form::text('bill_num','1',['class'=>'form-control center']) !!}
                                     </div>
                                 </div>
                                 <div class="row col-md-12" >
                                     <div>
                                         <label>{{trans('admin.total')}}</label>
-                                        {!! Form::text('total','1000',['class'=>'form-control']) !!}
+                                        {!! Form::text('total','1000',['class'=>'form-control center']) !!}
                                     </div>
                                 </div>
 
                                 <div class="row col-md-12" >
                                     <div>
                                         <label>{{trans('admin.pay')}}</label>
-                                        {!! Form::text('pay','200',['class'=>'form-control']) !!}
+                                        {!! Form::text('pay','200',['class'=>'form-control center']) !!}
                                     </div>
                                 </div>
                                 <div class="row col-md-12" >
                                     <div>
                                         <label>{{trans('admin.remain')}}</label>
-                                        {!! Form::text('remain','800',['class'=>'form-control']) !!}
+                                        {!! Form::text('remain','800',['class'=>'form-control center',]) !!}
                                     </div>
                                 </div>
                                 <br>

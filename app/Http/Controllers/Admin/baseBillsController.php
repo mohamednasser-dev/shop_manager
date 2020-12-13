@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use App\Models\SupplierBillBase;
+use App\Models\SupplierSale;
 use Illuminate\Http\Request;
 use App\Models\Supplier;
 use App\Models\Base;
 use Carbon\Carbon;
-use App\Models\SupplierBillBase;
-use App\Models\SupplierSale;
-use Illuminate\Support\Facades\Auth;
 class baseBillsController extends Controller
 {
     /**
@@ -52,7 +52,7 @@ class baseBillsController extends Controller
     {
         //to get today date
         $mytime = Carbon::now();
-        $today =  Carbon::parse($mytime->toDateTimeString())->format('Y-m-d H:i');
+        $today =  Carbon::parse($mytime->toDateTimeString())->format('Y-m-d');
         $data = $this->validate(\request(),
             [
                 'bill_num' => 'required',
@@ -69,25 +69,6 @@ class baseBillsController extends Controller
         SupplierSale::create($data);
         session()->flash('success', trans('admin.addedsuccess'));
         return redirect(url('base_bills'));
-    }
-
-    public function store_bill_base(Request $request)
-    {
-        //to get today date
-        $mytime = Carbon::now();
-        $today =  Carbon::parse($mytime->toDateTimeString())->format('Y-m-d H:i');
-            $data = $this->validate(request(), [
-                'supplier_sale_id' => 'required|exists:supplier_sales,id',
-                'supplier_id' => 'required|exists:suppliers,id',
-                'base_id' => 'required|exists:bases,id',
-                'quantity' => 'required',
-                'price' => 'required',
-            ]);
-            $data['date'] = $today;
-            $data['user_id'] = Auth::user()->id;
-        
-        SupplierBillBase::create($data);
-        return response()->json(['success' => trans('site_lang.addedsuccess')]);
     }
 
     /**

@@ -28,7 +28,6 @@
                             class="btn btn-info btn-bg">
                         {{trans('admin.add_supplier')}}
                     </button>
-
                 </div>
                 <div class="card-body">
                     <!-- Start home table -->

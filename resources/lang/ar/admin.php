@@ -15,15 +15,20 @@ return [
     'public_delete' => 'حذف',
     'public_cancel' => 'الغاء',
     'actions' => 'العمليات',
+
     //category
     'category_name' => 'اسم التصنيف',
     'category' => 'التصنيف',
+
     //Base
     'quantity' => 'الكميه',
+    'base_info' => 'بيانات الخام',
     'alarm_quantity' => 'كميه التنبيه',
     'price' => 'السعر',
     'purchas_price' => 'سعر التكلفه',
     'barcode' => 'بار كود',
+    'choose_base' => 'اختار الخام',
+    'choose_supplier' => 'اخنتار المورد',
     'measur_unit' => 'وحده القياس',
     'employee' => 'الموظف',
     'bases' => 'المواد الخام',
@@ -55,6 +60,7 @@ return [
     'adsAddedSuccess' => 'تم اضافة الاعلان بتجاح',
     'adsExisting' => 'هذا المنتج يوجد له اعلان بالفعل',
     'formationAdded' => 'تم اضافة تشكيل الفريق بنجاح',
+
     //navigation  sidebar
     'nav_home' => 'الصفحة الرئيسية',
     'nav_buy' => 'البيع',
@@ -76,6 +82,11 @@ return [
     //users
     'name' => 'الاسم',
     'user_info' => 'بيانات الموظف',
+
+    //Suppliers
+    'add_supplier' => 'اضافة مورد',
+    'phone' => 'رقم الهاتف',
+    'address' => 'العنوان',
 
 
     //login

@@ -32,42 +32,48 @@
         <!-- /.card-header -->
     <div class="app-content content container-fluid">
         <div class="content-wrapper">
-            @include('layouts.errors')
-            @include('layouts.messages')
             <!-- Headings -->
-            <section id="html-headings-default" class="row match-height">
-                <div class="col-sm-12 col-md-12">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="card">
-                                <div class="card-body" style="height: 85px;">
-                                    <div class="card-block" style="margin-top: -40px;">
-                                        <!-- This form to add new news row in database -->
-                                        <div class="form-group m-t-40 row">
-                                            <label for="example-text-input" class="col-md-3 col-form-label">{{trans('admin.bill_num')}}</label>
-                                            <div class="col-md-3">
-                                              {{ Form::text('bill_num',null,["class"=>"form-control" ,"required"]) }}
-                                            </div>
-                                            <div class="col-md-4">
-                                              <button type="button" class="btn waves-effect waves-light btn-rounded btn-outline-primary">{{trans('admin.open_new_bill')}}</button>
+             {{ Form::open( ['url' => ['base_bills'],'method'=>'post'] ) }}
+                {{ csrf_field() }}
+                <section id="html-headings-default" class="row match-height">
+                    <div class="col-sm-12 col-md-12">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="card">
+                                    <div class="card-body" style="height: 85px;">
+                                        <div class="card-block" style="margin-top: -40px;">
+                                            <!-- This form to add new news row in database -->
+                                            <div class="form-group m-t-40 row">
+                                                <label for="example-text-input" class="col-md-3 col-form-label">{{trans('admin.bill_num')}}</label>
+                                                <div class="col-md-3">
+                                                  {{ Form::text('bill_num',$bill_num,["class"=>"form-control" ,"style"=>"text-align: center;", "required" , "readonly"]) }}
+                                                </div>
+                                                <div class="col-md-4">
+                                                  <button type="submit" class="btn waves-effect waves-light btn-rounded btn-outline-primary">{{trans('admin.open_new_bill')}}</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div> 
-                        <div class="col-lg-6">   
-                            <div class="card">
-                                <div class="card-body" style="height: 85px;">
-                                    <div class="card-block" style="margin-top: -40px;">
-                                        <!-- This form to add new news row in database -->
-                                        <div class="form-group m-t-40 row">
-                                            <label for="example-text-input" class="col-md-3 col-form-label">{{trans('admin.supplier_name')}}</label>
-                                            <div class="col-md-9">
-                                                <div class="col-sm-9" id="parent">
-                                                    <select  class="itemName2 custom-select col-10" style="text-align-last: right;"
-                                                            name="supplier_id">
-                                                    </select>
+                            </div> 
+                            <div class="col-lg-6">   
+                                <div class="card">
+                                    <div class="card-body" style="height: 85px;">
+                                        <div class="card-block" style="margin-top: -40px;">
+                                            <!-- This form to add new news row in database -->
+                                            <div class="form-group m-t-40 row">
+                                                <label for="example-text-input" class="col-md-3 col-form-label">{{trans('admin.supplier_name')}}</label>
+                                                <div class="col-md-9">
+                                                    <div id="parent">
+                                                        </select>
+                                                        @if($supplier_sales_selected != null)
+                                                            {{ Form::select('supplier_id',App\Models\Supplier::pluck('name','id'),$supplier_sales_selected->supplier_id
+                                                              ,["class"=>"select2 form-control custom-select" ,"id"=>"cmb_supplier_id","style"=>"width: 100%; height:36px;",'placeholder'=>trans('admin.choose_supplier') ]) }}
+                                                        @else  
+                                                            {{ Form::select('supplier_id',App\Models\Supplier::pluck('name','id'),null
+                                                              ,["class"=>"select2 form-control custom-select" ,"id"=>"cmb_supplier_id",'placeholder'=>trans('admin.choose_supplier') ]) }}
+                                                        @endif     
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -76,8 +82,8 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
+            {{ Form::close() }}
             <section id="html-headings-default" class="row match-height">
                 <div class="col-sm-12 col-md-12">
                     <div class="row">
@@ -88,7 +94,11 @@
                                         <div class="m-r-20 align-self-center"><span class="lstick m-r-20"></span><img src="../assets/images/icon/income.png" alt="Income"></div>
                                         <div class="align-self-center">
                                             <h6 class="text-muted m-t-10 m-b-0">{{trans('admin.total')}}</h6>
-                                            <h2 class="m-t-0">953,000</h2></div>
+                                            @if($supplier_sales_selected != null)
+                                                <h2 class="m-t-0">{{$supplier_sales_selected->total}}</h2></div>
+                                            @else
+                                                <h2 class="m-t-0">0</h2></div>
+                                            @endif
                                     </div>
                                 </div>
                             </div>
@@ -100,7 +110,11 @@
                                         <div class="m-r-20 align-self-center"><span class="lstick m-r-20"></span><img src="../assets/images/icon/expense.png" alt="Income"></div>
                                         <div class="align-self-center">
                                             <h6 class="text-muted m-t-10 m-b-0">{{trans('admin.pay')}}</h6>
-                                            <h2 class="m-t-0">236,000</h2></div>
+                                            @if($supplier_sales_selected != null)
+                                                <h2 class="m-t-0">{{$supplier_sales_selected->pay}}</h2></div>
+                                            @else
+                                                <h2 class="m-t-0">0</h2></div>
+                                            @endif
                                     </div>
                                 </div>
                             </div>
@@ -112,36 +126,54 @@
                                         <div class="m-r-20 align-self-center"><span class="lstick m-r-20"></span><img src="../assets/images/icon/assets.png" alt="Income"></div>
                                         <div class="align-self-center">
                                             <h6 class="text-muted m-t-10 m-b-0">{{trans('admin.remain')}}</h6>
-                                            <h2 class="m-t-0">987,563</h2></div>
+                                            @if($supplier_sales_selected != null)
+                                                <h2 class="m-t-0">{{$supplier_sales_selected->remain}}</h2></div>
+                                            @else
+                                                <h2 class="m-t-0">0</h2></div>
+                                            @endif
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>        
+            </section>   
+            @if($supplier_sales_selected != null)     
             <section id="html-headings-default" class="row match-height">
                 <div class="col-sm-12 col-md-12">
                     <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Different Widths</h4>
-                                <h6 class="card-subtitle">Just add <code>col*</code> class to form-group</h6>
-                                <form class="form-material m-t-40 row">
-                                    <div class="form-group col-md-4 m-t-20" id="parent">
-                                        <select  class="itemName custom-select col-10" style="text-align-last: right;"
-                                                name="base_id">
-                                        </select>
+                                <h4 class="card-title">{{trans('admin.base_info')}}</h4>
+                                {{ Form::open( ['url' => ['store_bill_base'],'method'=>'post','id'=>'select_base_form'] ) }}
+                                    {{ csrf_field() }}
+                                    <div id="pay_one" class="form-group row">
+                                    <!-- <label for="example-url-input" class="col-sm-1 col-form-label">{{trans('admin.installments')}}</label> -->
+                                        <input name="supplier_id" id=" txt_supplier_name" type="hidden">
+                                        <input name="supplier_sale_id" id=" txt_supplier_sale_id" value="{{$supplier_sales_selected->id}}" type="hidden">
+                                        <div class="col-sm-4">
+                                            {{ Form::select('base_id',App\Models\Base::pluck('name','id'),null
+                                            ,["class"=>"select2 form-control" ,'placeholder'=>trans('admin.choose_base') ]) }}
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <input name="quantity" id=" quantity" class="form-control" type="number"
+                                                placeholder="{{trans('admin.quantity')}}">
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <input name="purchas_price" id=" purchas_price" class="form-control" type="number"
+                                                placeholder="{{trans('admin.purchas_price')}}">
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <button type="submit"  id="add_base" name="add_base" class="btn btn-secondary waves-effect">
+                                                <i class="fa fa-plus"></i>
+                                            </button>
+                                        </div>
                                     </div>
-                                    <div class="form-group col-md-4 m-t-20">
-                                        <input type="email" id="example-email2" name="example-email" class="form-control" placeholder="col-md-4"> 
-                                    </div>
-                                    <div class="form-group col-md-4 m-t-20">
-                                        <input type="text" class="form-control" value="col-md-4"> </div>
-                                </form>
+                                {{ Form::close() }}
                             </div>
                         </div>
                 </div>
             </section>
+            @endif
             <section id="html-headings-default" class="row match-height">
                 <div class="col-sm-12 col-md-12">
                     <div class="card">
@@ -216,6 +248,81 @@
                         };
                     },
                     cache: true
+                }
+            });
+        });
+    </script>
+    <script>
+        jQuery(document).ready(function() {
+            // For select 2
+            $(".select2").select2();
+            $('.selectpicker').selectpicker();
+
+            $(".ajax").select2({
+                ajax: {
+                    url: "https://api.github.com/search/repositories",
+                    dataType: 'json',
+                    delay: 250,
+                    data: function(params) {
+                        return {
+                            q: params.term, // search term
+                            page: params.page
+                        };
+                    },
+                    processResults: function(data, params) {
+                        // parse the results into the format expected by Select2
+                        // since we are using custom formatting functions we do not need to
+                        // alter the remote JSON data, except to indicate that infinite
+                        // scrolling can be used
+                        params.page = params.page || 1;
+                        return {
+                            results: data.items,
+                            pagination: {
+                                more: (params.page * 30) < data.total_count
+                            }
+                        };
+                    },
+                    cache: true
+                },
+                escapeMarkup: function(markup) {
+                    return markup;
+                }, // let our custom formatter work
+                minimumInputLength: 1,
+                templateResult: formatRepo, // omitted for brevity, see the source of this page
+                templateSelection: formatRepoSelection // omitted for brevity, see the source of this page
+            });
+        });
+        $('#select_base_form').on('submit', function (event) {
+            event.preventDefault();
+            $.ajax({
+                url: "{{route('store_bill_base')}}",
+                method: 'post',
+                data: new FormData(this),
+                contentType: false,
+                cache: false,
+                processData: false,
+                dataType: "json",
+                beforeSend: function () {
+                    $('#client_Name_error').empty();
+                    $('#client_Unit_error').empty();
+                    $('#client_Address_error').empty();
+                    $('#notes_error').empty();
+                    $('#type_error').empty();
+                },
+                success: function (data) {
+                    $('#add_client_model').modal('hide');
+                    toastr.success(data.success);
+                    $("#clients").trigger('reset');
+                    $('#client_tbl').DataTable().ajax.reload();
+                }, error: function (data_error, exception) {
+                    if (exception == 'error') {
+                        $('#client_Name_error').html(data_error.responseJSON.errors.client_Name);
+                        $('#client_Unit_error').html(data_error.responseJSON.errors.client_Unit);
+                        $('#client_Address_error').html(data_error.responseJSON.errors.client_Address);
+                        $('#notes_error').html(data_error.responseJSON.errors.notes);
+                        $('#type_error').html(data_error.responseJSON.errors.type);
+                        $('#To_error').html(data_error.responseJSON.errors.cat_id);
+                    }
                 }
             });
         });

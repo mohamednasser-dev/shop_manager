@@ -17,9 +17,9 @@ class CreateSupplierSalesTable extends Migration
             $table->bigInteger('supplier_id')->unsigned()->nullable();
             $table->foreign('supplier_id')->references('id')->on('suppliers')->onDelete('set null');
             $table->bigInteger('bill_num')->unique();
-            $table->float('total');
-            $table->float('pay');
-            $table->float('remain');
+            $table->float('total')->default(0);
+            $table->float('pay')->default(0);
+            $table->float('remain')->default(0);
             $table->date('date');
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');

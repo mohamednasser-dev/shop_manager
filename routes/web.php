@@ -19,6 +19,7 @@
 		Route::get('buy/{id}/delete', 'Admin\BuyController@destroy');
 
 		Route::resource('base_bills', 'Admin\baseBillsController');
+		Route::post('store_bill_base', 'Admin\baseBillsController@store_bill_base')->name('store_bill_base');
 		Route::get('base_bills/{id}/delete', 'Admin\baseBillsController@destroy');
 		Route::get('select2-autocomplete-ajax', 'Admin\baseBillsController@dataAjax');
 		Route::get('select2-autocomplete-ajax-base', 'Admin\baseBillsController@dataAjax_base');

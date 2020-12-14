@@ -53,6 +53,8 @@
 
         Route::resource('products', 'Admin\productComponentsController');
         Route::get('products/{id}/delete', 'Admin\productComponentsController@destroy');
+//        add quantity
+        Route::post('addQuantity','Admin\productComponentsController@show');
 
 
 	});

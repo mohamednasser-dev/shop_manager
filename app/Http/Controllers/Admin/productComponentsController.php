@@ -92,9 +92,33 @@ class productComponentsController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
+        $data = $this->validate(\request(),
+            [
+                'quantity' => 'required|numeric',
+                'id' => 'required',
 
+            ]);
+
+        $product_bases = ProductBase::where('product_id', $request->id)->get();
+        foreach ($product_bases as $product_base ){
+                $base =Base::whereId($product_base->base_id)->first();
+                $total_base_Quantity =   $product_base->quantity * $request->quantity;
+                if($total_base_Quantity > $base->quantity){
+                    session()->flash('danger', 'كميه ال '.$base->name.'لا تكفي');
+                    return redirect(url('products'));
+                }
+        }
+
+        foreach ($product_bases as $product_base ){
+            $base =Base::whereId($product_base->base_id)->first();
+            $total_base_Quantity =   $product_base->quantity * $request->quantity;
+           $base->quantity =  $base->quantity - $total_base_Quantity;
+        }
+        $product = Product::whereId($request->id)->update(['quantity'=>$request->quantity]);
+        session()->flash('success', 'تم اضافه الكميه والخصم من الخام بنجاح!');
+        return redirect(url('products'));
     }
 
     /**

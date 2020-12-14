@@ -65,6 +65,9 @@
                                     <a class='btn btn-raised btn-success btn-sml'
                                        href=" {{url('products/'.$user->id.'/edit')}}"
                                        data-editid="{{$user->id}}" id="edit"><i class="fa fa-edit"></i></a>
+                                    <a class='btn btn-raised btn-warning btn-sml'
+                                       data-product-id="{{$user->id}}" id="add"
+                                       data-toggle="modal" data-target="#responsive-modal"><i class="fa fa-arrow-circle-down fa-arrow-circle-down"></i></a>
 
                                     <form method="get" id='delete-form-{{ $user->id }}'
                                           action="{{url('products/'.$user->id.'/delete')}}"
@@ -91,6 +94,39 @@
                 {{$products->links()}}
 
 
+                    <div id="responsive-modal" class="modal fade" tabindex="-1" role="dialog"
+                         aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">{{trans('admin.add_quantity')}}</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    {{ Form::open( ['url'  => ['addQuantity'],'method'=>'post' , 'class'=>'form'] ) }}
+                                    {{ csrf_field() }}
+                                    <div class="form-group">
+                                        <label for="recipient-name" class="control-label">{{trans('admin.quantity')}}</label>
+
+                                        {{ Form::number('quantity',null,["class"=>"form-control" ,"required"]) }}
+                                        {{ Form::hidden('id',null,["class"=>"form-control" ,"required",'id'=>'pro-id']) }}
+                                    </div>
+
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">
+                                        Close
+                                    </button>
+                                    {{ Form::submit( trans('admin.public_Add') ,['class'=>'btn btn-info','style'=>'margin:10px']) }}
+                                    {{ Form::close() }}
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
 
                 </div>
 
@@ -104,27 +140,11 @@
 
     <script>
         var id;
-        $(document).on('click', '#edit', function() {
-            id = $(this).data('editid');
+        $(document).on('click', '#add', function() {
+            id = $(this).data('product-id');
             console.log(id);
-            $.ajax({
-                url: "bases/" + id,
-                dataType: "json",
-                success: function(html) {
-                    $('#id').val(html.data.id);
-                    $('#name').val(html.data.name);
-                    $('#category_id').val(html.data.category_id);
-                    $('#quantity').val(html.data.quantity);
-                    $('#alarm_quantity').val(html.data.alarm_quantity);
-                    $('#price').val(html.data.price);
-                    $('#purchas_price').val(html.data.purchas_price);
-                    $('#barcode').val(html.data.barcode);
-                    $('#measur_unit').val(html.data.measur_unit);
+            $('#pro-id').val(id);
 
-
-
-                }
-            })
         });
 
 

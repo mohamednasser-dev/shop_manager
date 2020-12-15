@@ -56,7 +56,9 @@
 //        add quantity
         Route::post('addQuantity','Admin\productComponentsController@show');
 
-
+//out going
+        Route::resource('outgoing', 'Admin\OutgoingController');
+        Route::get('outgoing/{id}/delete', 'Admin\OutgoingController@destroy');
 	});
 
 

@@ -43,7 +43,7 @@
                         <a class="waves-effect waves-dark" href="" aria-expanded="false"><i class="mdi mdi-account-location"></i><span class="hide-menu">{{trans('admin.nav_income')}}</span></a>
                     </li>
                     <li>
-                        <a class="waves-effect waves-dark" href="" aria-expanded="false"><i class="mdi mdi-account-location"></i><span class="hide-menu">{{trans('admin.nav_outgoing')}}</span></a>
+                        <a class="waves-effect waves-dark" href="{{url('outgoing')}}" aria-expanded="false"><i class="mdi mdi-account-location"></i><span class="hide-menu">{{trans('admin.nav_outgoing')}}</span></a>
                     </li>
                 </ul>
             </nav>

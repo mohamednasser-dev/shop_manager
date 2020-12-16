@@ -160,10 +160,7 @@
         </div>
     </div>
 @endsection
-
 @section('scripts')
-
-
     <script>
         var id;
         $(document).on('click', '#edit', function() {
@@ -177,15 +174,9 @@
                     $('#name').val(html.data.name);
                     $('#phone').val(html.data.phone);
                     $('#address').val(html.data.address);
-
-
-
                 }
             })
         });
-
-
-
     </script>
 
     <script src="{{ asset('assets/plugins/jquery/jquery.min.js')}}"></script>

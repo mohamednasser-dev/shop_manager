@@ -147,16 +147,7 @@ return [
 
     'attributes' => [
 
-        'club_id'=>'اسم النادى',
-        'home_club_id'=>'النادى الاول',
-        'away_club_id'=>'النادى الثانى',
-        'stadium_id'=>'الاستاد',
-        'tour_id'=>'البطولة',
-        'gwla_id'=>'الجولة',
-        'player_id'=>'اسم اللاعب',
-        
-        'player_name'=>'اسم اللاعب',
-        'tour_name'=>'اسم البطولة',
+        'supplier_id'=>'اسم المورد',
         'date'=>'تاريخ المباراه',
         'date_created'=>'تاريخ الانشاء',
         'status'=>'الحالة',
@@ -165,11 +156,6 @@ return [
         'password'=>'كلمة المرور',
         'email'=>'البريد الالكترونى',
         'name'=>'الاسم',
-
-        'squad_name'=>'الفريق',
-
-        
-        'stadium_id'=>'staduim',
         
         
         

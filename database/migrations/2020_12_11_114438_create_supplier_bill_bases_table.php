@@ -19,7 +19,6 @@ class CreateSupplierBillBasesTable extends Migration
             $table->bigInteger('quantity');
             $table->float('purchas_price');
             $table->float('total');
-            $table->string('barcode');
             $table->date('date');
             $table->bigInteger('supplier_sale_id')->unsigned()->nullable();
             $table->foreign('supplier_sale_id')->references('id')->on('supplier_sales')->onDelete('set null');

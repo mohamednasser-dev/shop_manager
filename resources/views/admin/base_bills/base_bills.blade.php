@@ -1,7 +1,6 @@
 @extends('admin_temp')
 @section('styles')
-    <link href="{{ asset('css/select2.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/plugins/select2/dist/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('/css/select2.css') }}" rel="stylesheet">
     <style>
         #parent {
             /* can be any value */
@@ -90,7 +89,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="d-flex no-block">
-                                        <div class="m-r-20 align-self-center"><span class="lstick m-r-20"></span><img src="{{ asset('assets/images/icon/income.png') }}" alt="Income"></div>
+                                        <div class="m-r-20 align-self-center"><span class="lstick m-r-20"></span><img src="{{ asset('assets/images/icon/total2.png') }}" alt="Income"></div>
                                         <div class="align-self-center">
                                             <h6 class="text-muted m-t-10 m-b-0">{{trans('admin.total')}}</h6>
                                             @if($supplier_sales_selected != null)
@@ -107,7 +106,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="d-flex no-block">
-                                        <div class="m-r-20 align-self-center"><span class="lstick m-r-20"></span><img src="{{ asset('assets/images/icon/expense.png') }}" alt="Income"></div>
+                                        <div class="m-r-20 align-self-center"><span class="lstick m-r-20"></span><img src="{{ asset('assets/images/icon/payed.png') }}" alt="Income"></div>
                                         <div class="align-self-center">
                                             <h6 class="text-muted m-t-10 m-b-0">{{trans('admin.pay')}}</h6>
                                             @if($supplier_sales_selected != null)
@@ -124,7 +123,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="d-flex no-block">
-                                        <div class="m-r-20 align-self-center"><span class="lstick m-r-20"></span><img src="{{ asset('assets/images/icon/assets.png') }}" alt="Income"></div>
+                                        <div class="m-r-20 align-self-center"><span class="lstick m-r-20"></span><img src="{{ asset('assets/images/icon/remain.png') }}" alt="Income"></div>
                                         <div class="align-self-center">
                                             <h6 class="text-muted m-t-10 m-b-0">{{trans('admin.remain')}}</h6>
                                             @if($supplier_sales_selected != null)
@@ -149,11 +148,11 @@
                             <form method="post" id="select_base_form" enctype="multipart/form-data" class="cmxform">
                                 <div id="pay_one" class="form-group row">
                                 <!-- <label for="example-url-input" class="col-sm-1 col-form-label">{{trans('admin.installments')}}</label> -->
-                                    <input name="supplier_id" id=" txt_supplier_name" value="{{$supplier_sales_selected->supplier_id}}" type="hidden">
-                                    <input name="supplier_sale_id" id=" txt_supplier_sale_id" value="{{$supplier_sales_selected->id}}" type="hidden">
+                                    <input type="hidden" name="supplier_id" id=" txt_supplier_name" value="{{$supplier_sales_selected->supplier_id}}">
+                                    <input type="hidden" name="supplier_sale_id" id=" txt_supplier_sale_id" value="{{$supplier_sales_selected->id}}">
                                     <div class="col-sm-4">
                                         {{ Form::select('base_id',App\Models\Base::pluck('name','id'),null
-                                        ,["class"=>"select2 form-control custom-select" ,'placeholder'=>trans('admin.choose_base') ]) }}
+                                        ,["class"=>"select2 form-control custom-select","id"=> "base_select" ,'placeholder'=>trans('admin.choose_base') ]) }}
                                     </div>
                                     <div class="col-sm-3">
                                         <input name="quantity" id=" quantity" class="form-control" type="number"
@@ -164,7 +163,7 @@
                                             placeholder="{{trans('admin.purchas_price')}}" min="1">
                                     </div>
                                     <div class="col-sm-2">
-                                        <button type="submit"  id="add_base" name="add_base" class="btn btn-secondary waves-effect">
+                                        <button type="submit"  id="add_base_bill" name="add_base_bill" class="btn btn-secondary waves-effect">
                                             <i class="fa fa-plus"></i>
                                         </button>
                                     </div>
@@ -200,11 +199,23 @@
     </div>
 @endsection
 @section('scripts')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/select2/dist/js/select2.full.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script type="text/javascript">
         var client_id;
+        var selected_base;
+        $('#select_base_form').submit(function (e) {
+            e.preventDefault();
+            $.ajax({
+                url: "{{url('store_base_bill')}}",
+                type:'POST',
+                data: {inputs: $('#select_base_form').serialize(),"_token": "{{ csrf_token() }}"},
+                success: function (data) {
+                    console.log('success');
+                    // el.parent().parent().html(data);
+                }
+            })
+        });
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

@@ -12,11 +12,13 @@ use App\Models\Base;
 use Carbon\Carbon;
 class baseBillsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public $today ;
+    public function __construct()
+    {
+        //to get today date
+        $mytime = Carbon::now();
+        $this->today =  Carbon::parse($mytime->toDateTimeString())->format('Y-m-d');
+    }
     public function index()
     {
         $suppliers = Supplier::all();
@@ -26,7 +28,7 @@ class baseBillsController extends Controller
              $supplier_sales_selected = null;
             return view('admin.base_bills.base_bills',compact('bill_num','supplier_sales_selected','suppliers'));
         }else{
-            $supplier_sales_selected = SupplierSale::latest('bill_num')->first();
+            $supplier_sales_selected = SupplierSale::where('is_bill','y')->latest('bill_num')->first();
             $bill_num = $supplier_sales_selected->bill_num ;
             return view('admin.base_bills.base_bills',compact('bill_num','supplier_sales_selected','suppliers'));
         }
@@ -50,9 +52,7 @@ class baseBillsController extends Controller
      */
     public function store(Request $request)
     {
-        //to get today date
-        $mytime = Carbon::now();
-        $today =  Carbon::parse($mytime->toDateTimeString())->format('Y-m-d');
+        
         $data = $this->validate(\request(),
             [
                 'bill_num' => 'required',
@@ -64,7 +64,8 @@ class baseBillsController extends Controller
         }else{
             $data['bill_num'] = $request->bill_num + 1;
         }
-        $data['date'] = $today;
+        $data['date'] = $this->today;
+        $data['is_bill'] = 'y';
         $data['user_id'] = Auth::user()->id;
         SupplierSale::create($data);
         session()->flash('success', trans('admin.addedsuccess'));
@@ -141,5 +142,19 @@ class baseBillsController extends Controller
                 ->get();
         }
         return response()->json($data);
+    }
+    public function store_base_bill(Request $request){
+        $array1 = explode('&', $request->inputs);
+        $inputs = [];
+        foreach ($array1 as $value) {
+            $input = explode('=', $value);
+            $inputs [$input[0]] = $input[1];
+        }
+        $base = Base::find($inputs['base_id']);
+        $inputs['name'] =  $base->name;
+        $inputs['date'] = $this->today ;
+        $inputs['total'] =  $inputs['quantity'] * $inputs['purchas_price'] ;
+        $player = SupplierBillBase::create($inputs);
+        return view('admin.base_bills.base_bills'); 
     }
 }

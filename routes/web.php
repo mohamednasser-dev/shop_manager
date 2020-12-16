@@ -30,6 +30,7 @@
 		Route::get('base_bills/{id}/delete', 'Admin\baseBillsController@destroy');
 		Route::get('select2-autocomplete-ajax', 'Admin\baseBillsController@dataAjax');
 		Route::get('select2-autocomplete-ajax-base', 'Admin\baseBillsController@dataAjax_base');
+		Route::post('store_base_bill', 'Admin\baseBillsController@store_base_bill');
 		
 //supplier Bill Base	
 		Route::resource('supplier_Bill_Base', 'Admin\supplierBillBaseController');

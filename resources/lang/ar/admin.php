@@ -14,7 +14,20 @@ return [
     'public_delete_modal_text' => 'هل تريد الحذف',
     'public_delete' => 'حذف',
     'public_cancel' => 'الغاء',
+    'close' => 'اغلاق',
     'actions' => 'العمليات',
+
+    // messages
+    'addedsuccess' => 'تم الاضافة بنجاح',
+    'statuschanged' => 'تم تعديل الحالة',
+    'deleteSuccess' => 'تم الحذف بنجاح',
+    'updatSuccess' => 'تم التعديل بنجاح',
+    'not_found' => 'حدث خطأ ما يرجى المحاولة مره اخرى',
+    'adsAddedSuccess' => 'تم اضافة الاعلان بتجاح',
+    'adsExisting' => 'هذا المنتج يوجد له اعلان بالفعل',
+    'formationAdded' => 'تم اضافة تشكيل الفريق بنجاح',
+    'error' => 'يوجد خطأ',
+    'payment_success' => 'تم الدفع بنجاح',
 
     //category
     'category_name' => 'اسم التصنيف',
@@ -51,18 +64,6 @@ return [
     'supplier_name' => 'اسم المورد',
     'open_new_bill' => 'فتح فاتوره جديده',
    
-    // messages
-    'addedsuccess' => 'تم الاضافة بنجاح',
-    'statuschanged' => 'تم تعديل الحالة',
-    'deleteSuccess' => 'تم الحذف بنجاح',
-    'updatSuccess' => 'تم التعديل بنجاح',
-    'not_found' => 'حدث خطأ ما يرجى المحاولة مره اخرى',
-    'adsAddedSuccess' => 'تم اضافة الاعلان بتجاح',
-    'adsExisting' => 'هذا المنتج يوجد له اعلان بالفعل',
-    'formationAdded' => 'تم اضافة تشكيل الفريق بنجاح',
-    'error' => 'يوجد خطأ',
-    
-
     //navigation  sidebar
     'nav_home' => 'الصفحة الرئيسية',
     'nav_buy' => 'البيع',
@@ -91,11 +92,22 @@ return [
     'role_name' => 'اسم الوظيفة',
     'permission' => 'الصلاحية',
     'edit_role' => 'تعديل الصلاحية',
-    
+
+    //Customers
+    'add_customer' => 'اضافة عميل جديد',
+    'cust_account' => 'حساب العميل',
+    'money' => 'المبلغ',
+    'notes' => 'الملاحظات',
+    'pay_it' => 'دفع',
+    'payment' => 'سداد الفاتوره',
+
     //Suppliers
     'add_supplier' => 'اضافة مورد',
     'phone' => 'رقم الهاتف',
     'address' => 'العنوان',
+    'supplier_account' => 'حساب المورد',
+    'old_payment' => 'حساب قديم',
+    
 
     //Buy Bills
 

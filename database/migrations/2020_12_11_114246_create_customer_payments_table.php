@@ -16,6 +16,7 @@ class CreateCustomerPaymentsTable extends Migration
         Schema::create('customer_payments', function (Blueprint $table) {
             $table->id();
             $table->float('money');
+            $table->string('notes')->nullable();
             $table->bigInteger('bill_id')->unsigned()->nullable();
             $table->foreign('bill_id')->references('id')->on('customer_bills')->onDelete('set null');
             $table->bigInteger('cust_id')->unsigned()->nullable();

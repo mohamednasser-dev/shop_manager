@@ -64,7 +64,6 @@ class baseController extends Controller
      */
     public function show($id)
     {
-
         $data = Base::where('id', $id)->first();
         return response()->json(['data' => $data]);
     }

@@ -16,8 +16,9 @@ class CreateSupplierPaymentsTable extends Migration
         Schema::create('supplier_payments', function (Blueprint $table) {
             $table->id();
             $table->float('money');
+            $table->string('notes')->nullable();
             $table->bigInteger('bill_id')->unsigned()->nullable();
-            $table->foreign('bill_id')->references('id')->on('supplier_bill_bases')->onDelete('set null');
+            $table->foreign('bill_id')->references('id')->on('supplier_sales')->onDelete('set null');
             $table->bigInteger('supplier_id')->unsigned()->nullable();
             $table->foreign('supplier_id')->references('id')->on('suppliers')->onDelete('set null');
             $table->bigInteger('user_id')->unsigned()->nullable();

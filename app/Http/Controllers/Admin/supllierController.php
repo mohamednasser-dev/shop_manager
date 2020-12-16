@@ -3,21 +3,26 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Supplier;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\SupplierPayment;
+use App\Models\SupplierSale;
+use Illuminate\Http\Request;
+use App\Models\Supplier;
+use Carbon\Carbon;
 
 class supllierController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public $today ;
+    public function __construct()
+    {
+        $mytime = Carbon::now();
+        $this->today =  Carbon::parse($mytime->toDateTimeString())->format('Y-m-d');
+    }
+
     public function index()
     {
         $supllier = Supplier::paginate(10);
-        return view('admin.supllier.index', compact('supllier'));
+        return view('admin.supplier.index', compact('supllier'));
 
     }
 
@@ -26,9 +31,14 @@ class supllierController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function account($id)
     {
-        //
+        $supplier =Supplier::find($id);
+        $supplierSale =SupplierSale::where('supplier_id',$id)->paginate(25);
+        $total =SupplierSale::where('supplier_id',$id)->sum('total');
+        $pay =SupplierSale::where('supplier_id',$id)->sum('pay');
+        $remain =SupplierSale::where('supplier_id',$id)->sum('remain');
+        return view('admin.supplier.supplier_account',compact('supplier','supplierSale','total','remain','pay'));
     }
 
     /**
@@ -70,9 +80,47 @@ class supllierController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function payment(Request $request)
     {
-        //
+        $data = $this->validate(\request(),
+            [
+                'bill_id' => 'required|exists:supplier_sales,id',
+                'supplier_id' => 'required|exists:suppliers,id',
+                'money' => 'required',
+                'notes' => '',
+            ]);
+        $data['user_id'] = Auth::user()->id;
+        $data['date'] = $this->today ;
+        $supplier_payments = SupplierPayment::create($data);
+        if($supplier_payments->save()){
+            $bill_id =  $request->input('bill_id');
+            $money =  $request->input('money');
+            $SupplierSale = SupplierSale::where('id',$bill_id)->first();
+            $data_bill['remain'] = $SupplierSale->remain - $money ;
+            $data_bill['pay'] = $SupplierSale->pay + $money ;
+
+            $SupplierSale = SupplierSale::where('id',$bill_id)->update($data_bill);
+
+        }
+        session()->flash('success', trans('admin.payment_success'));
+        return back();
+    }
+
+    public function manula_bill(Request $request)
+    {
+        $data = $this->validate(\request(),
+            [
+                'remain' => 'required',
+                'supplier_id' => 'required',
+                'notes' => ''
+            ]);
+        $data['user_id'] = Auth::user()->id;
+        $data['bill_num'] =trans('admin.old_payment');
+        $data['date'] = $this->today ;
+        $data['total'] =  $request->input('remain');
+        SupplierSale::create($data);
+        session()->flash('success', trans('admin.payment_success'));
+        return back();
     }
 
     /**

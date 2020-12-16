@@ -1,7 +1,7 @@
 @extends('admin_temp')
 @section('styles')
-    <link href="{{ asset('/css/select2.css') }}" rel="stylesheet">
-    <link href="../assets/plugins/select2/dist/css/select2.min.css" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('css/select2.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/plugins/select2/dist/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
     <style>
         #parent {
             /* can be any value */
@@ -90,7 +90,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="d-flex no-block">
-                                        <div class="m-r-20 align-self-center"><span class="lstick m-r-20"></span><img src="../assets/images/icon/income.png" alt="Income"></div>
+                                        <div class="m-r-20 align-self-center"><span class="lstick m-r-20"></span><img src="{{ asset('assets/images/icon/income.png') }}" alt="Income"></div>
                                         <div class="align-self-center">
                                             <h6 class="text-muted m-t-10 m-b-0">{{trans('admin.total')}}</h6>
                                             @if($supplier_sales_selected != null)
@@ -107,7 +107,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="d-flex no-block">
-                                        <div class="m-r-20 align-self-center"><span class="lstick m-r-20"></span><img src="../assets/images/icon/expense.png" alt="Income"></div>
+                                        <div class="m-r-20 align-self-center"><span class="lstick m-r-20"></span><img src="{{ asset('assets/images/icon/expense.png') }}" alt="Income"></div>
                                         <div class="align-self-center">
                                             <h6 class="text-muted m-t-10 m-b-0">{{trans('admin.pay')}}</h6>
                                             @if($supplier_sales_selected != null)
@@ -124,7 +124,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="d-flex no-block">
-                                        <div class="m-r-20 align-self-center"><span class="lstick m-r-20"></span><img src="../assets/images/icon/assets.png" alt="Income"></div>
+                                        <div class="m-r-20 align-self-center"><span class="lstick m-r-20"></span><img src="{{ asset('assets/images/icon/assets.png') }}" alt="Income"></div>
                                         <div class="align-self-center">
                                             <h6 class="text-muted m-t-10 m-b-0">{{trans('admin.remain')}}</h6>
                                             @if($supplier_sales_selected != null)
@@ -187,7 +187,7 @@
                                             <th class="center">{{trans('admin.barcode')}}</th>
                                             <th class="center">{{trans('admin.quantity')}}</th>
                                             <th class="center">{{trans('admin.price')}}</th>
-                                            <th class="center">{{trans('admin.action')}}</th>
+                                            <th class="center">{{trans('admin.actions')}}</th>
                                         </tr>
                                     </thead>
                                 </table> 
@@ -200,10 +200,12 @@
     </div>
 @endsection
 @section('scripts')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
-    <script src="../assets/plugins/select2/dist/js/select2.full.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/select2/dist/js/select2.full.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script type="text/javascript">
-         $.ajaxSetup({
+        var client_id;
+        $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
@@ -220,7 +222,8 @@
                         data: 'product_name',
                         name: 'product_name',
                         className: 'center'
-                    }, {
+                    },
+                    {
                         data: 'barcode',
                         name: 'barcode',
                         className: 'center'
@@ -232,9 +235,13 @@
                         data: 'price',
                         name: 'price',
                         className: 'center'
-                    },{
-                        data: 'action',
-                        name: 'action',
+                    }, {
+                        data: 'notes',
+                        name: 'notes',
+                        className: 'center'
+                    }, {
+                        data: 'type',
+                        name: 'type',
                         orderable: false,
                         className: 'center'
                     }
@@ -242,24 +249,31 @@
             });
             $('#select_base_form').on('submit', function (event) {
                 event.preventDefault();
-                $.ajax({
-                    url: "{{route('supplier_Bill_Base.store')}}",
-                    method: 'post',
-                    data: new FormData(this),
-                    contentType: false,
-                    cache: false,
-                    processData: false,
-                    dataType: "json",
-                    beforeSend: function () {
-                    },
-                    success: function (data) {
-                        // toastr.success(data.success);
-                        $("#select_base_form").trigger('reset');
-                        $('#supplier_bases_tbl').DataTable().ajax.reload();
-                    }, error: function (data_error, exception) {
-                    }
-                });
+                    $.ajax({
+                        url: "{{route('supplier_Bill_Base.store')}}",
+                        method: 'post',
+                        data: new FormData(this),
+                        contentType: false,
+                        cache: false,
+                        processData: false,
+                        dataType: "json",
+                        beforeSend: function () {
+                        },
+                        success: function (data) {
+                            $("#select_base_form").trigger('reset');
+                            $('#client_tbl').DataTable().ajax.reload();
+                        }, error: function (data_error, exception) {
+                            if (exception == 'error') {
+                            }
+                        }
+                    });
             });
+        });
+
+    </script>
+    <script type="text/javascript">
+        
+        $(document).ready(function () {
             $(function () {
                 $('.itemName2').select2({
                     placeholder: 'بحث برقم الهاتف او اسم المورد ',
@@ -308,7 +322,6 @@
             });
             // For select 2
             $(".select2").select2();
-            $('.selectpicker').selectpicker();
             $(".ajax").select2({
                 ajax: {
                     url: "https://api.github.com/search/repositories",

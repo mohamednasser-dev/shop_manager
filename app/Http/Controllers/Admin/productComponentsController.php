@@ -58,7 +58,6 @@ class productComponentsController extends Controller
 //                for pivot
                 'quantity*' => 'required',
                 'base_id*' => 'required',
-
             ]);
         $data['user_id'] = Auth::user()->id;
         $data['quantity'] = 0;
@@ -100,7 +99,6 @@ class productComponentsController extends Controller
                 'id' => 'required',
 
             ]);
-
         $product_bases = ProductBase::where('product_id', $request->id)->get();
         foreach ($product_bases as $product_base ){
                 $base =Base::whereId($product_base->base_id)->first();

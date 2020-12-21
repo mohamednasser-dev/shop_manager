@@ -15,12 +15,14 @@ return [
     'public_delete' => 'حذف',
     'public_cancel' => 'الغاء',
     'close' => 'اغلاق',
+    'print' => 'طباعه',
     'actions' => 'العمليات',
 
     // messages
     'addedsuccess' => 'تم الاضافة بنجاح',
     'statuschanged' => 'تم تعديل الحالة',
     'deleteSuccess' => 'تم الحذف بنجاح',
+    'deleteError' => 'لا يمكنك الحذف',
     'updatSuccess' => 'تم التعديل بنجاح',
     'not_found' => 'حدث خطأ ما يرجى المحاولة مره اخرى',
     'adsAddedSuccess' => 'تم اضافة الاعلان بتجاح',
@@ -28,6 +30,24 @@ return [
     'formationAdded' => 'تم اضافة تشكيل الفريق بنجاح',
     'error' => 'يوجد خطأ',
     'payment_success' => 'تم الدفع بنجاح',
+
+    //navigation  sidebar
+    'nav_home' => 'الصفحة الرئيسية',
+    'nav_buy' => 'البيع',
+    'nav_products' => 'المنتجات',
+    'nav_bases' => 'الخام',
+    'nav_base_bills' => 'أنشاء فاتورة خام',
+    'nav_customers' => 'العملاء',
+    'nav_suppliers' => 'الموردين',
+    'nav_users' => 'الموظفين',
+    'view_users' => 'رؤيه الموظفين',
+    'nav_permissions' => 'الصلاحيات',
+    'view_bases' => 'رؤيه الخام',
+    'add_new_user' => 'اضافة موظف جدييد',
+    'nav_bills' => 'الفواتير',
+    'nav_income' => 'الدخل',
+    'nav_outgoing' => 'المصروفات',
+    //home page
 
     //category
     'category_name' => 'اسم التصنيف',
@@ -64,23 +84,7 @@ return [
     'supplier_name' => 'اسم المورد',
     'open_new_bill' => 'فتح فاتوره جديده',
    
-    //navigation  sidebar
-    'nav_home' => 'الصفحة الرئيسية',
-    'nav_buy' => 'البيع',
-    'nav_products' => 'المنتجات',
-    'nav_bases' => 'الخام',
-    'nav_base_bills' => 'فواتير الخام',
-    'nav_customers' => 'العملاء',
-    'nav_suppliers' => 'الموردين',
-    'nav_users' => 'الموظفين',
-    'view_users' => 'رؤيه الموظفين',
-    'nav_permissions' => 'الصلاحيات',
-    'view_bases' => 'رؤيه الخام',
-    'add_new_user' => 'اضافة موظف جدييد',
-    'nav_bills' => 'الفواتير',
-    'nav_income' => 'الدخل',
-    'nav_outgoing' => 'المصروفات',
-    //home page
+    
 
     //users
     'name' => 'الاسم',
@@ -117,7 +121,9 @@ return [
     'search_by_bill_num' => 'بحث برقم الفاتوره',
     'choose_cust' => 'اختار عميل',
     'address' => 'العنوان',
-    'address' => 'العنوان',
+    'from' => 'من',
+    'to' => 'الى',
+    'view_account' => 'كشف حساب',
 
 
     //login

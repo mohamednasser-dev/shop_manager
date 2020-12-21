@@ -139,62 +139,91 @@
                     </div>
                 </div>
             </section>   
-            @if($supplier_sales_selected != null)     
-            <section id="html-headings-default" class="row match-height">
-                <div class="col-sm-12 col-md-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <h4 class="card-title">{{trans('admin.base_info')}}</h4>
-                            <form method="post" id="select_base_form" enctype="multipart/form-data" class="cmxform">
-                                <div id="pay_one" class="form-group row">
-                                <!-- <label for="example-url-input" class="col-sm-1 col-form-label">{{trans('admin.installments')}}</label> -->
+            @if($supplier_sales_selected != null)
+                {{ Form::open( ['url' => ['supplier_bill_bases'],'method'=>'post'] ) }}
+                {{ csrf_field() }}
+                <section id="html-headings-default" class="row match-height">
+                    <div class="col-sm-12 col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="card m-b-20">
                                     <input type="hidden" name="supplier_id" id=" txt_supplier_name" value="{{$supplier_sales_selected->supplier_id}}">
                                     <input type="hidden" name="supplier_sale_id" id=" txt_supplier_sale_id" value="{{$supplier_sales_selected->id}}">
-                                    <div class="col-sm-4">
-                                        {{ Form::select('base_id',App\Models\Base::pluck('name','id'),null
-                                        ,["class"=>"select2 form-control custom-select","id"=> "base_select" ,'placeholder'=>trans('admin.choose_base') ]) }}
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <input name="quantity" id=" quantity" class="form-control" type="number"
-                                            placeholder="{{trans('admin.quantity')}}" min="1">
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <input name="purchas_price" id=" purchas_price" class="form-control" type="number"
-                                            placeholder="{{trans('admin.purchas_price')}}" min="1">
-                                    </div>
-                                    <div class="col-sm-2">
-                                        <button type="submit"  id="add_base_bill" name="add_base_bill" class="btn btn-secondary waves-effect">
-                                            <i class="fa fa-plus"></i>
-                                        </button>
+                                    <div class="card-header" style='text-align:right'><strong> منتجات الفاتورة </strong>
+                                        <div class="card-body parent_store" style='text-align:right' id="parent_store">
+                                            <button type='button' value='Add Button' id='addButton'>
+                                                <i class="fa fa-plus"></i>
+                                            </button>
+                                            <div class="panel" style='text-align:right'>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            @endif
-            <section id="html-headings-default" class="row match-height">
-                <div class="col-sm-12 col-md-12">
-                    <div class="card">
-                        <div class="card-body" style="text-align: center;">
-                            <div class="card-block">    
-                                <table id="supplier_bases_tbl" class="table full-color-table full-primary-table">
-                                    <thead>
-                                        <tr>
-                                            <th class="center">{{trans('admin.product_name')}}</th>
-                                            <th class="center">{{trans('admin.barcode')}}</th>
-                                            <th class="center">{{trans('admin.quantity')}}</th>
-                                            <th class="center">{{trans('admin.price')}}</th>
-                                            <th class="center">{{trans('admin.actions')}}</th>
-                                        </tr>
-                                    </thead>
-                                </table> 
                             </div>
                         </div>
                     </div>
+                </section>
+                <div class="center">
+                    <button type="submit" class="btn btn-info" style="margin:10px" >
+                        {{trans('admin.public_Save')}}
+                    </button>    
                 </div>
-            </section>
+            {{ Form::close() }}   
+            @endif
+            @if(count($supplier_bill_bases) > 0)
+                <section id="html-headings-default" class="row match-height">
+                    <div class="col-sm-12 col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <!-- Start home table -->
+                                <table id="myTable" class="table full-color-table full-primary-table">
+                                    <thead>
+                                    <tr>
+                                        <th class="text-lg-center">{{trans('admin.name')}}</th>
+                                        <th class="text-lg-center">{{trans('admin.quantity')}}</th>
+                                        <th class="text-lg-center">{{trans('admin.purchas_price')}}</th>
+                                        <th class="text-lg-center">{{trans('admin.total')}}</th>
+                                        <th class="text-lg-center">{{trans('admin.date')}}</th>
+                                        <th class="text-lg-center">{{trans('admin.actions')}}</th>
+                                    </tr>
+                                    </thead>
+
+                                    <tbody>
+                                    @foreach($supplier_bill_bases as $supplier_base)
+                                        <tr>
+                                            <td class="text-lg-center">{{$supplier_base->name}}</td>
+                                            <td class="text-lg-center">{{$supplier_base->quantity}}</td>
+                                            <td class="text-lg-center">{{$supplier_base->purchas_price}}</td>
+                                            <td class="text-lg-center">{{$supplier_base->total}}</td>
+                                            <td class="text-lg-center">{{$supplier_base->date}}</td>
+                                            <td class="text-lg-center">
+                                                <form method="get" id='delete-form-{{ $supplier_base->id }}'
+                                                      action="{{url('supplier_bill_bases/'.$supplier_base->id.'/delete')}}"
+                                                      style='display: none;'>
+                                                {{csrf_field()}}
+                                                <!-- {{method_field('delete')}} -->
+                                                </form>
+                                                <button onclick="if(confirm('{{trans('admin.deleteConfirmation')}}'))
+                                                    {
+                                                    event.preventDefault();
+                                                    document.getElementById('delete-form-{{ $supplier_base->id }}').submit();
+                                                    }else {
+                                                    event.preventDefault();
+                                                    }"
+                                                    class='btn btn-danger btn-circle' href=" ">
+                                                    <i class="fa fa-trash" aria-hidden='true'></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                                {{$supplier_bill_bases->links()}}
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            @endif
         </div>
     </div>
 @endsection
@@ -202,88 +231,28 @@
     <script src="{{ asset('assets/plugins/select2/dist/js/select2.full.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script type="text/javascript">
-        var client_id;
-        var selected_base;
-        $('#select_base_form').submit(function (e) {
-            e.preventDefault();
-            $.ajax({
-                url: "{{url('store_base_bill')}}",
-                type:'POST',
-                data: {inputs: $('#select_base_form').serialize(),"_token": "{{ csrf_token() }}"},
-                success: function (data) {
-                    console.log('success');
-                    // el.parent().parent().html(data);
-                }
-            })
-        });
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
         $(document).ready(function () {
-            $('#supplier_bases_tbl').DataTable({
-                processing: true,
-                serverSide: true,
-                ajax: {
-                    url: "{{ route('supplier_Bill_Base.index') }}",
-                },
-                columns: [
-                    {
-                        data: 'product_name',
-                        name: 'product_name',
-                        className: 'center'
-                    },
-                    {
-                        data: 'barcode',
-                        name: 'barcode',
-                        className: 'center'
-                    }, {
-                        data: 'quantity',
-                        name: 'quantity',
-                        className: 'center'
-                    }, {
-                        data: 'price',
-                        name: 'price',
-                        className: 'center'
-                    }, {
-                        data: 'notes',
-                        name: 'notes',
-                        className: 'center'
-                    }, {
-                        data: 'type',
-                        name: 'type',
-                        orderable: false,
-                        className: 'center'
-                    }
-                ]
-            });
-            $('#select_base_form').on('submit', function (event) {
-                event.preventDefault();
-                    $.ajax({
-                        url: "{{route('supplier_Bill_Base.store')}}",
-                        method: 'post',
-                        data: new FormData(this),
-                        contentType: false,
-                        cache: false,
-                        processData: false,
-                        dataType: "json",
-                        beforeSend: function () {
-                        },
-                        success: function (data) {
-                            $("#select_base_form").trigger('reset');
-                            $('#client_tbl').DataTable().ajax.reload();
-                        }, error: function (data_error, exception) {
-                            if (exception == 'error') {
-                            }
-                        }
-                    });
+            var i = 0;
+            $("#addButton").click(function () {
+                var bases = {!! $bases!!};
+                var options = '';
+                $.each(bases, function (key, value) {
+                    options = options + '<option value="' + value + '">' + key + '</option>';
+                });
+                var html = '';
+                html += ' <div id="" class="form-group row">';
+                html += ' <div class="col-sm-6 ">';
+                html += '<select class="select2 form-control custom-select col-12 " id="base_id" name="rows[' + i + '][base_id]">' +
+                        '<option selected="selected" value="">أختر المنتج الخام</option>' + options +
+                        '</select></div>';       
+                html += "<div class='col-sm-3'><input name='rows[" + i + "][quantity]' class='form-control' type='number' min='0' value='0' placeholder='{{trans('admin.quantity')}}'></div>" ;
+
+                html += "<div class='col-sm-3'><input name='rows[" + i + "][purchas_price]' class='form-control' type='number' min='0' alue='0' placeholder='{{trans('admin.purchas_price')}}'></div>" +
+                        "</div>";        
+                $('#parent_store').append(html);
+                i++;
             });
         });
-
-    </script>
-    <script type="text/javascript">
-        
         $(document).ready(function () {
             $(function () {
                 $('.itemName2').select2({
@@ -368,6 +337,6 @@
             });
         });  
     </script>
-  
+        
 @endsection
 

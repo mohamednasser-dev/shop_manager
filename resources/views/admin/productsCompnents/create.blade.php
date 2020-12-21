@@ -20,7 +20,6 @@
                     <hr>
                     {{ Form::open( ['url' => ['products'],'method'=>'post',  'class'=>'form'] ) }}
                     {{ csrf_field() }}
-
                     <div class="form-group m-t-40 row">
                         <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.name')}}</label>
                         <div class="col-md-10">
@@ -32,7 +31,7 @@
                                class="col-md-2 col-form-label">{{trans('admin.barcode')}}</label>
                         <div class="col-md-10">
                             {{ Form::text('barcode',old('barcode'),["class"=>"form-control" ,"required",'placeholder'=>trans('admin.barcode')]) }}
-{{--                            {{ Form::hidden('quantity',0,["class"=>"form-control" ,"required",'placeholder'=>trans('admin.barcode')]) }}--}}
+                            {{--{{ Form::hidden('quantity',0,["class"=>"form-control" ,"required",'placeholder'=>trans('admin.barcode')]) }}--}}
                         </div>
                     </div>
                     <div class="form-group m-t-40 row">
@@ -44,7 +43,6 @@
                     </div>
                     {{ Form::hidden('price',0,["class"=>"form-control" ,"required",'placeholder'=>trans('admin.price')]) }}
                     {{ Form::hidden('total_cost',0,["class"=>"form-control" ,"required",'placeholder'=>trans('admin.price')]) }}
-
                     <div class="form-group m-t-40 row">
                         <label for="example-text-input"
                                class="col-md-2 col-form-label">{{trans('admin.gomla_percent')}}</label>
@@ -64,27 +62,19 @@
                                class="col-md-2 col-form-label">{{trans('admin.category_id')}}</label>
                         <div class="col-md-10">
                             {{ Form::select('category_id',App\Models\Category::where('type','product')->pluck('name','id'),old('category_id')
-                                               ,["class"=>"form-control custom-select col-12 ",'id'=>'category_id' ]) }}
-
+                               ,["class"=>"form-control custom-select col-12 ",'id'=>'category_id' ]) }}
                         </div>
                     </div>
-
-
                     <div class="card m-b-20">
                         <div class="card-header" style='text-align:right'><strong> مكونات المنتج </strong>
                             <div class="card-body parent" style='text-align:right' id="parent">
-
                                 <button type='button' value='Add Button' id='addButton'>
                                     <i class="fa fa-plus"></i></button>
-
-
                                 <div class="panel" style='text-align:right'>
-
                                 </div>
                             </div>
                         </div>
                     </div>
-
                     <div class="center">
                         {{ Form::submit( trans('admin.public_Add') ,['class'=>'btn btn-info','style'=>'margin:10px']) }}
                     </div>
@@ -116,7 +106,7 @@
 
                     '</select></div>';
 
-                html += "<div class='col-sm-6'><input name='rows[" + i + "][quantity]' class='form-control' type='number' value='0' placeholder='الكمية'></div>" +
+                html += "<div class='col-sm-6'><input name='rows[" + i + "][quantity]' class='form-control' type='number' value='0' min='0' placeholder='الكمية'></div>" +
                     "</div>";
                 $('#parent').append(html);
 

@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Models\Supplier;
 use App\Models\Base;
 use Carbon\Carbon;
+use Exception;
 class baseBillsController extends Controller
 {
     public $today ;
@@ -19,18 +20,24 @@ class baseBillsController extends Controller
         $mytime = Carbon::now();
         $this->today =  Carbon::parse($mytime->toDateTimeString())->format('Y-m-d');
     }
-    public function index()
-    {
+    
+    public function index(){
+        $bases = Base::pluck('id', 'name');
+        $bases = json_encode($bases);
+        
         $suppliers = Supplier::all();
         $supplier_sales = SupplierSale::all();
+
         if(count($supplier_sales) == 0){
             $bill_num = 1 ;
-             $supplier_sales_selected = null;
-            return view('admin.base_bills.base_bills',compact('bill_num','supplier_sales_selected','suppliers'));
+            $supplier_sales_selected = null;
+            $$supplier_bill_bases = null;
+            return view('admin.base_bills.base_bills',compact('bill_num','supplier_sales_selected','suppliers','$supplier_bill_bases'));
         }else{
             $supplier_sales_selected = SupplierSale::where('is_bill','y')->latest('bill_num')->first();
             $bill_num = $supplier_sales_selected->bill_num ;
-            return view('admin.base_bills.base_bills',compact('bill_num','supplier_sales_selected','suppliers'));
+            $supplier_bill_bases = SupplierBillBase::where('supplier_sale_id',$supplier_sales_selected->id)->paginate(20);
+            return view('admin.base_bills.base_bills',compact('bill_num','supplier_sales_selected','suppliers','bases','supplier_bill_bases'));
         }
     }
 
@@ -50,9 +57,7 @@ class baseBillsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        
+    public function store(Request $request){
         $data = $this->validate(\request(),
             [
                 'bill_num' => 'required',
@@ -71,6 +76,7 @@ class baseBillsController extends Controller
         session()->flash('success', trans('admin.addedsuccess'));
         return redirect(url('base_bills'));
     }
+
 
     /**
      * Display the specified resource.
@@ -143,18 +149,49 @@ class baseBillsController extends Controller
         }
         return response()->json($data);
     }
+
     public function store_base_bill(Request $request){
-        $array1 = explode('&', $request->inputs);
-        $inputs = [];
-        foreach ($array1 as $value) {
-            $input = explode('=', $value);
-            $inputs [$input[0]] = $input[1];
+        $data = $this->validate(\request(),
+            [
+                'supplier_id' => 'required|exists:suppliers,id',
+                'supplier_sale_id' => 'required|exists:supplier_sales,id',
+                // for pivot
+                'quantity*' => 'required',
+                'base_id*' => 'required',
+                'purchas_price*' => 'required',
+            ]);
+        foreach ($request->rows as $row) {
+            if ($row['base_id'] != null && $row['quantity'] != null && $row['purchas_price'] != null) {
+                $row['user_id'] = Auth::user()->id;
+                $row['supplier_id'] = $data['supplier_id'];
+                $row['supplier_sale_id'] = $data['supplier_sale_id'];
+                $base = Base::find($row['base_id']);
+                $row['name'] = $base->name;
+                $row['date'] = $this->today ;
+                $row['total'] =  $row['quantity'] * $row['purchas_price'] ;
+                $player = SupplierBillBase::create($row);
+            }
         }
-        $base = Base::find($inputs['base_id']);
-        $inputs['name'] =  $base->name;
-        $inputs['date'] = $this->today ;
-        $inputs['total'] =  $inputs['quantity'] * $inputs['purchas_price'] ;
-        $player = SupplierBillBase::create($inputs);
-        return view('admin.base_bills.base_bills'); 
+        $total = SupplierBillBase::where('supplier_sale_id',$data['supplier_sale_id'])->sum('total');
+        $update_total['total'] = $total ; 
+        $update_total['remain'] = $total ; 
+        SupplierSale::where('id',$data['supplier_sale_id'])->update($update_total);
+        session()->flash('success', trans('admin.addedsuccess'));
+        return back();
+
+    }
+    public function destroy_bill_base($id){
+        $supplierBillBase = SupplierBillBase::where('id', $id)->first();
+        try {
+            $supplierBillBase->delete();
+            $total = SupplierBillBase::where('supplier_sale_id',$supplierBillBase->supplier_sale_id)->sum('total');
+            $update_total['total'] = $total ; 
+            $update_total['remain'] = $total ; 
+            SupplierSale::where('id',$supplierBillBase->supplier_sale_id)->update($update_total);
+            session()->flash('success', trans('admin.deleteSuccess'));
+        }catch(Exception $exception){
+            session()->flash('danger', trans('admin.deleteError'));
+        }
+        return back();
     }
 }

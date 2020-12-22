@@ -37,7 +37,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a class="waves-effect waves-dark" href="{{url('buy_bills')}}" aria-expanded="false"><i class="mdi mdi-account-location"></i><span class="hide-menu">{{trans('admin.nav_bills')}}</span></a>
+                        <a class="waves-effect waves-dark" href="{{url('buy-bills')}}" aria-expanded="false"><i class="mdi mdi-account-location"></i><span class="hide-menu">{{trans('admin.nav_bills')}}</span></a>
                     </li>
                     <li>
                         <a class="waves-effect waves-dark" href="" aria-expanded="false"><i class="mdi mdi-account-location"></i><span class="hide-menu">{{trans('admin.nav_income')}}</span></a>

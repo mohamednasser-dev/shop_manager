@@ -175,8 +175,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
-        Yajra\Datatables\DatatablesServiceProvider::class,
-        Yajra\DataTables\ButtonsServiceProvider::class,
+//        Yajra\Datatables\DatatablesServiceProvider::class,
+//        Yajra\DataTables\ButtonsServiceProvider::class,
 
     ],
 

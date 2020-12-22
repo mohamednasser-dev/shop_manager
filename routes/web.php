@@ -24,7 +24,8 @@
 
 		Route::resource('buy', 'Admin\BuyController');
 		Route::get('buy/{id}/delete', 'Admin\BuyController@destroy');
-		Route::get('buy_bills', 'Admin\BuyController@buy_bills');
+//		buy bills
+		Route::resource('buy-bills', 'Admin\buyBillsController');
 
 		Route::resource('base_bills', 'Admin\baseBillsController');
 		// Route::get('base_bills/{id}/delete', 'Admin\baseBillsController@destroy');
@@ -32,8 +33,8 @@
 		Route::get('select2-autocomplete-ajax-base', 'Admin\baseBillsController@dataAjax_base');
 		Route::post('supplier_bill_bases', 'Admin\baseBillsController@store_base_bill');
 		Route::get('supplier_bill_bases/{id}/delete', 'Admin\baseBillsController@destroy_bill_base');
-		
-//supplier Bill Base	
+
+//supplier Bill Base
 		Route::resource('supplier_Bill_Base', 'Admin\supplierBillBaseController');
 
 //categories
@@ -57,7 +58,7 @@
 		Route::resource('customer', 'Admin\customerController');
 		Route::post('editcustomer', 'Admin\customerController@update');
 		Route::get('customer/{id}/delete', 'Admin\customerController@destroy');
-    //Customer Account		
+    //Customer Account
 		Route::get('customer/{id}/account', 'Admin\customerController@account');
 		Route::post('cust_payment', 'Admin\customerController@payment');
 		Route::post('cust_manula_bill', 'Admin\customerController@manula_bill');

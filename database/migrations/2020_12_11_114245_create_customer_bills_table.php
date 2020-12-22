@@ -17,12 +17,13 @@ class CreateCustomerBillsTable extends Migration
             $table->id();
             $table->bigInteger('cust_id')->unsigned()->nullable();
             $table->foreign('cust_id')->references('id')->on('customers')->onDelete('set null');
-            $table->bigInteger('bill_num');
-            $table->float('total');
-            $table->float('pay');
-            $table->float('remain');
-            $table->float('total_profit');
+            $table->string('bill_num')->nullable();
+            $table->float('total')->default('0');
+            $table->float('pay')->default('0');
+            $table->float('remain')->default('0');
+            $table->float('total_profit')->default('0');
             $table->date('date');
+            $table->string('notes')->nullable();
             $table->enum('type',['buy','back'])->default('buy');
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');

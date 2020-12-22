@@ -16,11 +16,13 @@ class CreateSupplierSalesTable extends Migration
             $table->id();
             $table->bigInteger('supplier_id')->unsigned()->nullable();
             $table->foreign('supplier_id')->references('id')->on('suppliers')->onDelete('set null');
-            $table->bigInteger('bill_num')->unique();
+            $table->string('bill_num')->unique()->nullable();
+            $table->string('is_bill')->nullable();
             $table->float('total')->default(0);
             $table->float('pay')->default(0);
             $table->float('remain')->default(0);
             $table->date('date');
+            $table->string('notes')->nullable();
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
             $table->timestamps();

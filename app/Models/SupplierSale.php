@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class SupplierSale extends Model
 {
     protected $fillable = [
-        'supplier_id','bill_num','total','pay','remain','date','user_id'
+        'supplier_id','bill_num','total','pay','remain','date','user_id','notes','is_bill'
     ];
 
     public function Employee()

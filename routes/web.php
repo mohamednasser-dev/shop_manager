@@ -27,15 +27,19 @@
 		Route::get('buy_bills', 'Admin\BuyController@buy_bills');
 
 		Route::resource('base_bills', 'Admin\baseBillsController');
-		Route::get('base_bills/{id}/delete', 'Admin\baseBillsController@destroy');
+		// Route::get('base_bills/{id}/delete', 'Admin\baseBillsController@destroy');
 		Route::get('select2-autocomplete-ajax', 'Admin\baseBillsController@dataAjax');
 		Route::get('select2-autocomplete-ajax-base', 'Admin\baseBillsController@dataAjax_base');
-//categories
-
+		Route::post('supplier_bill_bases', 'Admin\baseBillsController@store_base_bill');
+		Route::get('supplier_bill_bases/{id}/delete', 'Admin\baseBillsController@destroy_bill_base');
+		
+//supplier Bill Base	
 		Route::resource('supplier_Bill_Base', 'Admin\supplierBillBaseController');
 
+//categories
 		Route::resource('categories', 'Admin\categoryController');
 		Route::get('categories/{id}/delete', 'Admin\categoryController@destroy');
+
 //bases
 		Route::resource('bases', 'Admin\baseController');
 		Route::post('editbases', 'Admin\baseController@update');
@@ -45,10 +49,18 @@
 		Route::resource('supplier', 'Admin\supllierController');
 		Route::post('editsupplier', 'Admin\supllierController@update');
 		Route::get('supplier/{id}/delete', 'Admin\supllierController@destroy');
+    //supplier account
+		Route::get('supplier/{id}/account', 'Admin\supllierController@account');
+		Route::post('supplier_payment', 'Admin\supllierController@payment');
+		Route::post('supplier_manula_bill', 'Admin\supllierController@manula_bill');
 //cusromers
 		Route::resource('customer', 'Admin\customerController');
 		Route::post('editcustomer', 'Admin\customerController@update');
 		Route::get('customer/{id}/delete', 'Admin\customerController@destroy');
+    //Customer Account		
+		Route::get('customer/{id}/account', 'Admin\customerController@account');
+		Route::post('cust_payment', 'Admin\customerController@payment');
+		Route::post('cust_manula_bill', 'Admin\customerController@manula_bill');
 //	products Components
 
         Route::resource('products', 'Admin\productComponentsController');

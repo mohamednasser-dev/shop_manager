@@ -52,6 +52,10 @@
                                 <td class="text-center">{{$user->employee->name}}</td>
 
                                 <td class="text-lg-center">
+                                    <a class='btn btn-raised btn-primary btn-sml'
+                                       href=" {{url('supplier/'.$user->id.'/account')}}">
+                                       {{trans('admin.supplier_account')}}
+                                    </a>
                                     <a class='btn btn-raised btn-success btn-sml'
                                        href=" {{url('supplier/'.$user->id.'/edit')}}"
                                        data-editid="{{$user->id}}" id="edit"

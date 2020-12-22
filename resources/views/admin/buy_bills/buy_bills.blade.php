@@ -31,7 +31,8 @@
     </div>
     <!-- /.card-header -->
     <div class="app-content content container-fluid">
-        <div class="content-wrapper">   
+        <div class="content-wrapper"> 
+              
             <section id="html-headings-default" class="row match-height">
                 <div class="col-sm-12 col-md-12">
                     <div class="card">
@@ -57,6 +58,29 @@
                                         ,["class"=>"select2 form-control custom-select" ,'placeholder'=>trans('admin.choose_cust') ]) }}
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section id="html-headings-default" class="row match-height">
+                <div class="col-sm-12 col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">{{trans('admin.view_account')}}</h4>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label>{{trans('admin.from')}}</label>
+                                    {!! Form::date('from',$today,['class'=>'form-control center']) !!}
+                                </div>
+                                <div class="col-md-4">
+                                    <label>{{trans('admin.to')}}</label>
+                                    {!! Form::date('to',$today,['class'=>'form-control center']) !!}
+                                </div>
+                                <div class="col-md-4">
+                                    <button type="submit" class="btn waves-effect waves-light btn-rounded btn-outline-primary">{{trans('admin.print')}}</button>
+                                </div>
+                                
                             </div>
                         </div>
                     </div>

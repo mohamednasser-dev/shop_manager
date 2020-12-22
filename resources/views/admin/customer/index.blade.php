@@ -5,16 +5,15 @@
     <link href="{{ asset('css/style.css')}}" rel="stylesheet">
     <!-- You can change the theme colors from here -->
     <link href="{{ asset('css/colors/default-dark.css')}}" id="theme" rel="stylesheet">
-
 @endsection
 @section('content')
     <div class="row page-titles">
         <div class="col-md-5 align-self-center">
-            <h3 class="text-themecolor">{{trans('admin.customers')}}</h3>
+            <h3 class="text-themecolor">{{trans('admin.nav_customers')}}</h3>
         </div>
         <div class="col-md-7 align-self-center">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item">{{trans('admin.customers')}}</li>
+                <li class="breadcrumb-item">{{trans('admin.nav_customers')}}</li>
                 <li class="breadcrumb-item active"><a href="{{url('home')}}">{{trans('admin.nav_home')}}</a></li>
             </ol>
         </div>
@@ -24,26 +23,23 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header">
-                    <button alt="default" data-toggle="modal" data-target="#responsive-modal"
-                            class="btn btn-info btn-bg">
-                        {{trans('admin.add_customers')}}
+                    <button alt="default" data-toggle="modal" data-target="#responsive-modal" class="btn btn-info btn-bg">
+                        {{trans('admin.add_customer')}}
                     </button>
-
                 </div>
                 <div class="card-body">
                     <!-- Start home table -->
                     <table id="table-8344"
                            class="tablesaw table-striped table-hover table-bordered table tablesaw-columntoggle">
                         <thead>
-                        <tr>
-                            <th class="text-center">{{trans('admin.name')}}</th>
-                            <th class="text-center">{{trans('admin.phone')}}</th>
-                            <th class="text-center">{{trans('admin.address')}}</th>
-                            <th class="text-center">{{trans('admin.employee')}}</th>
-                            <th class="text-center">{{trans('admin.actions')}}</th>
-                        </tr>
+                            <tr>
+                                <th class="text-center">{{trans('admin.name')}}</th>
+                                <th class="text-center">{{trans('admin.phone')}}</th>
+                                <th class="text-center">{{trans('admin.address')}}</th>
+                                <th class="text-center">{{trans('admin.employee')}}</th>
+                                <th class="text-center">{{trans('admin.actions')}}</th>
+                            </tr>
                         </thead>
-
                         <tbody>
                         @foreach($customers as $user)
                             <tr>
@@ -54,11 +50,15 @@
 
 
                                 <td class="text-lg-center">
+                                    <a class='btn btn-raised btn-primary btn-sml'
+                                       href=" {{url('customer/'.$user->id.'/account')}}">
+                                       {{trans('admin.cust_account')}}
+                                    </a>
                                     <a class='btn btn-raised btn-success btn-sml'
                                        href=" {{url('customer/'.$user->id.'/edit')}}"
                                        data-editid="{{$user->id}}" id="edit"
-                                       alt="default" data-toggle="modal" data-target="#edit-modal"><i class="fa fa-edit"></i></a>
-
+                                       alt="default" data-toggle="modal" data-target="#edit-modal"><i class="fa fa-edit"></i>
+                                    </a>
                                     <form method="get" id='delete-form-{{ $user->id }}'
                                           action="{{url('customer/'.$user->id.'/delete')}}"
                                           style='display: none;'>
@@ -82,51 +82,39 @@
                         </tbody>
                     </table>
                 {{$customers->links()}}
-
                 <!-- Add  modal content -->
                     <div id="responsive-modal" class="modal fade" tabindex="-1" role="dialog"
                          aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h4 class="modal-title">{{trans('admin.add_customers')}}</h4>
-                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×
-                                    </button>
+                                    <h4 class="modal-title">{{trans('admin.add_customer')}}</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                 </div>
                                 <div class="modal-body">
                                     {{ Form::open( ['url'  => ['customer'],'method'=>'post' , 'class'=>'form'] ) }}
                                     {{ csrf_field() }}
                                     <div class="form-group">
-                                        <label for="recipient-name"
-                                               class="control-label">{{trans('admin.name')}}</label>
+                                        <label for="recipient-name" class="control-label">{{trans('admin.name')}}</label>
                                         {{ Form::text('name',null,["class"=>"form-control" ,"required"]) }}
                                     </div>
                                     <div class="form-group">
-                                        <label for="recipient-name"
-                                               class="control-label">{{trans('admin.phone')}}</label>
+                                        <label for="recipient-name" class="control-label">{{trans('admin.phone')}}</label>
                                         {{ Form::number('phone',null,["class"=>"form-control" ,"required"]) }}
                                     </div>
                                     <div class="form-group">
-                                        <label for="recipient-name"
-                                               class="control-label">{{trans('admin.address')}}</label>
+                                        <label for="recipient-name" class="control-label">{{trans('admin.address')}}</label>
                                         {{ Form::text('address',null,["class"=>"form-control" ,"required"]) }}
                                     </div>
-
-
-
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">
-                                        Close
-                                    </button>
+                                    <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
                                     {{ Form::submit( trans('admin.public_Add') ,['class'=>'btn btn-info','style'=>'margin:10px']) }}
                                     {{ Form::close() }}
-
                                 </div>
                             </div>
                         </div>
                     </div>
-
                     <!-- /.modal -->
                     {{--edit  modal --}}
                     <div id="edit-modal" class="modal fade" tabindex="-1" role="dialog"
@@ -158,36 +146,21 @@
                                                class="control-label">{{trans('admin.address')}}</label>
                                         {{ Form::text('address',null,["class"=>"form-control" ,"required",'id'=>'address']) }}
                                     </div>
-
-
-
-
-
-
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">
-                                        Close
-                                    </button>
+                                    <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
                                     {{ Form::submit( trans('admin.public_Add') ,['class'=>'btn btn-info','style'=>'margin:10px']) }}
                                     {{ Form::close() }}
-
                                 </div>
                             </div>
                         </div>
                     </div>
-
-
                 </div>
-
             </div>
         </div>
     </div>
 @endsection
-
 @section('scripts')
-
-
     <script>
         var id;
         $(document).on('click', '#edit', function() {
@@ -201,15 +174,9 @@
                     $('#name').val(html.data.name);
                     $('#phone').val(html.data.phone);
                     $('#address').val(html.data.address);
-
-
-
                 }
             })
         });
-
-
-
     </script>
 
     <script src="{{ asset('assets/plugins/jquery/jquery.min.js')}}"></script>

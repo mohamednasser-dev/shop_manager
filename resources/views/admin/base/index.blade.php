@@ -244,8 +244,6 @@
 @endsection
 
 @section('scripts')
-
-
     <script>
         var id;
         $(document).on('click', '#edit', function() {
@@ -264,17 +262,10 @@
                     $('#purchas_price').val(html.data.purchas_price);
                     $('#barcode').val(html.data.barcode);
                     $('#measur_unit').val(html.data.measur_unit);
-
-
-
                 }
             })
         });
-
-
-
     </script>
-
     <script src="{{ asset('assets/plugins/jquery/jquery.min.js')}}"></script>
     <!-- Bootstrap tether Core JavaScript -->
     <script src="{{ asset('assets/plugins/bootstrap/js/popper.min.js')}}"></script>

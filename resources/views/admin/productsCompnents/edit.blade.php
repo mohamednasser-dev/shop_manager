@@ -77,19 +77,19 @@
                                     <i class="fa fa-plus"></i></button>
 
 
-                                @foreach($product_base as $key =>$product_comp)
-                                    <div id="" class="form-group row">
-                                        <div class="col-sm-6 ">
-                                            {{ Form::select('rows[' .$key . '][base_id]',App\Models\Base::pluck('name','id'),$product_comp->base_id
-                                             ,["class"=>"form-control custom-select col-12 " ]) }}
-                                        </div>
-                                        <div class='col-sm-6'>
+                                    @foreach($product_base as $key =>$product_comp)
+                                        <div id="" class="form-group row">
+                                            <div class="col-sm-6 ">
+                                                {{ Form::select('rows[' .$key . '][base_id]',App\Models\Base::pluck('name','id'),$product_comp->base_id
+                                                ,["class"=>"form-control custom-select col-12 " ]) }}
+                                            </div>
+                                            <div class='col-sm-6'>
 
-                                            {{ Form::number('rows[' .$key . '][quantity]',$product_comp->quantity,["class"=>"form-control" ,"required",'placeholder'=>trans('admin.quantity')]) }}
+                                                {{ Form::number('rows[' .$key . '][quantity]',$product_comp->quantity,["class"=>"form-control" ,"required",'placeholder'=>trans('admin.quantity')]) }}
 
+                                            </div>
                                         </div>
-                                    </div>
-                                @endforeach
+                                    @endforeach
 
 
                                 <div class="panel" style='text-align:right'>

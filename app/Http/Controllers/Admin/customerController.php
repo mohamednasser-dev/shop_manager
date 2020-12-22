@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use Exception;
 class customerController extends Controller
 {
     /**

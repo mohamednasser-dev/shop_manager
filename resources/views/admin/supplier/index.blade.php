@@ -56,7 +56,7 @@
                                        href=" {{url('supplier/'.$user->id.'/account')}}">
                                        {{trans('admin.supplier_account')}}
                                     </a>
-                                    <a class='btn btn-raised btn-success btn-sml'
+                                    <a class='btn btn-raised btn-success btn-circle'
                                        href=" {{url('supplier/'.$user->id.'/edit')}}"
                                        data-editid="{{$user->id}}" id="edit"
                                        alt="default" data-toggle="modal" data-target="#edit-modal"><i class="fa fa-edit"></i></a>
@@ -160,12 +160,6 @@
                                                class="control-label">{{trans('admin.address')}}</label>
                                         {{ Form::text('address',null,["class"=>"form-control" ,"required",'id'=>'address']) }}
                                     </div>
-
-
-
-
-
-
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">

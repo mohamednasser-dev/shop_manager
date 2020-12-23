@@ -14,9 +14,14 @@ return [
     'public_delete_modal_text' => 'هل تريد الحذف',
     'public_delete' => 'حذف',
     'public_cancel' => 'الغاء',
+    'fatora_open_success' => 'تم فتح فاتورة جديدة بنجاح',
+    'added_bill_product' => 'تم بيع المنتج بنجاح',
+    
     'close' => 'اغلاق',
     'print' => 'طباعه',
     'actions' => 'العمليات',
+    'no_data_found' => 'لا يوجد نتائج',
+ 
 
     // messages
     'addedsuccess' => 'تم الاضافة بنجاح',
@@ -33,7 +38,7 @@ return [
 
     //navigation  sidebar
     'nav_home' => 'الصفحة الرئيسية',
-    'nav_buy' => 'البيع',
+    'nav_buy' => 'فاتورة بيع',
     'nav_products' => 'المنتجات',
     'nav_bases' => 'الخام',
     'nav_base_bills' => 'أنشاء فاتورة خام',
@@ -67,6 +72,18 @@ return [
     'bases' => 'المواد الخام',
     'add_bases' => 'اضافه ماده خام',
 
+    //products
+    'add_product' => 'اضافة منتج جديد',
+    'total_cost' => 'اجمالى التكلفة',
+    'gomla_percent' => 'نسبة الجملة',
+    'part_percent' => 'نسبة القطاعى',
+    'product_info' => 'بيانات المنتج',
+    'edit_product' => 'تعديل المنتج',
+    'add_quantity' => 'أضافة كمية',
+    
+   
+
+    //buy page
     'categories' => 'التصنيفات',
     'type' => 'النوع',
     'base' => 'مواد خام',
@@ -76,15 +93,23 @@ return [
     'pay' => 'المدفوع',
     'total' => 'الاجمالى',
     'remain' => 'الباقى',
-    'search_by_barcode' => 'بحث بالباركود',
-    'search_by_product_name' => 'بحث باسم المنتج',
     'bill_num' => 'رقم الفاتوره',
     'date' => 'التاريخ',
+    'total_data' => 'عدد النتائج : ',
     'cust_name' => 'اسم العميل',
+    'sale' => 'بيع',
+    'sale_total' => 'الاجمالى : ',
+    'add_sale' => 'بيانات المنتج',
+    'sale_pay' => 'المدفوع : ',
+    'sale_remain' => 'الباقى : ',
+    //Print Bill
+    'print_bill' => 'طباعة الفاتورة',
+    
+    
     'supplier_name' => 'اسم المورد',
     'open_new_bill' => 'فتح فاتوره جديده',
+    'search_by_product_barcode_name' => 'بحث بالباركود او اسم المنتج',
    
-    
 
     //users
     'name' => 'الاسم',
@@ -112,9 +137,7 @@ return [
     'supplier_account' => 'حساب المورد',
     'old_payment' => 'حساب قديم',
     
-
     //Buy Bills
-
     'Search_area' => 'البحث',
     'search_by_cust_name' => 'بحث باسم العميل',
     'search_by_date' => 'بحث باليوم',
@@ -125,6 +148,10 @@ return [
     'to' => 'الى',
     'view_account' => 'كشف حساب',
 
+    //out going
+    'cost' => 'التكلفة',
+    'add_outgoings' => 'أضافة مصروف',
+    'outgoing_name' => 'وصف المصروف',
 
     //login
     'email' => 'البريد الالكترونى',

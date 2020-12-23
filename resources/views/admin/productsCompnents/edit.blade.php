@@ -7,7 +7,7 @@
         <div class="col-md-7 align-self-center">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">{{trans('admin.edit_product')}}</li>
-                <li class="breadcrumb-item"><a href="{{url('products')}}">{{trans('admin.products')}}</a></li>
+                <li class="breadcrumb-item"><a href="{{url('products')}}">{{trans('admin.nav_products')}}</a></li>
                 <li class="breadcrumb-item active"><a href="{{url('home')}}">{{trans('admin.nav_home')}}</a></li>
             </ol>
         </div>
@@ -16,7 +16,7 @@
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">{{trans('admin.edit_product')}}</h4>
+                    <h4 class="card-title">{{trans('admin.product_info')}}</h4>
                     <hr>
                     {!! Form::model($product, ['route' => ['products.update',$product->id] , 'method'=>'put' ]) !!}
                     {{ csrf_field() }}
@@ -61,7 +61,7 @@
                     </div>
                     <div class="form-group m-t-40 row">
                         <label for="example-text-input"
-                               class="col-md-2 col-form-label">{{trans('admin.category_id')}}</label>
+                               class="col-md-2 col-form-label">{{trans('admin.category')}}</label>
                         <div class="col-md-10">
                             {{ Form::select('category_id',App\Models\Category::where('type','product')->pluck('name','id'),$product->category_id
                                                ,["class"=>"form-control custom-select col-12 ",'id'=>'category_id' ]) }}

@@ -148,6 +148,7 @@ return [
     'attributes' => [
 
         'supplier_id'=>'اسم المورد',
+        'cust_id'=>'أسم العميل',
         'date'=>'تاريخ المباراه',
         'date_created'=>'تاريخ الانشاء',
         'status'=>'الحالة',

@@ -31,7 +31,7 @@ class baseBillsController extends Controller
         if(count($supplier_sales) == 0){
             $bill_num = 1 ;
             $supplier_sales_selected = null;
-            $$supplier_bill_bases = null;
+            $supplier_bill_bases = null;
             return view('admin.base_bills.base_bills',compact('bill_num','supplier_sales_selected','suppliers','$supplier_bill_bases'));
         }else{
             $supplier_sales_selected = SupplierSale::where('is_bill','y')->latest('bill_num')->first();
@@ -73,7 +73,7 @@ class baseBillsController extends Controller
         $data['is_bill'] = 'y';
         $data['user_id'] = Auth::user()->id;
         SupplierSale::create($data);
-        session()->flash('success', trans('admin.addedsuccess'));
+        session()->flash('success', trans('admin.fatora_open_success'));
         return redirect(url('base_bills'));
     }
 

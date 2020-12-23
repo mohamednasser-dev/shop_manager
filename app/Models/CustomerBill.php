@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class CustomerBill extends Model
 {
     protected $fillable = [
-        'cust_id ', 'bill_num' , 'total' , 'pay' ,'total_profit','remain','date','notes','type','user_id'
+        'cust_id ', 'bill_num' , 'total' , 'pay' ,'total_profit','remain','date','notes','type','user_id','is_bill'
     ];
 
     public function Employee()

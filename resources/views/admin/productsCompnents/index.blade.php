@@ -10,11 +10,11 @@
 @section('content')
     <div class="row page-titles">
         <div class="col-md-5 align-self-center">
-            <h3 class="text-themecolor">{{trans('admin.products')}}</h3>
+            <h3 class="text-themecolor">{{trans('admin.nav_products')}}</h3>
         </div>
         <div class="col-md-7 align-self-center">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item">{{trans('admin.products')}}</li>
+                <li class="breadcrumb-item">{{trans('admin.nav_products')}}</li>
                 <li class="breadcrumb-item active"><a href="{{url('home')}}">{{trans('admin.nav_home')}}</a></li>
             </ol>
         </div>
@@ -62,10 +62,10 @@
 
 
                                 <td class="text-lg-center">
-                                    <a class='btn btn-raised btn-success btn-sml'
+                                    <a class='btn btn-raised btn-success btn-circle'
                                        href=" {{url('products/'.$user->id.'/edit')}}"
                                        data-editid="{{$user->id}}" id="edit"><i class="fa fa-edit"></i></a>
-                                    <a class='btn btn-raised btn-warning btn-sml'
+                                    <a class='btn btn-raised btn-warning btn-circle'
                                        data-product-id="{{$user->id}}" id="add"
                                        data-toggle="modal" data-target="#responsive-modal"><i class="fa fa-arrow-circle-down fa-arrow-circle-down"></i></a>
 

@@ -10,11 +10,11 @@
 @section('content')
     <div class="row page-titles">
         <div class="col-md-5 align-self-center">
-            <h3 class="text-themecolor">{{trans('admin.outgoings')}}</h3>
+            <h3 class="text-themecolor">{{trans('admin.nav_outgoing')}}</h3>
         </div>
         <div class="col-md-7 align-self-center">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item">{{trans('admin.outgoings')}}</li>
+                <li class="breadcrumb-item">{{trans('admin.nav_outgoing')}}</li>
                 <li class="breadcrumb-item active"><a href="{{url('home')}}">{{trans('admin.nav_home')}}</a></li>
             </ol>
         </div>
@@ -94,12 +94,12 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="recipient-name"
-                                               class="control-label">{{trans('admin.outgoing_cost')}}</label>
+                                               class="control-label">{{trans('admin.cost')}}</label>
                                         {{ Form::number('cost',null,["class"=>"form-control" ,"required"]) }}
                                     </div>
                                     <div class="form-group">
                                         <label for="recipient-name"
-                                               class="control-label">{{trans('admin.outgoing_date')}}</label>
+                                               class="control-label">{{trans('admin.date')}}</label>
                                         {{ Form::date('date',null,["class"=>"form-control" ,"required"]) }}
                                     </div>
 

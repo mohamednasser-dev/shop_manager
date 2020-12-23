@@ -64,7 +64,7 @@
 
 
                                 <td class="text-lg-center">
-                                    <a class='btn btn-raised btn-success btn-sml'
+                                    <a class='btn btn-raised btn-success btn-circle'
                                        href=" {{url('bases/'.$user->id.'/edit')}}"
                                        data-editid="{{$user->id}}" id="edit"
                                        alt="default" data-toggle="modal" data-target="#edit-modal"><i class="fa fa-edit"></i></a>

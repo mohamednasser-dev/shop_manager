@@ -23,6 +23,7 @@
 
 
 		Route::resource('buy', 'Admin\BuyController');
+		Route::post('select_products', 'Admin\BuyController@select_products');
 		Route::post('cust_bills', 'Admin\BuyController@store_cust_bill');
 		Route::get('/live_search/products', 'Admin\BuyController@live_search')->name('live_search.products');
 		Route::get('{id?}/ajaxdata/get_bill_product_data', 'Admin\BuyController@get_bill_product_data')->name('ajaxdata.get_bill_product_data');

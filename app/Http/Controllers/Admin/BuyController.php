@@ -168,19 +168,19 @@ class BuyController extends Controller
                         $cust_bill->total = $cust_bill->total + $total ;
                         $cust_bill->remain = $cust_bill->remain + $total ;
                         $cust_bill->save();
-                        session()->flash('success', trans('admin.added_bill_product'));
-                        return back();
+                        // session()->flash('success', trans('admin.added_bill_product'));
+                        // return back();
                     }
                 }
-                // $success_output = '<div class="alert alert-success">Data Inserted</div>';
+                $success_output = '<div class="alert alert-success">Data Inserted</div>';
             }
         }
-        dd($error_array);
         $output = array(
             'error'     =>  $error_array,
             'success'   =>  $success_output
         );
-        echo json_encode($output);
+       echo json_encode($output);
+        
     }
 
     /**
@@ -212,9 +212,9 @@ class BuyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function select_products(Request $request)
     {
-        //
+        return $request;
     }
 
     /**

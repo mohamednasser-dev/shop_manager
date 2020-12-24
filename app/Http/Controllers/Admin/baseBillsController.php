@@ -170,6 +170,10 @@ class baseBillsController extends Controller
                 $row['date'] = $this->today ;
                 $row['total'] =  $row['quantity'] * $row['purchas_price'] ;
                 $player = SupplierBillBase::create($row);
+
+                //To increase base quantity by new quantity from supplier
+                $base->quantity = $base->quantity + $row['quantity'];
+                $base->save();
             }
         }
         $total = SupplierBillBase::where('supplier_sale_id',$data['supplier_sale_id'])->sum('total');
@@ -183,7 +187,15 @@ class baseBillsController extends Controller
     public function destroy_bill_base($id){
         $supplierBillBase = SupplierBillBase::where('id', $id)->first();
         try {
+            //To decrease base quantity after delete product from supplier bill
+            $base = Base::find($supplierBillBase->base_id);
+            $base->quantity = $base->quantity - $supplierBillBase->quantity;
+            $base->save();
+
             $supplierBillBase->delete();
+
+            
+
             $total = SupplierBillBase::where('supplier_sale_id',$supplierBillBase->supplier_sale_id)->sum('total');
             $update_total['total'] = $total ; 
             $update_total['remain'] = $total ; 

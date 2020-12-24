@@ -51,11 +51,7 @@
                                         ,["class"=>"select2 form-control custom-select" ,'placeholder'=>trans('admin.choose_cust') ]) }}
                                     </div>
                                 </div>
-                                <br>
-                                <br>
-                                <br>
-                                <br>
-                                <div class="col-md-12" style="display: block">
+                                <div class="col-md-12" style="display: block; margin-top: 20px;" >
 
                                     {{ Form::submit( trans('admin.search') ,['class'=>'btn btn-info btn-block']) }}
                                     {{ Form::close() }}

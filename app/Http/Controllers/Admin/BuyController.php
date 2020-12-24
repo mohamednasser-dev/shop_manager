@@ -18,7 +18,7 @@ class BuyController extends Controller
     public function __construct(){
         //to get today date
         $mytime = Carbon::now();
-        $today =  Carbon::parse($mytime->toDateTimeString())->format('Y-m-d');
+        $this->today =  Carbon::parse($mytime->toDateTimeString())->format('Y-m-d');
     }
 
     public function index(){
@@ -42,14 +42,37 @@ class BuyController extends Controller
         return view('admin.buy.buy',compact('bill_num','customer_bills_selected','customers','products','customer_bills_products','today'));
     }
 
+    public function store_cust_bill(Request $request){
+        $data = $this->validate(\request(),
+            [
+                'bill_num' => 'required',
+                'cust_id' => 'required|exists:customers,id'
+            ]);
+        $customer_bills = CustomerBill::all();
+        if(count($customer_bills) == 0){
+            $data_create['bill_num'] = 1;
+        }else{
+            $data_create['bill_num'] = $request->bill_num + 1;
+        }
+        $data_create['cust_id'] = $request->cust_id ;
+        $data_create['date'] = $this->today;
+        $data_create['is_bill'] = 'y';
+        $data_create['user_id'] = Auth::user()->id;
+        CustomerBill::create($data_create);
+        session()->flash('success', trans('admin.fatora_open_success'));
+        return redirect(url('buy'));
+    }
+
     function get_bill_product_data($bill_id){
         $bill_products = BillProduct::select('name','barcode','quantity','price','total')->where('bill_id',$bill_id)->get();
         return Datatables::of($bill_products)->make(true);
     }
     
-    public function bill_design(){
+    public function bill_design($bill_id){
+        $CustomerBill = CustomerBill::find($bill_id);
+        $BillProduct =  BillProduct::where('bill_id',$bill_id)->get();
         $today = $this->today;
-        return view('admin.buy.bill_design',compact('today'));
+        return view('admin.buy.bill_design',compact('today','CustomerBill','BillProduct'));
     }
     /**
      * Show the form for creating a new resource.
@@ -114,7 +137,6 @@ class BuyController extends Controller
         $validation = Validator::make($request->all(), [
             'product_id' => 'required',
             'bill_id'  => 'required',
-            'date'  => 'required',
             'quantity'  => 'required',
             'price'  => 'required',
         ]);
@@ -136,7 +158,8 @@ class BuyController extends Controller
                     'quantity'     =>  $request->get('quantity'),
                     'price'     =>  $request->get('price'),
                     'user_id'     =>  Auth::user()->id,
-                    'total'     =>  $total
+                    'total'     =>  $total,
+                    'date'     =>  $this->today
                 ]);
                 if($bill_Product->save()){
                     $product->quantity = $product->quantity - $request->get('quantity') ;
@@ -152,6 +175,7 @@ class BuyController extends Controller
                 // $success_output = '<div class="alert alert-success">Data Inserted</div>';
             }
         }
+        dd($error_array);
         $output = array(
             'error'     =>  $error_array,
             'success'   =>  $success_output

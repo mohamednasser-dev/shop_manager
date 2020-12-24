@@ -102,13 +102,17 @@ return [
     'add_sale' => 'بيانات المنتج',
     'sale_pay' => 'المدفوع : ',
     'sale_remain' => 'الباقى : ',
+    'bill_date' => 'تاريخ الفاتور :',
+
     //Print Bill
     'print_bill' => 'طباعة الفاتورة',
+    'back' => 'رجوع',
     
     
     'supplier_name' => 'اسم المورد',
     'open_new_bill' => 'فتح فاتوره جديده',
     'search_by_product_barcode_name' => 'بحث بالباركود او اسم المنتج',
+    'supplier_bill' => 'فاتورة المورد',
    
 
     //users
@@ -116,7 +120,7 @@ return [
     'user_info' => 'بيانات الموظف',
 
     //roles
-    'add_new_role' => 'اضافة وضيفة',
+    'add_new_role' => 'أضافة وظيفه',
     'add_new_permission' => 'اضافة صلاحيات',
     'role_name' => 'اسم الوظيفة',
     'permission' => 'الصلاحية',
@@ -146,6 +150,7 @@ return [
     'address' => 'العنوان',
     'from' => 'من',
     'to' => 'الى',
+    'search' => 'بحث',
     'view_account' => 'كشف حساب',
 
     //out going

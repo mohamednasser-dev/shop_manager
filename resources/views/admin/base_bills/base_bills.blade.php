@@ -174,6 +174,9 @@
                 <section id="html-headings-default" class="row match-height">
                     <div class="col-sm-12 col-md-12">
                         <div class="card">
+                            <div class="card-header">
+                                <h3>{{trans('admin.supplier_bill')}}</h3>
+                            </div>
                             <div class="card-body">
                                 <!-- Start home table -->
                                 <table id="myTable" class="table full-color-table full-primary-table">

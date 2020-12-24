@@ -31,38 +31,6 @@ class CustBillsController extends Controller
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request){
-        $data = $this->validate(\request(),
-            [
-                'bill_num' => 'required',
-                'cust_id' => 'required|exists:customers,id'
-            ]);
-        $customer_bills = CustomerBill::all();
-        if(count($customer_bills) == 0){
-            $data['bill_num'] = 1;
-        }else{
-            $data['bill_num'] = $request->bill_num + 1;
-        }
-        $data['date'] = $this->today;
-        $data['is_bill'] = 'y';
-        $data['user_id'] = Auth::user()->id;
-        CustomerBill::create($data);
-        session()->flash('success', trans('admin.fatora_open_success'));
-        return redirect(url('buy'));
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //

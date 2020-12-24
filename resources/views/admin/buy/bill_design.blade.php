@@ -18,29 +18,16 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card card-body printableArea">
-                <h3><b>INVOICE</b> <span class="pull-right">#5669626</span></h3>
+                <h3><b>{{trans('admin.nav_buy')}}</b> <span class="pull-right">#{{$CustomerBill->bill_num}}</span></h3>
                 <hr>
                 <div class="row">
                     <div class="col-md-12">
                         <div class="pull-left">
                             <address>
-                                <h3> &nbsp;<b class="text-danger">Material Pro Admin</b></h3>
-                                <p class="text-muted m-l-5">E 104, Dharti-2,
-                                    <br/> Nr' Viswakarma Temple,
-                                    <br/> Talaja Road,
-                                    <br/> Bhavnagar - 364002</p>
-                            </address>
-                        </div>
-                        <div class="pull-right text-right">
-                            <address>
-                                <h3>To,</h3>
-                                <h4 class="font-bold">Gaala & Sons,</h4>
-                                <p class="text-muted m-l-30">E 104, Dharti-2,
-                                    <br/> Nr' Viswakarma Temple,
-                                    <br/> Talaja Road,
-                                    <br/> Bhavnagar - 364002</p>
-                                <p class="m-t-30"><b>Invoice Date :</b> <i class="fa fa-calendar"></i> 23rd Jan 2017</p>
-                                <p><b>Due Date :</b> <i class="fa fa-calendar"></i> 25th Jan 2017</p>
+                                <h3> &nbsp;<b class="text-danger">{{$CustomerBill->Customer->name}}</b></h3>
+                                <p class="text-muted m-l-5">{{$CustomerBill->Customer->address}}</p>
+                                <p class="text-muted m-l-5">{{$CustomerBill->Customer->phone}}</p>
+                                <p class="m-t-30"><b>{{trans('admin.bill_date')}}</b> <i class="fa fa-calendar"></i>{{$CustomerBill->date}}</p>
                             </address>
                         </div>
                     </div>
@@ -49,65 +36,63 @@
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
-                                        <th class="text-center">#</th>
-                                        <th>Description</th>
-                                        <th class="text-right">Quantity</th>
-                                        <th class="text-right">Unit Cost</th>
-                                        <th class="text-right">Total</th>
+                                        <th class="text-lg-center">{{trans('admin.product_name')}}</th>
+                                        <th class="text-lg-center">{{trans('admin.quantity')}}</th>
+                                        <th class="text-lg-center">{{trans('admin.price')}}</th>
+                                        <th class="text-lg-center">{{trans('admin.total')}}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td class="text-center">1</td>
-                                        <td>Milk Powder</td>
-                                        <td class="text-right">2 </td>
-                                        <td class="text-right"> $24 </td>
-                                        <td class="text-right"> $48 </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">2</td>
-                                        <td>Air Conditioner</td>
-                                        <td class="text-right"> 3 </td>
-                                        <td class="text-right"> $500 </td>
-                                        <td class="text-right"> $1500 </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">3</td>
-                                        <td>RC Cars</td>
-                                        <td class="text-right"> 20 </td>
-                                        <td class="text-right"> %600 </td>
-                                        <td class="text-right"> $12000 </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">4</td>
-                                        <td>Down Coat</td>
-                                        <td class="text-right"> 60 </td>
-                                        <td class="text-right">$5 </td>
-                                        <td class="text-right"> $300 </td>
-                                    </tr>
+                                    @foreach($BillProduct as $product)
+                                        <tr>
+                                            <td class="text-lg-center">{{$product->name}}</td>
+                                            <td class="text-lg-center">{{$product->quantity}}</td>
+                                            <td class="text-lg-center">{{$product->price}}</td>
+                                            <td class="text-lg-center">{{$product->total}}</td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
                     </div>
                     <div class="col-md-12">
-                        <div class="pull-right m-t-30 text-right">
-                            <p>Sub - Total amount: $13,848</p>
-                            <p>vat (10%) : $138 </p>
+                        <div class="pull-left m-t-30 text-left">
+                            <p>{{trans('admin.sale_total')}} $ {{$CustomerBill->total}}</p>
+                            <p>{{trans('admin.sale_pay')}} $ {{$CustomerBill->pay}}</p>
                             <hr>
-                            <h3><b>Total :</b> $13,986</h3>
+                            <h3><b>{{trans('admin.sale_remain')}}</b> $ {{$CustomerBill->remain}}</h3>
                         </div>
                         <div class="clearfix"></div>
                         <hr>
-                        <div class="text-right">
-                            <button class="btn btn-danger" type="submit"> Proceed to payment </button>
-                            <button id="print" class="btn btn-default btn-outline" type="button"> <span><i class="fa fa-print"></i> Print</span> </button>
+                        <div class="pull-left m-t-30 text-left">
+                            <h3><b>العنوان : </b>شارع احمد حسن الممفرع من الشارع الرئيسي لشارع احمد حلمى</h3>
+                            <h3><b>تليفون : </b>010 94 64 1332  - 01111 65 14 15</h3>
                         </div>
+                        
                     </div>
                 </div>
+            </div>
+            <div class="text-left">
+                <button id="print" class="btn btn-success" type="button"> <i class="fa fa-print"></i>{{trans('admin.print')}}</button>
+                <button  class="btn btn-default btn-outline" type="submit"> <span>{{trans('admin.back')}} </span> </button>
             </div>
         </div>
     </div>
 @endsection
 @section('scripts')
+<script src="{{ asset('/js/jquery.PrintArea.js') }}" type="text/JavaScript"></script>
+<script>
+    $(document).ready(function() {
+        $("#print").click(function() {
+            var mode = 'iframe'; //popup
+            var close = mode == "popup";
+            var options = {
+                mode: mode,
+                popClose: close
+            };
+            $("div.printableArea").printArea(options);
+        });
+    });
+    </script>
 @endsection
 

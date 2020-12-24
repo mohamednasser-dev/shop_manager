@@ -77,6 +77,7 @@
                 <div class="col-sm-12 col-md-4">
                     <div class="card">
                         <div class="card-body center">
+                            <h5 class="center">{{trans('admin.old_payment')}}</h5>
                             {{ Form::open( ['url'  => ['supplier_manula_bill'],'method'=>'post' , 'class'=>'form'] ) }}
                                 {{ csrf_field() }}
                                 {{ Form::hidden('supplier_id',$supplier->id,["class"=>"form-control" ,"required"]) }}
@@ -95,7 +96,7 @@
                                     </div>
                                     <br>
                                     <div class="row col-md-12" >
-                                        <button type="submit" class="btn btn-rounded btn-block btn-success">{{trans('admin.pay_it')}}</button>
+                                        <button type="submit" class="btn btn-rounded btn-block btn-success">{{trans('admin.public_Save')}}</button>
                                     </div>
                                 </div>
                             {{ Form::close() }}

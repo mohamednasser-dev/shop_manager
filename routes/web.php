@@ -23,15 +23,15 @@
 
 
 		Route::resource('buy', 'Admin\BuyController');
+		Route::post('cust_bills', 'Admin\BuyController@store_cust_bill');
 		Route::get('/live_search/products', 'Admin\BuyController@live_search')->name('live_search.products');
 		Route::get('{id?}/ajaxdata/get_bill_product_data', 'Admin\BuyController@get_bill_product_data')->name('ajaxdata.get_bill_product_data');
 		Route::get('buy/{id}/delete', 'Admin\BuyController@destroy');
 
 //		buy bills
 		Route::resource('buy-bills', 'Admin\buyBillsController');
-		Route::get('buy_bill_design', 'Admin\BuyController@bill_design');
+		Route::get('buy_bill_design/{bill_id}/print', 'Admin\BuyController@bill_design');
 
-		Route::resource('cust_bills', 'Admin\CustBillsController');
 
 		Route::resource('base_bills', 'Admin\baseBillsController');
 		// Route::get('base_bills/{id}/delete', 'Admin\baseBillsController@destroy');

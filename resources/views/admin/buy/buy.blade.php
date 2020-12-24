@@ -163,12 +163,6 @@
                             <div class="card-block">
                                 <div class="row col-md-12" >
                                     <div>
-                                        <label>{{trans('admin.date')}}</label>
-                                        {!! Form::date('date',$today,['class'=>'form-control', 'id'=>'txt_today']) !!}
-                                    </div>
-                                </div>
-                                <div class="row col-md-12" >
-                                    <div>
                                         <label align="center">{{trans('admin.sale_total')}}{{$customer_bills_selected->total}}</label>
                                     </div>
                                 </div>
@@ -185,7 +179,7 @@
                                 </div>
                                 <br>
                                 <div class="row col-md-12" >
-                                    {{ Form::open( ['url' => ['buy_bill_design'],'method'=>'get'] ) }}
+                                    {{ Form::open( ['url' => ['buy_bill_design/'.$customer_bills_selected->id.'/print'],'method'=>'get'] ) }}
                                         {{ csrf_field() }}
                                         <button type="submit" class="btn btn-rounded btn-block btn-success">
                                             <i class="fa fa-print"></i>
@@ -218,8 +212,6 @@
                             <span id="form_output"></span>
                             {{ Form::hidden('product_id',null,["class"=>"form-control" ,"required",'id'=>'txt_product_id']) }}
                             {{ Form::hidden('bill_id',$customer_bills_selected->id ,["class"=>"form-control" ,"required",'id'=>'txt_bill_id']) }}
-                            {{ Form::hidden('date', null ,["class"=>"form-control" ,"required",'id'=>'txt_date']) }}
-
                             <div class="form-group">
                                 <label for="recipient-name"
                                     class="control-label">{{trans('admin.quantity')}}</label>
@@ -273,12 +265,10 @@
             $(document).on('click', '#sale_btn', function() {
 
                 product_id = $(this).data('product-id');
-                selected_Date = $("#txt_today").val();
                 selected_price = $(this).data('price');
                 quantity = $(this).data('quantity');
 
                 $("#txt_product_id").val(product_id);
-                $("#txt_date").val(selected_Date);
                 $("#txt_price").val(selected_price);
                 $('#txt_quantity').attr('max', quantity);
 

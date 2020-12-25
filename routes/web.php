@@ -79,6 +79,9 @@
 //out going
         Route::resource('outgoing', 'Admin\OutgoingController');
         Route::get('outgoing/{id}/delete', 'Admin\OutgoingController@destroy');
+
+//        account list
+        Route::resource('accounts', 'Admin\AccountListController');
 	});
 
 

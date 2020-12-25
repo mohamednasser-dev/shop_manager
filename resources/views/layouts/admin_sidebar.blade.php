@@ -45,6 +45,9 @@
                     <li>
                         <a class="waves-effect waves-dark" href="{{url('outgoing')}}" aria-expanded="false"><i class="mdi mdi-square-inc-cash"></i><span class="hide-menu">{{trans('admin.nav_outgoing')}}</span></a>
                     </li>
+                    <li>
+                        <a class="waves-effect waves-dark" href="{{url('accounts')}}" aria-expanded="false"><i class="fa fa-file-code-o"></i><span class="hide-menu">{{trans('admin.nav_account_list')}}</span></a>
+                    </li>
                 </ul>
             </nav>
             <!-- End Sidebar navigation -->

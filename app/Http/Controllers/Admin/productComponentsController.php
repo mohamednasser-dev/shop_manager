@@ -114,7 +114,9 @@ class productComponentsController extends Controller
             $total_base_Quantity =   $product_base->quantity * $request->quantity;
            $base->quantity =  $base->quantity - $total_base_Quantity;
         }
-        $product = Product::whereId($request->id)->update(['quantity'=>$request->quantity]);
+        $product = Product::whereId($request->id)->first();
+        $product->quantity = $product->quantity + $request->quantity;
+        $product->save();
         session()->flash('success', 'تم اضافه الكميه والخصم من الخام بنجاح!');
         return redirect(url('products'));
     }

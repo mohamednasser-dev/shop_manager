@@ -103,6 +103,7 @@ return [
     'sale_pay' => 'المدفوع : ',
     'sale_remain' => 'الباقى : ',
     'bill_date' => 'تاريخ الفاتور :',
+    'bill_procusts' => 'منتجات الفاتورة',
 
     //Print Bill
     'print_bill' => 'طباعة الفاتورة',

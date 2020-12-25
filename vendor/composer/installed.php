@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => '91aae0a37fc64232bba57f34d3a4e511a23f6b67',
+    'reference' => '6c76c162cafcf6cde42b2d41f6d59b65d92ffa84',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -160,6 +160,15 @@
       ),
       'reference' => '307fb34a5ab697461ec4c9db865b20ff2fd40771',
     ),
+    'firebase/php-jwt' => 
+    array (
+      'pretty_version' => 'v5.2.0',
+      'version' => '5.2.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'feb0e820b8436873675fd3aca04f3728eb2185cb',
+    ),
     'fruitcake/laravel-cors' => 
     array (
       'pretty_version' => 'v1.0.6',
@@ -177,6 +186,33 @@
       array (
       ),
       'reference' => '848d8125239d7dbf8ab25cb7f054f1a630e68c2e',
+    ),
+    'google/apiclient' => 
+    array (
+      'pretty_version' => 'v2.8.3',
+      'version' => '2.8.3.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '81696e6206322e38c643cfcc96c4494ccfef8a32',
+    ),
+    'google/apiclient-services' => 
+    array (
+      'pretty_version' => 'v0.156',
+      'version' => '0.156.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '2f5e54fdef034f856208328126bddd8376dae4b3',
+    ),
+    'google/auth' => 
+    array (
+      'pretty_version' => 'v1.14.3',
+      'version' => '1.14.3.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'c1503299c779af0cbc99b43788f75930988852cf',
     ),
     'guzzlehttp/guzzle' => 
     array (
@@ -449,7 +485,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => '91aae0a37fc64232bba57f34d3a4e511a23f6b67',
+      'reference' => '6c76c162cafcf6cde42b2d41f6d59b65d92ffa84',
     ),
     'laravel/tinker' => 
     array (
@@ -689,6 +725,15 @@
       ),
       'reference' => '994ecccd8f3283ecf5ac33254543eb0ac946d525',
     ),
+    'phpseclib/phpseclib' => 
+    array (
+      'pretty_version' => '2.0.30',
+      'version' => '2.0.30.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '136b9ca7eebef78be14abf90d65c5e57b6bc5d36',
+    ),
     'phpspec/prophecy' => 
     array (
       'pretty_version' => '1.12.2',
@@ -751,6 +796,15 @@
       array (
       ),
       'reference' => '8e86be391a58104ef86037ba8a846524528d784e',
+    ),
+    'psr/cache' => 
+    array (
+      'pretty_version' => '1.0.1',
+      'version' => '1.0.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'd11b50ad223250cf17b86e38383413f5a6764bf8',
     ),
     'psr/container' => 
     array (
@@ -831,8 +885,8 @@
     array (
       'provided' => 
       array (
-        0 => '1.0',
-        1 => '1.0.0',
+        0 => '1.0.0',
+        1 => '1.0',
       ),
     ),
     'psr/simple-cache' => 

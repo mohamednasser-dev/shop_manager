@@ -37,7 +37,7 @@ class BuyController extends Controller
         }else{
             $customer_bills_selected = CustomerBill::where('is_bill','y')->latest('bill_num')->first();
             $bill_num = $customer_bills_selected->bill_num ;
-            $customer_bills_products = BillProduct::where('bill_id',$customer_bills_selected->id)->paginate(20);
+            $customer_bills_products = BillProduct::where('bill_id',$customer_bills_selected->id)->orderBy('id','desc')->paginate(15);
         }
         return view('admin.buy.buy',compact('bill_num','customer_bills_selected','customers','products','customer_bills_products','today'));
     }
@@ -168,11 +168,11 @@ class BuyController extends Controller
                         $cust_bill->total = $cust_bill->total + $total ;
                         $cust_bill->remain = $cust_bill->remain + $total ;
                         $cust_bill->save();
-                        // session()->flash('success', trans('admin.added_bill_product'));
-                        // return back();
+                        session()->flash('success', trans('admin.added_bill_product'));
+                        return back();
                     }
                 }
-                $success_output = '<div class="alert alert-success">Data Inserted</div>';
+                // $success_output = '<div class="alert alert-success">Data Inserted</div>';
             }
         }
         $output = array(

@@ -8,7 +8,7 @@ class Product extends Model
 {
     protected $fillable = [
 
-            'name', 'barcode', 'quantity', 'alarm_quantity', 'price', 'total_cost', 'gomla_percent', 'part_percent', 'category_id', 'user_id'
+           'image', 'name', 'barcode', 'quantity', 'alarm_quantity', 'price', 'total_cost', 'gomla_percent', 'part_percent', 'category_id', 'user_id'
     ];
     public function Category()
     {
@@ -22,5 +22,12 @@ class Product extends Model
     public function Bases()
     {
         return $this->belongsToMany(Base::class, 'product_bases', 'product_id', 'base_id');
+    }
+    public function getImageAttribute($img)
+    {
+        if ($img)
+            return asset('/uploads/products') . '/' . $img;
+        else
+            return asset('/uploads/products/default.jpg') ;
     }
 }

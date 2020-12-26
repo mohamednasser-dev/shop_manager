@@ -48,7 +48,8 @@ class productComponentsController extends Controller
         $data = $this->validate(\request(),
             [
                 'name' => 'required|unique:products',
-                'barcode' => 'required',
+                'image' => 'sometimes|nullable',
+                'barcode' => 'required|unique:products',
                 'alarm_quantity' => 'required',
                 'price' => 'required',
                 'total_cost' => 'required',
@@ -60,6 +61,10 @@ class productComponentsController extends Controller
                 'base_id*' => 'required',
             ]);
         $data['user_id'] = Auth::user()->id;
+        if($request->image != null){
+
+            $data['image'] = $this->MoveImage($request->image);
+        }
         $data['quantity'] = 0;
         $data['total_cost'] = 0;
         $product = Product::create($data);
@@ -85,6 +90,23 @@ class productComponentsController extends Controller
 
     }
 
+    public function MoveImage($request_file)
+    {
+        // This is Image Information ...
+        $file = $request_file;
+        $name = $file->getClientOriginalName();
+        $ext = $file->getClientOriginalExtension();
+        $size = $file->getSize();
+        $path = $file->getRealPath();
+        $mime = $file->getMimeType();
+
+        // Move Image To Folder ..
+        $fileNewName = 'file' . $size . '_' . time() . '.' . $ext;
+        $file->move(public_path('uploads/products'), $fileNewName);
+
+        return $fileNewName;
+    }
+
     /**
      * Display the specified resource.
      *
@@ -100,21 +122,23 @@ class productComponentsController extends Controller
 
             ]);
         $product_bases = ProductBase::where('product_id', $request->id)->get();
-        foreach ($product_bases as $product_base ){
-                $base =Base::whereId($product_base->base_id)->first();
-                $total_base_Quantity =   $product_base->quantity * $request->quantity;
-                if($total_base_Quantity > $base->quantity){
-                    session()->flash('danger', 'كميه ال '.$base->name.'لا تكفي');
-                    return redirect(url('products'));
-                }
+        foreach ($product_bases as $product_base) {
+            $base = Base::whereId($product_base->base_id)->first();
+            $total_base_Quantity = $product_base->quantity * $request->quantity;
+            if ($total_base_Quantity > $base->quantity) {
+                session()->flash('danger', 'كميه ال ' . $base->name . 'لا تكفي');
+                return redirect(url('products'));
+            }
         }
 
-        foreach ($product_bases as $product_base ){
-            $base =Base::whereId($product_base->base_id)->first();
-            $total_base_Quantity =   $product_base->quantity * $request->quantity;
-           $base->quantity =  $base->quantity - $total_base_Quantity;
+        foreach ($product_bases as $product_base) {
+            $base = Base::whereId($product_base->base_id)->first();
+            $total_base_Quantity = $product_base->quantity * $request->quantity;
+            $base->quantity = $base->quantity - $total_base_Quantity;
         }
-        $product = Product::whereId($request->id)->update(['quantity'=>$request->quantity]);
+        $product = Product::whereId($request->id)->first();
+        $product->quantity = $product->quantity + $request->quantity;
+        $product->save();
         session()->flash('success', 'تم اضافه الكميه والخصم من الخام بنجاح!');
         return redirect(url('products'));
     }
@@ -150,7 +174,8 @@ class productComponentsController extends Controller
         $data = $this->validate(\request(),
             [
                 'name' => 'required|unique:products,name,' . $id,
-                'barcode' => 'required',
+                'barcode' => 'required|unique:products,barcode,' . $id,
+                'image' => 'sometimes|nullable',
                 'alarm_quantity' => 'required',
                 'price' => 'required',
                 'total_cost' => 'required',
@@ -163,7 +188,11 @@ class productComponentsController extends Controller
 
             ]);
         $data['user_id'] = Auth::user()->id;
-        $data['quantity'] = 0;
+        if ($request->image != null) {
+            $data['image'] = $this->MoveImage($request->image);
+
+        }
+//        $data['quantity'] = 0;
         $product = Product::whereId($id)->update($data);
         ProductBase::where('product_id', $id)->delete();
         foreach ($request->rows as $row) {

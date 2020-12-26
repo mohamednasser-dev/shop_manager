@@ -18,7 +18,7 @@
                 <div class="card-body">
                     <h4 class="card-title">{{trans('admin.product_info')}}</h4>
                     <hr>
-                    {{ Form::open( ['url' => ['products'],'method'=>'post',  'class'=>'form'] ) }}
+                    {{ Form::open( ['url' => ['products'],'method'=>'post',  'class'=>'form' , 'files'=>true] ) }}
                     {{ csrf_field() }}
                     <div class="form-group m-t-40 row">
                         <label for="example-text-input" class="col-md-2 col-form-label">{{trans('admin.name')}}</label>
@@ -63,6 +63,13 @@
                         <div class="col-md-10">
                             {{ Form::select('category_id',App\Models\Category::where('type','product')->pluck('name','id'),old('category_id')
                                ,["class"=>"form-control custom-select col-12 ",'id'=>'category_id' ]) }}
+                        </div>
+                    </div>
+                    <div class="form-group m-t-40 row">
+                        <label for="example-text-input"
+                               class="col-md-2 col-form-label">{{trans('admin.image')}}</label>
+                        <div class="col-md-10">
+                            {{ Form::file('image',array('class'=>'form-control')) }}
                         </div>
                     </div>
                     <div class="card m-b-20">

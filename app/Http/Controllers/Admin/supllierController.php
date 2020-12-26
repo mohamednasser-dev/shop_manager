@@ -98,9 +98,7 @@ class supllierController extends Controller
             $SupplierSale = SupplierSale::where('id',$bill_id)->first();
             $data_bill['remain'] = $SupplierSale->remain - $money ;
             $data_bill['pay'] = $SupplierSale->pay + $money ;
-
             $SupplierSale = SupplierSale::where('id',$bill_id)->update($data_bill);
-
         }
         session()->flash('success', trans('admin.payment_success'));
         return back();

@@ -11,7 +11,7 @@
 	Route::post('reset', 'ForgotPasswordController@reset');
 	Route::get('/home', 'HomeController@index')->name('home');
 	Route::group(['middleware' => ['auth']], function () {
-			//  users  routes
+//users  routes
 		Route::resource('users', 'Admin\UsersController');
 		Route::get('users/{id}/delete', 'Admin\UsersController@destroy');
 
@@ -22,16 +22,18 @@
 	    Route::get('/roles/destroy/{id}', 'Admin\roleController@destroy')->name('roles.destroy');
 
 
+		Route::get('buy/{$type}', 'Admin\BuyController@show');
 		Route::resource('buy', 'Admin\BuyController');
 		Route::post('select_products', 'Admin\BuyController@select_products');
+		Route::post('bill_products/{bill_id}/destroy_all', 'Admin\BuyController@destroy_all');
 		Route::post('cust_bills', 'Admin\BuyController@store_cust_bill');
 		Route::get('/live_search/products', 'Admin\BuyController@live_search')->name('live_search.products');
 		Route::get('{id?}/ajaxdata/get_bill_product_data', 'Admin\BuyController@get_bill_product_data')->name('ajaxdata.get_bill_product_data');
 		Route::get('buy/{id}/delete', 'Admin\BuyController@destroy');
 
-//		buy bills
+//buy bills
 		Route::resource('buy-bills', 'Admin\buyBillsController');
-		Route::get('buy_bill_design/{bill_id}/print', 'Admin\BuyController@bill_design');
+		Route::post('buy_bill_design/{bill_id}/print', 'Admin\BuyController@bill_design');
 
 
 		Route::resource('base_bills', 'Admin\baseBillsController');
@@ -79,6 +81,12 @@
 //out going
         Route::resource('outgoing', 'Admin\OutgoingController');
         Route::get('outgoing/{id}/delete', 'Admin\OutgoingController@destroy');
+
+//income pages Routes        
+        Route::resource('income', 'Admin\IncomeController');
+
+//income pages Routes         
+        Route::resource('finatial_year', 'Admin\CloseYearController');
 	});
 
 

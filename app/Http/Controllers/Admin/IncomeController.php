@@ -3,19 +3,18 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Category;
 use Illuminate\Http\Request;
-use Exception;
 
-
-class categoryController extends Controller
+class IncomeController extends Controller
 {
-    
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
-        $categories =Category::paginate(10);
-        return view('admin.category.category',compact('categories'));
-
+        return view('admin.income.income');
     }
 
     /**
@@ -36,15 +35,7 @@ class categoryController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $this->validate(\request(),
-            [
-                'name' => 'required|unique:categories',
-                'type' => 'required|in:base,product',
-            ]);
-        $user = Category::create($data);
-        $user->save();
-        session()->flash('success', trans('admin.updatSuccess'));
-        return redirect(url('categories'));
+        //
     }
 
     /**
@@ -87,14 +78,8 @@ class categoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id){
-        $user = Category::where('id', $id)->first();
-        try {
-            $user->delete();
-            session()->flash('success', trans('admin.deleteSuccess'));
-        }catch(Exception $exception){
-            session()->flash('danger', 'لا يمكن حذف تصنيف به منتجات او مواد خام');
-        }
-        return back();
+    public function destroy($id)
+    {
+        //
     }
 }

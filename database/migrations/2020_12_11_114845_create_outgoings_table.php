@@ -18,6 +18,7 @@ class CreateOutgoingsTable extends Migration
             $table->string('name');
             $table->float('cost');
             $table->date('date');
+            $table->enum('type',['outging','supplier_pay'])->default('outging');
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
             $table->timestamps();

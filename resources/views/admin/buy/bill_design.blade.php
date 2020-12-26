@@ -9,7 +9,7 @@
         <div class="col-md-7 align-self-center">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">{{trans('admin.print_bill')}}</li>
-                <li class="breadcrumb-item active"><a href="{{url('buy')}}">{{trans('admin.nav_buy')}}</a></li>
+                <li class="breadcrumb-item active"><a href="{{url('buy')}}">{{trans('admin.nav_buy_part')}}</a></li>
                 <li class="breadcrumb-item active"><a href="{{url('home')}}">{{trans('admin.nav_home')}}</a></li>
             </ol>
         </div>

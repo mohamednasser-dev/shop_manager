@@ -7,15 +7,15 @@ return [
     'public_Save' => 'حفظ',
     'public_Cancel' => 'الغاء',
     'Public_HashNum' => '#',
-    'website_title' => 'عنوان الموقع',
-    'Public_See_more' => 'رؤية المزيد',
-    'deleteConfirmation' => 'هل انت متاكد من الحذف ؟',
-    'preventAlert' => 'لا تملك الصلاحية لدخول هذه الصفحة !!!',
-    'public_delete_modal_text' => 'هل تريد الحذف',
-    'public_delete' => 'حذف',
     'public_cancel' => 'الغاء',
+    'Public_See_more' => 'رؤية المزيد',
+    'public_delete' => 'حذف',
+    'public_delete_modal_text' => 'هل تريد الحذف',
     'fatora_open_success' => 'تم فتح فاتورة جديدة بنجاح',
+    'deleteConfirmation' => 'هل انت متاكد من الحذف ؟',
     'added_bill_product' => 'تم بيع المنتج بنجاح',
+    'website_title' => 'عنوان الموقع',
+    'preventAlert' => 'لا تملك الصلاحية لدخول هذه الصفحة !!!',
     
     'close' => 'اغلاق',
     'print' => 'طباعه',
@@ -24,35 +24,47 @@ return [
  
 
     // messages
+    'deleteAllSuccess' => 'تم حذف الكل بنجاح',
     'addedsuccess' => 'تم الاضافة بنجاح',
     'statuschanged' => 'تم تعديل الحالة',
     'deleteSuccess' => 'تم الحذف بنجاح',
     'deleteError' => 'لا يمكنك الحذف',
     'updatSuccess' => 'تم التعديل بنجاح',
-    'not_found' => 'حدث خطأ ما يرجى المحاولة مره اخرى',
     'adsAddedSuccess' => 'تم اضافة الاعلان بتجاح',
+    'payment_success' => 'تم الدفع بنجاح',
     'adsExisting' => 'هذا المنتج يوجد له اعلان بالفعل',
     'formationAdded' => 'تم اضافة تشكيل الفريق بنجاح',
+    'not_found' => 'حدث خطأ ما يرجى المحاولة مره اخرى',
     'error' => 'يوجد خطأ',
-    'payment_success' => 'تم الدفع بنجاح',
 
     //navigation  sidebar
     'nav_home' => 'الصفحة الرئيسية',
-    'nav_buy' => 'فاتورة بيع',
+    'nav_buy' => 'البيع',
+    'nav_buy_part' => 'فاتورة بيع قطاعى',
+    'nav_buy_gomla' => 'فاتورة بيع جمله',
+    'nav_buy_back' => 'فاتورة مرتجع',
+    'categories' => 'التصنيفات',
     'nav_products' => 'المنتجات',
     'nav_bases' => 'الخام',
+    'view_bases' => 'رؤيه الخام',
     'nav_base_bills' => 'أنشاء فاتورة خام',
-    'nav_customers' => 'العملاء',
     'nav_suppliers' => 'الموردين',
+    'nav_customers' => 'العملاء',
     'nav_users' => 'الموظفين',
     'view_users' => 'رؤيه الموظفين',
     'nav_permissions' => 'الصلاحيات',
-    'view_bases' => 'رؤيه الخام',
     'add_new_user' => 'اضافة موظف جدييد',
     'nav_bills' => 'الفواتير',
     'nav_income' => 'الدخل',
     'nav_outgoing' => 'المصروفات',
+    'nav_close_year' => 'قفل سنة مالية',
+
     //home page
+    'total_base' => 'اجمالى الخام',
+    'total_product' => 'اجمالى المنتجات',
+    'total_emp' => 'اجمالى الموظفين',
+    'total_sales' => 'اجمالى فواتير البيع',
+
 
     //category
     'category_name' => 'اسم التصنيف',
@@ -84,7 +96,6 @@ return [
    
 
     //buy page
-    'categories' => 'التصنيفات',
     'type' => 'النوع',
     'base' => 'مواد خام',
     'product' => 'منتجات',
@@ -98,22 +109,21 @@ return [
     'total_data' => 'عدد النتائج : ',
     'cust_name' => 'اسم العميل',
     'sale' => 'بيع',
-    'sale_total' => 'الاجمالى : ',
+    'sale_total' => 'الاجمالى  ',
     'add_sale' => 'بيانات المنتج',
-    'sale_pay' => 'المدفوع : ',
-    'sale_remain' => 'الباقى : ',
+    'sale_pay' => 'المدفوع  ',
+    'sale_remain' => 'الباقى  ',
     'bill_date' => 'تاريخ الفاتور :',
     'bill_procusts' => 'منتجات الفاتورة',
+    'finish_bill' => 'أنهاء الفاتورة',
+    'products' => 'المنتجات',
+    'delete_all' => 'حذف الكل',
 
     //Print Bill
     'print_bill' => 'طباعة الفاتورة',
     'back' => 'رجوع',
-    
-    
-    'supplier_name' => 'اسم المورد',
-    'open_new_bill' => 'فتح فاتوره جديده',
-    'search_by_product_barcode_name' => 'بحث بالباركود او اسم المنتج',
-    'supplier_bill' => 'فاتورة المورد',
+
+
    
 
     //users
@@ -141,7 +151,13 @@ return [
     'address' => 'العنوان',
     'supplier_account' => 'حساب المورد',
     'old_payment' => 'حساب قديم',
-    
+
+    // Supplier Bills
+    'supplier_name' => 'اسم المورد',
+    'open_new_bill' => 'فتح فاتوره جديده',
+    'search_by_product_barcode_name' => 'بحث بالباركود او اسم المنتج',
+    'supplier_bill' => 'فاتورة المورد',
+
     //Buy Bills
     'Search_area' => 'البحث',
     'search_by_cust_name' => 'بحث باسم العميل',
@@ -158,6 +174,13 @@ return [
     'cost' => 'التكلفة',
     'add_outgoings' => 'أضافة مصروف',
     'outgoing_name' => 'وصف المصروف',
+
+    //Cloase year
+    'close_total' => 'الاجمالى',
+    'close_outgoings' => 'المصروفات اليومية',
+    'close_supplier' => 'دفع للموردين',
+    'cloase_total' => 'الاجمالى',
+
 
     //login
     'email' => 'البريد الالكترونى',

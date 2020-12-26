@@ -22,6 +22,8 @@ class BuyController extends Controller
     }
 
     public function index(){
+    }
+    public function show($type){
         $today = $this->today;
         $products = Product::pluck('id', 'name');
         $products = json_encode($products);
@@ -39,7 +41,7 @@ class BuyController extends Controller
             $bill_num = $customer_bills_selected->bill_num ;
             $customer_bills_products = BillProduct::where('bill_id',$customer_bills_selected->id)->orderBy('id','desc')->paginate(15);
         }
-        return view('admin.buy.buy',compact('bill_num','customer_bills_selected','customers','products','customer_bills_products','today'));
+        return view('admin.buy.buy',compact('bill_num','customer_bills_selected','customers','products','customer_bills_products','today','type'));
     }
 
     public function store_cust_bill(Request $request){
@@ -60,7 +62,7 @@ class BuyController extends Controller
         $data_create['user_id'] = Auth::user()->id;
         CustomerBill::create($data_create);
         session()->flash('success', trans('admin.fatora_open_success'));
-        return redirect(url('buy'));
+        return back();
     }
 
     function get_bill_product_data($bill_id){
@@ -68,22 +70,24 @@ class BuyController extends Controller
         return Datatables::of($bill_products)->make(true);
     }
     
-    public function bill_design($bill_id){
+    public function bill_design(Request $request , $bill_id){
         $CustomerBill = CustomerBill::find($bill_id);
         $BillProduct =  BillProduct::where('bill_id',$bill_id)->get();
         $today = $this->today;
+
+        $data['pay'] = $request->pay ;
+        $data['remain'] = $request->remain ;
+        CustomerBill::findOrFail($bill_id)->update($data);
+
         return view('admin.buy.bill_design',compact('today','CustomerBill','BillProduct'));
     }
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function live_search(Request $request)
     {
         if($request->ajax()){
             $output = '';
             $query = $request->get('query');
+            $type = $request->get('type');
             if($query != null){
                 $data = DB::table('products')
                     ->where('name', 'like', '%'.$query.'%')
@@ -98,16 +102,23 @@ class BuyController extends Controller
             }else{
                 $total_row = $data->count();
             }
+
             if($total_row > 0){
                 foreach($data as $row){
+                    $totalPrice = null ;
+                    if($type == 'part'){
+                        $totalPrice = $row->total_cost + ( $row->total_cost * $row->part_percent )/100;
+                    }else if($type == 'gomla'){
+                        $totalPrice = $row->total_cost + ( $row->total_cost * $row->gomla_percent )/100;
+                    }
                     $output .= '
                     <tr>
                         <td class = "center" >'.$row->name.'</td>
                         <td class = "center" >'.$row->barcode.'</td>
                         <td class = "center" >'.$row->quantity.'</td>
-                        <td class = "center" >'.$row->price.'</td>
+                        <td class = "center" >'.$totalPrice.'</td>
                         <td class = "center" >
-                            <a class="btn btn-success btn-circle" data-product-id="'.$row->id.'"  data-price="'.$row->price.'" data-quantity="'.$row->quantity.'" id="sale_btn" alt="default" data-toggle="modal" data-target="#sale-modal" >
+                            <a class="btn btn-success btn-circle" data-product-id="'.$row->id.'"  data-price="'.$totalPrice.'" data-quantity="'.$row->quantity.'" id="sale_btn" alt="default" data-toggle="modal" data-target="#sale-modal" >
                                 <i class="fa fa-shopping-cart" ></i> 
                             </a></td>
                     </tr>
@@ -127,12 +138,7 @@ class BuyController extends Controller
             echo json_encode($data);
         }
     }
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request){
         $validation = Validator::make($request->all(), [
             'product_id' => 'required',
@@ -143,9 +149,8 @@ class BuyController extends Controller
         $error_array = array();
         $success_output = '';
         if ($validation->fails()){
-            foreach($validation->messages()->getMessages() as $field_name => $messages){
-                $error_array[] = $messages;
-            }
+            session()->flash('danger', $validation->messages()->getMessages());
+            return back();
         }else{
             if($request->get('button_action') == "insert"){
                 $total = $request->get('quantity') * $request->get('price') ;
@@ -168,18 +173,13 @@ class BuyController extends Controller
                         $cust_bill->total = $cust_bill->total + $total ;
                         $cust_bill->remain = $cust_bill->remain + $total ;
                         $cust_bill->save();
+
                         session()->flash('success', trans('admin.added_bill_product'));
                         return back();
                     }
                 }
-                // $success_output = '<div class="alert alert-success">Data Inserted</div>';
             }
         }
-        $output = array(
-            'error'     =>  $error_array,
-            'success'   =>  $success_output
-        );
-       echo json_encode($output);
         
     }
 
@@ -188,12 +188,6 @@ class BuyController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -243,6 +237,25 @@ class BuyController extends Controller
         }catch(Exception $exception){
             session()->flash('danger', trans('admin.error'));
         }
+        return back();
+    }
+    public function destroy_all($bill_id)
+    {
+        $BillProducts = BillProduct::where('bill_id', $bill_id)->get();
+        foreach($BillProducts as $product){
+            $pro = BillProduct::findOrFail($product->id)->first();
+            if($pro->delete()){
+                 //reEnter Product back quantity ..
+                $edit_product = Product::findOrFail($product->product_id);
+                $edit_product->quantity = $edit_product->quantity + $product->quantity;
+                $edit_product->save();
+            }
+        }
+        $bill = CustomerBill::findOrFail($bill_id);
+        $bill->total = 0 ;
+        $bill->remain = 0 - $bill->pay ;
+        $bill->save();
+        session()->flash('success', trans('admin.deleteAllSuccess'));
         return back();
     }
 }

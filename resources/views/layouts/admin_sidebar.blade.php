@@ -8,7 +8,12 @@
                         <a class="waves-effect waves-dark" href="{{url('home')}}" aria-expanded="false"><i class="mdi mdi-home"></i><span class="hide-menu">{{trans('admin.nav_home')}}</span></a>
                     </li>
                     <li>
-                        <a class="waves-effect waves-dark" href="{{url('buy')}}" aria-expanded="false"><i class="mdi mdi-cart"></i><span class="hide-menu">{{trans('admin.nav_buy')}}</span></a>
+                        <a class="has-arrow waves-effect waves-dark" aria-expanded="false"><i class="mdi mdi-cart"></i><span class="hide-menu">{{trans('admin.nav_buy')}}</span></a>
+                        <ul aria-expanded="false" class="collapse">
+                            <li><a href="{{url('buy/part')}}">{{trans('admin.nav_buy_part')}}</a></li>
+                            <li><a href="{{url('buy/gomla')}}">{{trans('admin.nav_buy_gomla')}}</a></li>
+                            <li><a href="{{url('buy/back')}}">{{trans('admin.nav_buy_back')}}</a></li>
+                        </ul>
                     </li>
                     <li>
                         <a class="waves-effect waves-dark" href="{{url('categories')}}" aria-expanded="false"><i class="mdi mdi-animation"></i><span class="hide-menu">{{trans('admin.categories')}}</span></a>
@@ -40,10 +45,13 @@
                         <a class="waves-effect waves-dark" href="{{url('buy-bills')}}" aria-expanded="false"><i class="mdi mdi-file-find"></i><span class="hide-menu">{{trans('admin.nav_bills')}}</span></a>
                     </li>
                     <li>
-                        <a class="waves-effect waves-dark" href="" aria-expanded="false"><i class="mdi mdi-pin"></i><span class="hide-menu">{{trans('admin.nav_income')}}</span></a>
+                        <a class="waves-effect waves-dark" href="{{url('income')}}" aria-expanded="false"><i class="mdi mdi-pin"></i><span class="hide-menu">{{trans('admin.nav_income')}}</span></a>
                     </li>
                     <li>
                         <a class="waves-effect waves-dark" href="{{url('outgoing')}}" aria-expanded="false"><i class="mdi mdi-square-inc-cash"></i><span class="hide-menu">{{trans('admin.nav_outgoing')}}</span></a>
+                    </li>
+                    <li>
+                        <a class="waves-effect waves-dark" href="{{url('finatial_year')}}" aria-expanded="false"><i class="mdi mdi-cake-variant"></i><span class="hide-menu">{{trans('admin.nav_close_year')}}</span></a>
                     </li>
                 </ul>
             </nav>

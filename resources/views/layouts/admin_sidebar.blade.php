@@ -42,6 +42,9 @@
                         </ul>
                     </li>
                     <li>
+                        <a class="waves-effect waves-dark" href="{{url('accounts')}}" aria-expanded="false"><i class="fa fa-file-code-o"></i><span class="hide-menu">{{trans('admin.nav_account_list')}}</span></a>
+                    </li>
+                    <li>
                         <a class="waves-effect waves-dark" href="{{url('buy-bills')}}" aria-expanded="false"><i class="mdi mdi-file-find"></i><span class="hide-menu">{{trans('admin.nav_bills')}}</span></a>
                     </li>
                     <li>

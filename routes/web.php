@@ -35,7 +35,7 @@
 		Route::resource('buy-bills', 'Admin\buyBillsController');
 		Route::post('buy_bill_design/{bill_id}/print', 'Admin\BuyController@bill_design');
 
-
+//base bills
 		Route::resource('base_bills', 'Admin\baseBillsController');
 		// Route::get('base_bills/{id}/delete', 'Admin\baseBillsController@destroy');
 		Route::get('select2-autocomplete-ajax', 'Admin\baseBillsController@dataAjax');
@@ -67,7 +67,7 @@
 		Route::resource('customer', 'Admin\customerController');
 		Route::post('editcustomer', 'Admin\customerController@update');
 		Route::get('customer/{id}/delete', 'Admin\customerController@destroy');
-    //Customer Account
+	//Customer Account
 		Route::get('customer/{id}/account', 'Admin\customerController@account');
 		Route::post('cust_payment', 'Admin\customerController@payment');
 		Route::post('cust_manula_bill', 'Admin\customerController@manula_bill');
@@ -75,7 +75,7 @@
 
         Route::resource('products', 'Admin\productComponentsController');
         Route::get('products/{id}/delete', 'Admin\productComponentsController@destroy');
-//        add quantity
+//add quantity
         Route::post('addQuantity','Admin\productComponentsController@show');
 
 //out going
@@ -87,6 +87,9 @@
 
 //income pages Routes
         Route::resource('finatial_year', 'Admin\CloseYearController');
+
+//        account list
+        Route::resource('accounts', 'Admin\AccountListController');        
 	});
 
 

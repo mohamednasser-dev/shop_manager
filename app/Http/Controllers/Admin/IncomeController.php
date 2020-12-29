@@ -4,17 +4,33 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\CustomerBill;
+use App\Models\Outgoing;
+use App\Models\SupplierPayment;
+use Carbon\Carbon;
 
 class IncomeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public $today;
+
+    public function __construct()
+    {
+        $mytime = Carbon::now();
+        $this->today = Carbon::parse($mytime->toDateTimeString())->format('Y-m-d');
+    }
     public function index()
     {
-        return view('admin.income.income');
+        $today = $this->today ;
+        $customer_bills = CustomerBill::where('date', $today)->paginate(20);
+        $outgoings = Outgoing::where('date', $today)->paginate(20);
+        $supplierPayments = SupplierPayment::where('created_at', $today)->paginate(20);
+
+        $total_pay =CustomerBill::where('date',$today)->sum('pay');
+        $total_outgoing =Outgoing::where('date',$today)->sum('cost');
+        $total_supplierPayment =SupplierPayment::where('created_at',$today)->sum('money');
+        $remain = $total_pay - ($total_outgoing + $total_supplierPayment);
+
+        return view('admin.income.income', compact('customer_bills' ,'outgoings','supplierPayments' ,'total_pay','total_outgoing','total_supplierPayment','remain','today'));
     }
 
     /**

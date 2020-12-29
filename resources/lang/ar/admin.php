@@ -167,6 +167,16 @@ return [
     'search' => 'بحث',
     'view_account' => 'كشف حساب',
 
+    //income
+    'suppliers_accounts' => 'حسابات الموردين',
+    'monthly' => 'شهرى',
+    'yearly' => 'سنوى',
+    'daily' => 'يومى',
+    'day' => 'اليوم',
+    'month' => 'الشهر',
+    'year' => 'السنة',
+    'final_safy' => 'صافى الدخل',
+
     //out going
     'cost' => 'التكلفة',
     'add_outgoings' => 'أضافة مصروف',

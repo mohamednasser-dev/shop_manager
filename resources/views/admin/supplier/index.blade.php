@@ -136,7 +136,7 @@
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h4 class="modal-title">{{trans('admin.edit_base')}}</h4>
+                                    <h4 class="modal-title">{{trans('admin.edit_sipllier')}}</h4>
                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×
                                     </button>
                                 </div>

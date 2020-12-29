@@ -16,12 +16,12 @@ return [
     'added_bill_product' => 'تم بيع المنتج بنجاح',
     'website_title' => 'عنوان الموقع',
     'preventAlert' => 'لا تملك الصلاحية لدخول هذه الصفحة !!!',
-    
+
     'close' => 'اغلاق',
     'print' => 'طباعه',
     'actions' => 'العمليات',
     'no_data_found' => 'لا يوجد نتائج',
- 
+
 
     // messages
     'deleteAllSuccess' => 'تم حذف الكل بنجاح',
@@ -92,8 +92,7 @@ return [
     'product_info' => 'بيانات المنتج',
     'edit_product' => 'تعديل المنتج',
     'add_quantity' => 'أضافة كمية',
-    
-   
+
 
     //buy page
     'type' => 'النوع',
@@ -123,8 +122,6 @@ return [
     'print_bill' => 'طباعة الفاتورة',
     'back' => 'رجوع',
 
-
-   
 
     //users
     'name' => 'الاسم',
@@ -194,4 +191,10 @@ return [
     'i_have_Already_account' => 'انا امتلك حساب بالفعل !',
     'confirm_pass' => 'تأكيد كلمة المرور',
     'user_name' => 'اسم المستخدم',
+    'customer' => 'العميل',
+    'edit_sipllier' => 'تعديل مورد',
+    'nav_account_list' => 'حساب عميل',
+    'image' => 'صورة المنتج',
+    'search_form_date' => ' من تاريخ',
+    'search_to_date' => 'الى تاريخ',
 ];

@@ -82,10 +82,10 @@
         Route::resource('outgoing', 'Admin\OutgoingController');
         Route::get('outgoing/{id}/delete', 'Admin\OutgoingController@destroy');
 
-//income pages Routes        
+//income pages Routes
         Route::resource('income', 'Admin\IncomeController');
 
-//income pages Routes         
+//income pages Routes
         Route::resource('finatial_year', 'Admin\CloseYearController');
 	});
 

@@ -177,6 +177,9 @@ return [
     'close_outgoings' => 'المصروفات اليومية',
     'close_supplier' => 'دفع للموردين',
     'cloase_total' => 'الاجمالى',
+    'in_stock' => 'فى المخزن',
+    'pay_in_bills' => 'تم أستخدامها للمنتجات',
+    'products_out_quantity' => 'تم بيعها',
 
 
     //login
@@ -196,7 +199,7 @@ return [
     'product_id' => ' المنتج',
     'nav_bill_product' => 'تفاصيل الفاتورة',
     'edit_sipllier' => 'تعديل مورد',
-    'nav_account_list' => 'حساب عميل',
+    'nav_account_list' => 'كشف حساب',
     'image' => 'صورة المنتج',
     'search_form_date' => ' من تاريخ',
     'search_to_date' => 'الى تاريخ',

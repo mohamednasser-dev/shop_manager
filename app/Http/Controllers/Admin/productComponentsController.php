@@ -135,6 +135,7 @@ class productComponentsController extends Controller
             $base = Base::whereId($product_base->base_id)->first();
             $total_base_Quantity = $product_base->quantity * $request->quantity;
             $base->quantity = $base->quantity - $total_base_Quantity;
+            $base->save();
         }
         $product = Product::whereId($request->id)->first();
         $product->quantity = $product->quantity + $request->quantity;

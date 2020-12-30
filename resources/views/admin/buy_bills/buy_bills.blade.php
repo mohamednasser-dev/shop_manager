@@ -83,7 +83,8 @@
                                                 <td class="text-lg-center">{{$user->date}}</td>
                                                 <td class="text-lg-center">
                                                     <div class="btn-group">
-                                                        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        <button type="button" class="btn btn-secondary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                            <i class="fa fa-eye"></i>
                                                         </button>
                                                         <div class="dropdown-menu animated lightSpeedIn" x-placement="top-start" style="position: absolute; transform: translate3d(0px, -2px, 0px); top: 0px; left: 0px; will-change: transform;">
                                                             <a class="dropdown-item" href=" {{url('buy-bills/'.$user->id)}}">{{trans('admin.bill_procusts')}}</a>

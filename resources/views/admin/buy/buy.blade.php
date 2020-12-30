@@ -263,7 +263,7 @@
                         $('#search_table tbody').html(data.table_data);
                         $('#total_records').text(data.total_data);
                     }
-                })
+                });
             }
             $(document).on('keyup', '#search_product', function(){
                 var query = $(this).val();

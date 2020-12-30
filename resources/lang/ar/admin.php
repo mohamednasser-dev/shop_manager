@@ -40,6 +40,7 @@ return [
     //navigation  sidebar
     'nav_home' => 'الصفحة الرئيسية',
     'nav_buy' => 'البيع',
+    'bill_buy' => 'فاتورة بيع',
     'nav_buy_part' => 'فاتورة بيع قطاعى',
     'nav_buy_gomla' => 'فاتورة بيع جمله',
     'nav_buy_back' => 'فاتورة مرتجع',
@@ -121,6 +122,10 @@ return [
     //Print Bill
     'print_bill' => 'طباعة الفاتورة',
     'back' => 'رجوع',
+    'bill_address' => 'العنوان :',
+    'bill_phone' => 'تليفون : ',
+    'bill_address_txt' => 'شارع احمد حسن المتفرع من الشارع الرئيسي لشارع احمد حلمى',
+    'bill_phone_txt' => '010 94 64 1332  - 01111 65 14 15',
 
 
     //users

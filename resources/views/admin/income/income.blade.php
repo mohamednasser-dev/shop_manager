@@ -20,95 +20,101 @@
                 <div class="col-sm-12 col-md-12">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">{{trans('admin.Search_area')}}</h4>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="form-group row">
-                                        <label class="custom-control custom-radio">
-                                            <input id="radio4" name="radio" type="radio" class="custom-control-input">
-                                                <span class="custom-control-indicator"></span>
-                                            <span>{{trans('admin.daily')}}</span>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="col-md-9">
-                                        <div class="radio-list">
+                            {{ Form::open( ['url' => ['income_search'],'method'=>'post'] ) }}
+                                {{ csrf_field() }}  
+                                <h4 class="card-title">{{trans('admin.Search_area')}}</h4>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group row">
                                             <label class="custom-control custom-radio">
-                                                <input id="radio4" name="radio" type="radio" class="custom-control-input">
-                                                <span class="custom-control-indicator"></span>
-                                                <span>{{trans('admin.monthly')}}</span>
+                                                <input id="radio4" name="selected_method" value="daily" type="radio" 
+                                                <?php if($selected_method == 'daily') echo "checked";?> class="custom-control-input">
+                                                    <span class="custom-control-indicator"></span>
+                                                <span>{{trans('admin.daily')}}</span>
                                             </label>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <label class="custom-control custom-radio">
-                                        <input id="radio3" name="radio" type="radio" checked="" class="custom-control-input">
-                                        <span class="custom-control-indicator"></span>
-                                        <span>{{trans('admin.yearly')}}</span>
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div>
-                                        {!! Form::date('date',$today,['class'=>'form-control center']) !!}
+                                    <div class="col-md-4">
+                                        <div class="col-md-9">
+                                            <div class="radio-list">
+                                                <label class="custom-control custom-radio">
+                                                    <input id="radio4" name="selected_method" value="monthly" type="radio"
+                                                    <?php if($selected_method == 'monthly') echo "checked";?> class="custom-control-input">
+                                                    <span class="custom-control-indicator"></span>
+                                                    <span>{{trans('admin.monthly')}}</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="custom-control custom-radio">
+                                            <input id="radio3" name="selected_method" value="yearly" type="radio" 
+                                            <?php if($selected_method == 'yearly') echo "checked";?> class="custom-control-input">
+                                            <span class="custom-control-indicator"></span>
+                                            <span>{{trans('admin.yearly')}}</span>
+                                        </label>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <div>
-                                        <select id="month" name="month" class="select2 form-control custom-select">
-                                            <option value="01" selected="selected">1</option>
-                                            <option value="02">2</option>
-                                            <option value="03">3</option>
-                                            <option value="04">4</option>
-                                            <option value="05">5</option>
-                                            <option value="06">6</option>
-                                            <option value="07">7</option>
-                                            <option value="08">8</option>
-                                            <option value="09">9</option>
-                                            <option value="10">10</option>
-                                            <option value="11">11</option>
-                                            <option value="12">12</option>
-                                        </select>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div>
+                                            {!! Form::date('date',$today,['class'=>'form-control center']) !!}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div>
+                                            <select id="month" name="month" class="select2 form-control custom-select">
+                                                <option value="01" <?php if($selected_month == '01') echo "selected";?> >1</option>
+                                                <option value="02" <?php if($selected_month == '02') echo "selected";?> >2</option>
+                                                <option value="03" <?php if($selected_month == '03') echo "selected";?> >3</option>
+                                                <option value="04" <?php if($selected_month == '04') echo "selected";?> >4</option>
+                                                <option value="05" <?php if($selected_month == '05') echo "selected";?> >5</option>
+                                                <option value="06" <?php if($selected_month == '06') echo "selected";?> >6</option>
+                                                <option value="07" <?php if($selected_month == '07') echo "selected";?> >7</option>
+                                                <option value="08" <?php if($selected_month == '08') echo "selected";?> >8</option>
+                                                <option value="09" <?php if($selected_month == '09') echo "selected";?> >9</option>
+                                                <option value="10" <?php if($selected_month == '10') echo "selected";?> >10</option>
+                                                <option value="11" <?php if($selected_month == '11') echo "selected";?> >11</option>
+                                                <option value="12" <?php if($selected_month == '12') echo "selected";?> >12</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div>
+                                            <select id="year" name="year" class="select2 form-control custom-select">
+                                                <option value="2020" <?php if($selected_year == '2020') echo "selected";?> >2020</option>
+                                                <option value="2021" <?php if($selected_year == '2021') echo "selected";?> >2021</option>
+                                                <option value="2022" <?php if($selected_year == '2022') echo "selected";?> >2022</option>
+                                                <option value="2023" <?php if($selected_year == '2023') echo "selected";?> >2023</option>
+                                                <option value="2024" <?php if($selected_year == '2024') echo "selected";?> >2024</option>
+                                                <option value="2025" <?php if($selected_year == '2025') echo "selected";?> >2025</option>
+                                                <option value="2026" <?php if($selected_year == '2026') echo "selected";?> >2026</option>
+                                                <option value="2027" <?php if($selected_year == '2027') echo "selected";?> >2027</option>
+                                                <option value="2028" <?php if($selected_year == '2028') echo "selected";?> >2028</option>
+                                                <option value="2029" <?php if($selected_year == '2029') echo "selected";?> >2029</option>
+                                                <option value="2030" <?php if($selected_year == '2030') echo "selected";?> >2030</option>
+                                                <option value="2031" <?php if($selected_year == '2031') echo "selected";?> >2031</option>
+                                                <option value="2032" <?php if($selected_year == '2032') echo "selected";?> >2032</option>
+                                                <option value="2033" <?php if($selected_year == '2033') echo "selected";?> >2033</option>
+                                                <option value="2034" <?php if($selected_year == '2034') echo "selected";?> >2034</option>
+                                                <option value="2035" <?php if($selected_year == '2035') echo "selected";?> >2035</option>
+                                                <option value="2036" <?php if($selected_year == '2036') echo "selected";?> >2036</option>
+                                                <option value="2037" <?php if($selected_year == '2037') echo "selected";?> >2037</option>
+                                                <option value="2038" <?php if($selected_year == '2038') echo "selected";?> >2038</option>
+                                                <option value="2039" <?php if($selected_year == '2039') echo "selected";?> >2039</option>
+                                                <option value="2040" <?php if($selected_year == '2040') echo "selected";?> >2040</option>
+                                                <option value="2041" <?php if($selected_year == '2041') echo "selected";?> >2041</option>
+                                                <option value="2042" <?php if($selected_year == '2042') echo "selected";?> >2042</option>
+                                                <option value="2043" <?php if($selected_year == '2043') echo "selected";?> >2043</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12" style="display: block; margin-top: 20px;" >
+                                        {{ Form::submit( trans('admin.search') ,['class'=>'btn btn-info btn-block']) }}
+                                        {{ Form::close() }}
                                     </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <div>
-                                        <select id="year" name="year" class="select2 form-control custom-select">
-                                            <option value="2020" selected="selected">2020</option>
-                                            <option value="2021">2021</option>
-                                            <option value="2022">2022</option>
-                                            <option value="2023">2023</option>
-                                            <option value="2024">2024</option>
-                                            <option value="2025">2025</option>
-                                            <option value="2026">2026</option>
-                                            <option value="2027">2027</option>
-                                            <option value="2028">2028</option>
-                                            <option value="2029">2029</option>
-                                            <option value="2030">2030</option>
-                                            <option value="2031">2031</option>
-                                            <option value="2032">2032</option>
-                                            <option value="2033">2033</option>
-                                            <option value="2034">2034</option>
-                                            <option value="2035">2035</option>
-                                            <option value="2036">2036</option>
-                                            <option value="2037">2037</option>
-                                            <option value="2038">2038</option>
-                                            <option value="2039">2039</option>
-                                            <option value="2040">2040</option>
-                                            <option value="2041">2041</option>
-                                            <option value="2042">2042</option>
-                                            <option value="2043">2043</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-12" style="display: block; margin-top: 20px;" >
-                                    {{ Form::submit( trans('admin.search') ,['class'=>'btn btn-info btn-block']) }}
-                                    {{ Form::close() }}
-                                </div>
-                            </div>
+                            {{ Form::close() }}
                         </div>
                     </div>
                 </div>
@@ -178,7 +184,7 @@
                             </ul>
                             <!-- Tab panes -->
                             <div class="tab-content tabcontent-border">
-                                <div class="tab-pane active" id="home8" role="tabpanel">
+                                <div class="tab-pane p-20 active" id="home8" role="tabpanel">
                                     <table id="supplier_bases_tbl" class="table full-color-table full-primary-table">
                                         <thead>
                                             <tr>

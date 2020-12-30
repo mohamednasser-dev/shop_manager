@@ -29,8 +29,11 @@ class IncomeController extends Controller
         $total_outgoing =Outgoing::where('date',$today)->sum('cost');
         $total_supplierPayment =SupplierPayment::where('created_at',$today)->sum('money');
         $remain = $total_pay - ($total_outgoing + $total_supplierPayment);
+        $selected_method = 'daily';
+        $selected_month = Carbon::now()->month ;
+        $selected_year = Carbon::now()->year ;
 
-        return view('admin.income.income', compact('customer_bills' ,'outgoings','supplierPayments' ,'total_pay','total_outgoing','total_supplierPayment','remain','today'));
+        return view('admin.income.income', compact('customer_bills' ,'outgoings','supplierPayments' ,'total_pay','total_outgoing','total_supplierPayment','remain','today','selected_method','selected_month','selected_year'));
     }
 
     /**
@@ -52,6 +55,74 @@ class IncomeController extends Controller
     public function store(Request $request)
     {
         //
+    }
+
+    public function search(Request $request)
+    {
+        $today = $this->today ;
+        $customer_bills = null ;
+        $outgoings = null ;
+        $supplierPayments = null ;
+        $total_pay = null ;
+        $total_outgoing = null ;
+        $total_supplierPayment = null ;
+        $remain = null ;
+        $selected_method = null ;
+        $selected_month = null;
+        $selected_year = null ;
+
+        if($request->selected_method == 'daily'){
+
+            $customer_bills = CustomerBill::where('date', $request->date)->paginate(20);
+            $outgoings = Outgoing::where('date', $request->date)->paginate(20);
+            $supplierPayments = SupplierPayment::where('created_at', $request->date)->paginate(20);
+
+            $total_pay =CustomerBill::where('date',$request->date)->sum('pay');
+            $total_outgoing =Outgoing::where('date',$request->date)->sum('cost');
+            $total_supplierPayment =SupplierPayment::where('created_at',$request->date)->sum('money');
+            $remain = $total_pay - ($total_outgoing + $total_supplierPayment);
+            $today = $request->date ;
+            $selected_method = 'daily';
+
+            $selected_month = Carbon::now()->month ;
+            $selected_year = Carbon::now()->year ;
+
+        }else if($request->selected_method == 'monthly'){
+
+            $customer_bills = CustomerBill::whereMonth('date', $request->month)->whereYear('date', $request->year)->paginate(20);
+            $outgoings = Outgoing::whereMonth('date', $request->month)->whereYear('date', $request->year)->paginate(20);
+            $supplierPayments = SupplierPayment::whereMonth('created_at', $request->month)->whereYear('created_at', $request->year)->paginate(20);
+
+            $total_pay =CustomerBill::whereMonth('date', $request->month)->whereYear('date', $request->year)->sum('pay');
+            $total_outgoing =Outgoing::whereMonth('date', $request->month)->whereYear('date', $request->year)->sum('cost');
+            $total_supplierPayment =SupplierPayment::whereMonth('created_at', $request->month)
+                                                    ->whereYear('created_at', $request->year)
+                                                    ->sum('money');
+            $remain = $total_pay - ($total_outgoing + $total_supplierPayment);
+            $today = '' ;
+            $selected_method = 'monthly';
+
+            $selected_month = $request->month ;
+            $selected_year = $request->year ;
+
+        }else if($request->selected_method == 'yearly'){
+
+            $customer_bills = CustomerBill::whereYear('date', $request->year)->paginate(20);
+            $outgoings = Outgoing::whereYear('date', $request->year)->paginate(20);
+            $supplierPayments = SupplierPayment::whereYear('created_at', $request->year)->paginate(20);
+
+            $total_pay =CustomerBill::whereYear('date', $request->year)->sum('pay');
+            $total_outgoing =Outgoing::whereYear('date', $request->year)->sum('cost');
+            $total_supplierPayment =SupplierPayment::whereYear('created_at', $request->year)
+                                                    ->sum('money');
+            $remain = $total_pay - ($total_outgoing + $total_supplierPayment);
+            $today = '' ;
+            $selected_method = 'yearly';
+            
+            $selected_month = $request->month ;
+            $selected_year = $request->year ;
+        }
+        return view('admin.income.income', compact('customer_bills' ,'outgoings','supplierPayments' ,'total_pay','total_outgoing','total_supplierPayment','remain','today','selected_method','selected_month','selected_year'));
     }
 
     /**

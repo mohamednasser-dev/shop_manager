@@ -30,6 +30,7 @@
 		Route::get('/live_search/products', 'Admin\BuyController@live_search')->name('live_search.products');
 		Route::get('{id?}/ajaxdata/get_bill_product_data', 'Admin\BuyController@get_bill_product_data')->name('ajaxdata.get_bill_product_data');
 		Route::get('buy/{id}/delete', 'Admin\BuyController@destroy');
+		Route::post('back', 'Admin\BuyController@backPage')->name('back');
 
 //buy bills
 		Route::resource('buy-bills', 'Admin\buyBillsController');
@@ -84,6 +85,7 @@
 
 //income pages Routes
         Route::resource('income', 'Admin\IncomeController');
+        Route::post('income_search', 'Admin\IncomeController@search');
 
 //income pages Routes
         Route::resource('finatial_year', 'Admin\CloseYearController');

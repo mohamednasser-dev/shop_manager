@@ -21,7 +21,6 @@
                 <h5 style="text-align: center">من{{$from}} الى {{$to}} </h5>
                 <hr>
                 <div class="row">
-
                     <div class="col-md-12">
                         <div class="table-responsive m-t-40" style="clear: both; text-align: center;">
                             <table class="table table-hover table-bordered">
@@ -57,7 +56,6 @@
                             <h3><b>{{trans('admin.sale_remain')}}</b>  {{$customer_account->sum('remain')}}</h3>
                         </div>
                         <div class="clearfix"></div>
-
                     </div>
                 </div>
             </div>

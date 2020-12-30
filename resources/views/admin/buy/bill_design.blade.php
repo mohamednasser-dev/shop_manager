@@ -9,7 +9,6 @@
         <div class="col-md-7 align-self-center">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">{{trans('admin.print_bill')}}</li>
-                <li class="breadcrumb-item active"><a href="{{url('buy')}}">{{trans('admin.nav_buy_part')}}</a></li>
                 <li class="breadcrumb-item active"><a href="{{url('home')}}">{{trans('admin.nav_home')}}</a></li>
             </ol>
         </div>
@@ -18,7 +17,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card card-body printableArea">
-                <h3><b>{{trans('admin.nav_buy')}}</b> <span class="pull-right">#{{$CustomerBill->bill_num}}</span></h3>
+                <h3><b>{{trans('admin.bill_buy')}}</b> <span class="pull-right">#{{$CustomerBill->bill_num}}</span></h3>
                 <hr>
                 <div class="row">
                     <div class="col-md-12">
@@ -32,8 +31,8 @@
                         </div>
                     </div>
                     <div class="col-md-12">
-                        <div class="table-responsive m-t-40" style="clear: both;">
-                            <table class="table table-hover">
+                        <div class="table-responsive m-t-40" style="clear: both; text-align: center;">
+                            <table class="table table-hover table-bordered">
                                 <thead>
                                     <tr>
                                         <th class="text-lg-center">{{trans('admin.product_name')}}</th>
@@ -56,25 +55,25 @@
                         </div>
                     </div>
                     <div class="col-md-12">
-                        <div class="pull-left m-t-30 text-left">
+                        <div class="pull m-t-30 " style="text-align: center">
                             <p>{{trans('admin.sale_total')}} $ {{$CustomerBill->total}}</p>
                             <p>{{trans('admin.sale_pay')}} $ {{$CustomerBill->pay}}</p>
                             <hr>
                             <h3><b>{{trans('admin.sale_remain')}}</b> $ {{$CustomerBill->remain}}</h3>
+                            <hr>
                         </div>
                         <div class="clearfix"></div>
-                        <hr>
-                        <div class="pull-left m-t-30 text-left">
-                            <h3><b>العنوان : </b>شارع احمد حسن المتفرع من الشارع الرئيسي لشارع احمد حلمى</h3>
-                            <h3><b>تليفون : </b>010 94 64 1332  - 01111 65 14 15</h3>
-                        </div>
-
+                    </div>
+                    <hr>
+                    <div class="pull-left m-t-30 text-left">
+                        <h3><b>{{trans('admin.bill_address')}} </b>{{trans('admin.bill_address_txt')}}</h3>
+                        <h3><b>{{trans('admin.bill_phone')}}</b>{{trans('admin.bill_phone_txt')}}</h3>
                     </div>
                 </div>
             </div>
             <div class="text-left">
-                <button id="print" class="btn btn-success" type="button"> <i class="fa fa-print"></i>{{trans('admin.print')}}</button>
-                <button  class="btn btn-default btn-outline" type="submit"> <span>{{trans('admin.back')}} </span> </button>
+                    <button id="print" class="btn btn-success" type="button"> <i class="fa fa-print"></i>{{trans('admin.print')}}</button>
+                    <a href="{{ URL::previous() }}">{{trans('admin.back')}}</a>
             </div>
         </div>
     </div>

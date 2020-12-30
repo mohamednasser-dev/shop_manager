@@ -1,12 +1,4 @@
 @extends('admin_temp')
-@section('style')
-    <link href="{{ asset('/assets/plugins/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link href="{{ asset('css/style.css')}}" rel="stylesheet">
-    <!-- You can change the theme colors from here -->
-    <link href="{{ asset('css/colors/default-dark.css')}}" id="theme" rel="stylesheet">
-
-@endsection
 @section('content')
     <div class="row page-titles">
         <div class="col-md-5 align-self-center">
@@ -42,7 +34,6 @@
                             <th class="text-center">{{trans('admin.actions')}}</th>
                         </tr>
                         </thead>
-
                         <tbody>
                         @foreach($supllier as $user)
                             <tr>
@@ -84,7 +75,6 @@
                         </tbody>
                     </table>
                 {{$supllier->links()}}
-
                 <!-- Add  modal content -->
                     <div id="responsive-modal" class="modal fade" tabindex="-1" role="dialog"
                          aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
@@ -113,9 +103,6 @@
                                                class="control-label">{{trans('admin.address')}}</label>
                                         {{ Form::text('address',null,["class"=>"form-control" ,"required"]) }}
                                     </div>
-
-
-
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">
@@ -123,12 +110,10 @@
                                     </button>
                                     {{ Form::submit( trans('admin.public_Add') ,['class'=>'btn btn-info','style'=>'margin:10px']) }}
                                     {{ Form::close() }}
-
                                 </div>
                             </div>
                         </div>
                     </div>
-
                     <!-- /.modal -->
                     {{--edit  modal --}}
                     <div id="edit-modal" class="modal fade" tabindex="-1" role="dialog"
@@ -172,18 +157,12 @@
                             </div>
                         </div>
                     </div>
-
-
                 </div>
-
             </div>
         </div>
     </div>
 @endsection
-
 @section('scripts')
-
-
     <script>
         var id;
         $(document).on('click', '#edit', function() {
@@ -197,35 +176,9 @@
                     $('#name').val(html.data.name);
                     $('#phone').val(html.data.phone);
                     $('#address').val(html.data.address);
-
-
-
                 }
             })
         });
-
-
-
     </script>
-
-    <script src="{{ asset('assets/plugins/jquery/jquery.min.js')}}"></script>
-    <!-- Bootstrap tether Core JavaScript -->
-    <script src="{{ asset('assets/plugins/bootstrap/js/popper.min.js')}}"></script>
-    <script src="{{ asset('assets/plugins/bootstrap/js/bootstrap.min.js')}}"></script>
-    <!-- slimscrollbar scrollbar JavaScript -->
-    <script src="{{ asset('js/perfect-scrollbar.jquery.min.js')}}"></script>
-    <!--Wave Effects -->
-    <script src="{{ asset('js/waves.js')}}"></script>
-    <!--Menu sidebar -->
-    <script src="{{ asset('js/sidebarmenu.js')}}"></script>
-    <!--stickey kit -->
-    <script src="{{ asset('assets/plugins/sticky-kit-master/dist/sticky-kit.min.js')}}"></script>
-    <script src="{{ asset('assets/plugins/sparkline/jquery.sparkline.min.js')}}"></script>
-    <!--Custom JavaScript -->
-    <script src="{{ asset('js/custom.min.js')}}'"></script>
-    <!-- ============================================================== -->
-    <!-- Style switcher -->
-    <!-- ============================================================== -->
-    <script src="{{ asset('assets/plugins/styleswitcher/jQuery.style.switcher.js')}}"></script>
 @endsection
 

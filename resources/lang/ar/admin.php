@@ -22,7 +22,6 @@ return [
     'actions' => 'العمليات',
     'no_data_found' => 'لا يوجد نتائج',
 
-
     // messages
     'deleteAllSuccess' => 'تم حذف الكل بنجاح',
     'addedsuccess' => 'تم الاضافة بنجاح',
@@ -40,6 +39,7 @@ return [
     //navigation  sidebar
     'nav_home' => 'الصفحة الرئيسية',
     'nav_buy' => 'البيع',
+    'bill_buy' => 'فاتورة بيع',
     'nav_buy_part' => 'فاتورة بيع قطاعى',
     'nav_buy_gomla' => 'فاتورة بيع جمله',
     'nav_buy_back' => 'فاتورة مرتجع',
@@ -64,7 +64,6 @@ return [
     'total_product' => 'اجمالى المنتجات',
     'total_emp' => 'اجمالى الموظفين',
     'total_sales' => 'اجمالى فواتير البيع',
-
 
     //category
     'category_name' => 'اسم التصنيف',
@@ -93,7 +92,6 @@ return [
     'edit_product' => 'تعديل المنتج',
     'add_quantity' => 'أضافة كمية',
 
-
     //buy page
     'type' => 'النوع',
     'base' => 'مواد خام',
@@ -121,7 +119,10 @@ return [
     //Print Bill
     'print_bill' => 'طباعة الفاتورة',
     'back' => 'رجوع',
-
+    'bill_address' => 'العنوان :',
+    'bill_phone' => 'تليفون : ',
+    'bill_address_txt' => 'شارع احمد حسن المتفرع من الشارع الرئيسي لشارع احمد حلمى',
+    'bill_phone_txt' => '010 94 64 1332  - 01111 65 14 15',
 
     //users
     'name' => 'الاسم',
@@ -167,6 +168,16 @@ return [
     'search' => 'بحث',
     'view_account' => 'كشف حساب',
 
+    //income
+    'suppliers_accounts' => 'حسابات الموردين',
+    'monthly' => 'شهرى',
+    'yearly' => 'سنوى',
+    'daily' => 'يومى',
+    'day' => 'اليوم',
+    'month' => 'الشهر',
+    'year' => 'السنة',
+    'final_safy' => 'صافى الدخل',
+
     //out going
     'cost' => 'التكلفة',
     'add_outgoings' => 'أضافة مصروف',
@@ -177,6 +188,9 @@ return [
     'close_outgoings' => 'المصروفات اليومية',
     'close_supplier' => 'دفع للموردين',
     'cloase_total' => 'الاجمالى',
+    'in_stock' => 'فى المخزن',
+    'pay_in_bills' => 'تم أستخدامها للمنتجات',
+    'products_out_quantity' => 'تم بيعها',
 
 
     //login
@@ -196,7 +210,7 @@ return [
     'product_id' => ' المنتج',
     'nav_bill_product' => 'تفاصيل الفاتورة',
     'edit_sipllier' => 'تعديل مورد',
-    'nav_account_list' => 'حساب عميل',
+    'nav_account_list' => 'كشف حساب',
     'image' => 'صورة المنتج',
     'search_form_date' => ' من تاريخ',
     'search_to_date' => 'الى تاريخ',

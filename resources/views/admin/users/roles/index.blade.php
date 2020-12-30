@@ -1,12 +1,4 @@
 @extends('admin_temp')
-@section('style')
-    <link href="{{ asset('/assets/plugins/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link href="{{ asset('css/style.css')}}" rel="stylesheet">
-    <!-- You can change the theme colors from here -->
-    <link href="{{ asset('css/colors/default-dark.css')}}" id="theme" rel="stylesheet">
-
-@endsection
 @section('content')
     <div class="row page-titles">
         <div class="col-md-5 align-self-center">
@@ -43,9 +35,9 @@
                                 <tr>
                                     <td>{{ ($key+1) + ($roles->currentPage() - 1)*$roles->perPage() }}</td>
                                     <td>{{ $role->name}}</td>
-                                    <td class="text-right">
-                                        <a class='btn btn-raised btn-success btn-sml'
-                                           href="{{route( 'roles.edit' , $role->id )}}" id="edit"><i class="fa fa-edit"></i>
+                                    <td class="text-lg-center">
+                                        <a  class="btn btn-success btn-circle" id="edit" href="{{route( 'roles.edit' , $role->id )}}">
+                                            <i class="fa fa-edit"></i> 
                                         </a>
                                     </td>
                                 </tr>
@@ -59,26 +51,3 @@
         </div>
     </div>
 @endsection
-
-@section('scripts')
-    <script src="{{ asset('assets/plugins/jquery/jquery.min.js')}}"></script>
-    <!-- Bootstrap tether Core JavaScript -->
-    <script src="{{ asset('assets/plugins/bootstrap/js/popper.min.js')}}"></script>
-    <script src="{{ asset('assets/plugins/bootstrap/js/bootstrap.min.js')}}"></script>
-    <!-- slimscrollbar scrollbar JavaScript -->
-    <script src="{{ asset('js/perfect-scrollbar.jquery.min.js')}}"></script>
-    <!--Wave Effects -->
-    <script src="{{ asset('js/waves.js')}}"></script>
-    <!--Menu sidebar -->
-    <script src="{{ asset('js/sidebarmenu.js')}}"></script>
-    <!--stickey kit -->
-    <script src="{{ asset('assets/plugins/sticky-kit-master/dist/sticky-kit.min.js')}}"></script>
-    <script src="{{ asset('assets/plugins/sparkline/jquery.sparkline.min.js')}}"></script>
-    <!--Custom JavaScript -->
-    <script src="{{ asset('js/custom.min.js')}}'"></script>
-    <!-- ============================================================== -->
-    <!-- Style switcher -->
-    <!-- ============================================================== -->
-    <script src="{{ asset('assets/plugins/styleswitcher/jQuery.style.switcher.js')}}"></script>
-@endsection
-

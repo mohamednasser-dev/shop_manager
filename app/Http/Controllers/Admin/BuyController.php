@@ -23,6 +23,7 @@ class BuyController extends Controller
 
     public function index(){
     }
+
     public function show($type){
         $today = $this->today;
         $products = Product::pluck('id', 'name');
@@ -71,14 +72,12 @@ class BuyController extends Controller
     }
     
     public function bill_design(Request $request , $bill_id){
-        $CustomerBill = CustomerBill::find($bill_id);
-        $BillProduct =  BillProduct::where('bill_id',$bill_id)->get();
         $today = $this->today;
-
         $data['pay'] = $request->pay ;
         $data['remain'] = $request->remain ;
         CustomerBill::findOrFail($bill_id)->update($data);
-
+        $CustomerBill = CustomerBill::find($bill_id);
+        $BillProduct =  BillProduct::where('bill_id',$bill_id)->get();
         return view('admin.buy.bill_design',compact('today','CustomerBill','BillProduct'));
     }
 
@@ -138,7 +137,6 @@ class BuyController extends Controller
             echo json_encode($data);
         }
     }
-
     public function store(Request $request){
         $validation = Validator::make($request->all(), [
             'product_id' => 'required',

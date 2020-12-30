@@ -9,11 +9,11 @@ use Illuminate\Support\Facades\Auth;
 
 class baseController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware(['permission:bases']);
+    }
+
     public function index()
     {
         $bases = Base::paginate(10);

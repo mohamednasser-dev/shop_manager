@@ -35,6 +35,9 @@
                                 <td class="text-lg-center">{{$user->name}}</td>
                                 <td class="text-lg-center">{{$user->email}}</td>
                                 <td class="text-lg-center">
+                                     <a  class="btn btn-success btn-circle" href=" {{url('users/'.$user->id.'/edit')}}">
+                                        <i class="fa fa-edit"></i> 
+                                    </a>
                                     <form method="get" id='delete-form-{{ $user->id }}'
                                           action="{{url('users/'.$user->id.'/delete')}}"
                                           style='display: none;'>

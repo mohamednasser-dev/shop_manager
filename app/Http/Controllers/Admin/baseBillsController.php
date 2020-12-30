@@ -16,6 +16,7 @@ class baseBillsController extends Controller
     public $today ;
     public function __construct()
     {
+        $this->middleware(['permission:add base bill']);
         //to get today date
         $mytime = Carbon::now();
         $this->today =  Carbon::parse($mytime->toDateTimeString())->format('Y-m-d');

@@ -17,6 +17,7 @@ class customerController extends Controller
 
     public function __construct()
     {
+        $this->middleware(['permission:customers']);
         $mytime = Carbon::now();
         $this->today = Carbon::parse($mytime->toDateTimeString())->format('Y-m-d');
     }

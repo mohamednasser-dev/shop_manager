@@ -10,11 +10,10 @@ use Illuminate\Support\Facades\Auth;
 class OutgoingController extends Controller
 {
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware(['permission:outgoings']);
+    }
     public function index()
     {
         //outgoing

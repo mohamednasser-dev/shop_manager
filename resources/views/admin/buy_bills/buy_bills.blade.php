@@ -30,7 +30,7 @@
                                 <div class="col-md-4">
                                     <div>
                                         <label>{{trans('admin.search_by_bill_num')}}</label>
-                                        {!! Form::number('bill_num','',['class'=>'form-control center']) !!}
+                                        {!! Form::number('bill_num','',['class'=>'form-control center', 'min' => '1']) !!}
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -82,10 +82,15 @@
                                                 <td class="text-lg-center">{{$user->remain}}</td>
                                                 <td class="text-lg-center">{{$user->date}}</td>
                                                 <td class="text-lg-center">
-                                                    <a class='btn btn-raised btn-primary btn-sml'
-                                                       href=" {{url('buy-bills/'.$user->id)}}">
-                                                        <i class="fa fa-eyedropper"></i>
-                                                    </a>
+                                                    <div class="btn-group">
+                                                        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        </button>
+                                                        <div class="dropdown-menu animated lightSpeedIn" x-placement="top-start" style="position: absolute; transform: translate3d(0px, -2px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                                            <a class="dropdown-item" href=" {{url('buy-bills/'.$user->id)}}">{{trans('admin.bill_procusts')}}</a>
+                                                            <div class="dropdown-divider"></div>
+                                                            <a class="dropdown-item" href=" {{url('buy-bills/'.$user->id.'/print')}}">{{trans('admin.print_bill')}}</a>
+                                                        </div>
+                                                    </div>
                                                 </td>
                                             </tr>
                                         @endforeach

@@ -11,11 +11,10 @@ use Illuminate\Support\Facades\Auth;
 
 class productComponentsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware(['permission:products']);
+    }
     public function index()
     {
         $products = Product::paginate(10);

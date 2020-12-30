@@ -22,7 +22,6 @@ return [
     'actions' => 'العمليات',
     'no_data_found' => 'لا يوجد نتائج',
 
-
     // messages
     'deleteAllSuccess' => 'تم حذف الكل بنجاح',
     'addedsuccess' => 'تم الاضافة بنجاح',
@@ -66,7 +65,6 @@ return [
     'total_emp' => 'اجمالى الموظفين',
     'total_sales' => 'اجمالى فواتير البيع',
 
-
     //category
     'category_name' => 'اسم التصنيف',
     'category' => 'التصنيف',
@@ -93,7 +91,6 @@ return [
     'product_info' => 'بيانات المنتج',
     'edit_product' => 'تعديل المنتج',
     'add_quantity' => 'أضافة كمية',
-
 
     //buy page
     'type' => 'النوع',
@@ -126,7 +123,6 @@ return [
     'bill_phone' => 'تليفون : ',
     'bill_address_txt' => 'شارع احمد حسن المتفرع من الشارع الرئيسي لشارع احمد حلمى',
     'bill_phone_txt' => '010 94 64 1332  - 01111 65 14 15',
-
 
     //users
     'name' => 'الاسم',

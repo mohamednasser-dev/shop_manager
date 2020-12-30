@@ -1,11 +1,4 @@
 @extends('admin_temp')
-@section('style')
-    <link href="{{ asset('/assets/plugins/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link href="{{ asset('css/style.css')}}" rel="stylesheet">
-    <!-- You can change the theme colors from here -->
-    <link href="{{ asset('css/colors/default-dark.css')}}" id="theme" rel="stylesheet">
-@endsection
 @section('content')
     <div class="row page-titles">
         <div class="col-md-5 align-self-center">
@@ -25,15 +18,13 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                            <div class="form-group row">
-                                <label class="col-md-3 col-from-label" for="name">{{trans('admin.role_name')}}</label>
-                                <div class="col-md-9">
-                                    <input type="text" placeholder="{{trans('admin.name')}}" id="name" name="name" class="form-control" required>
-                                </div>
-                            </div>
+                        <div class="center">
+                                <input type="text" placeholder="{{trans('admin.role_name')}}" id="name" name="name" class="form-control" style="width: 600px;" required>
+                        
                         </div>
                     </div>
                 </div>
+            </div>
             <div class="col-lg-12">
                 <div class="card card-outline-primary">
                     <div class="card-header">
@@ -47,7 +38,11 @@
                                 @foreach($permissions as $permission)
                                 <div class="row">
                                     <div class="col-md-10">
-                                        <label class="col-from-label">{{ $permission->name }}</label>
+                                        @if(app()->getLocale() == 'en')
+                                            <label class="col-from-label">{{ $permission->name }}</label>
+                                        @elseif(app()->getLocale() == 'ar')
+                                            <label class="col-from-label">{{ $permission->name_ar }}</label>
+                                        @endif
                                     </div>
                                     <div class="col-md-2">
                                         <div class="switch">
@@ -60,8 +55,8 @@
                                 @endforeach
                            </div>  
                         </div>
-                        <div class="form-group mb-0 text-right">
-                            <button type="submit" class="btn btn-sm btn-primary">{{trans('admin.public_Save')}}</button>
+                        <div class="center">
+                            <button type="submit" class="m-t-10 m-b-20 waves-effect waves-dark btn btn-success btn-md btn-rounded">{{trans('admin.public_Save')}}</button>
                         </div>
                     </div>
                 </div>
@@ -69,26 +64,3 @@
         </div>
     </form>
 @endsection
-
-@section('scripts')
-    <script src="{{ asset('assets/plugins/jquery/jquery.min.js')}}"></script>
-    <!-- Bootstrap tether Core JavaScript -->
-    <script src="{{ asset('assets/plugins/bootstrap/js/popper.min.js')}}"></script>
-    <script src="{{ asset('assets/plugins/bootstrap/js/bootstrap.min.js')}}"></script>
-    <!-- slimscrollbar scrollbar JavaScript -->
-    <script src="{{ asset('js/perfect-scrollbar.jquery.min.js')}}"></script>
-    <!--Wave Effects -->
-    <script src="{{ asset('js/waves.js')}}"></script>
-    <!--Menu sidebar -->
-    <script src="{{ asset('js/sidebarmenu.js')}}"></script>
-    <!--stickey kit -->
-    <script src="{{ asset('assets/plugins/sticky-kit-master/dist/sticky-kit.min.js')}}"></script>
-    <script src="{{ asset('assets/plugins/sparkline/jquery.sparkline.min.js')}}"></script>
-    <!--Custom JavaScript -->
-    <script src="{{ asset('js/custom.min.js')}}'"></script>
-    <!-- ============================================================== -->
-    <!-- Style switcher -->
-    <!-- ============================================================== -->
-    <script src="{{ asset('assets/plugins/styleswitcher/jQuery.style.switcher.js')}}"></script>
-@endsection
-

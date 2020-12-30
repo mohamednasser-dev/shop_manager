@@ -15,6 +15,7 @@ class IncomeController extends Controller
 
     public function __construct()
     {
+        $this->middleware(['permission:income']);
         $mytime = Carbon::now();
         $this->today = Carbon::parse($mytime->toDateTimeString())->format('Y-m-d');
     }

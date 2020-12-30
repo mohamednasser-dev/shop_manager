@@ -137,11 +137,6 @@ class BuyController extends Controller
             echo json_encode($data);
         }
     }
-
-    public function backPage(){
-        return redirect(url('buy/part'));
-    }
-
     public function store(Request $request){
         $validation = Validator::make($request->all(), [
             'product_id' => 'required',

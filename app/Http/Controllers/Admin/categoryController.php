@@ -7,10 +7,13 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use Exception;
 
-
 class categoryController extends Controller
 {
-    
+    public function __construct()
+    {
+        $this->middleware(['permission:categories']);
+    }
+
     public function index()
     {
         $categories =Category::paginate(10);

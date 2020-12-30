@@ -10,19 +10,24 @@
 	Route::get('forgot', 'ForgotPasswordController@forgot');
 	Route::post('reset', 'ForgotPasswordController@reset');
 	Route::get('/home', 'HomeController@index')->name('home');
+
 	Route::group(['middleware' => ['auth']], function () {
 //users  routes
 		Route::resource('users', 'Admin\UsersController');
 		Route::get('users/{id}/delete', 'Admin\UsersController@destroy');
 
+//user permissions and roles
 		Route::resource('roles','Admin\roleController');
+		// Route::post('/store_permission', 'Admin\roleController@store_permission')->name('store_permission');
 		Route::get('/roles/edit/{id}', 'Admin\roleController@edit')->name('roles.edit');
 		Route::post('/roles/update_permission/{id}', 'Admin\roleController@update')->name('roles.update_permission');
 		Route::post('roles/store_permission','Admin\roleController@store_permission')->name('roles.store_permission');
 	    Route::get('/roles/destroy/{id}', 'Admin\roleController@destroy')->name('roles.destroy');
 
-
-		Route::get('buy/{$type}', 'Admin\BuyController@show');
+//buy page part and gomla and back products
+		Route::get('buy/{part}', 'Admin\BuyController@show')->middleware(['permission:buy part']);
+		Route::get('buy/{gomla}', 'Admin\BuyController@show')->middleware(['permission:buy gomla']);
+		Route::get('buy/{back}', 'Admin\BuyController@show')->middleware(['permission:buy back']);
 		Route::resource('buy', 'Admin\BuyController');
 		Route::post('select_products', 'Admin\BuyController@select_products');
 		Route::post('bill_products/{bill_id}/destroy_all', 'Admin\BuyController@destroy_all');
@@ -30,11 +35,11 @@
 		Route::get('/live_search/products', 'Admin\BuyController@live_search')->name('live_search.products');
 		Route::get('{id?}/ajaxdata/get_bill_product_data', 'Admin\BuyController@get_bill_product_data')->name('ajaxdata.get_bill_product_data');
 		Route::get('buy/{id}/delete', 'Admin\BuyController@destroy');
-		Route::post('back', 'Admin\BuyController@backPage')->name('back');
+		Route::post('buy_bill_design/{bill_id}/print', 'Admin\BuyController@bill_design');
 
 //buy bills
 		Route::resource('buy-bills', 'Admin\buyBillsController');
-		Route::post('buy_bill_design/{bill_id}/print', 'Admin\BuyController@bill_design');
+		Route::get('buy-bills/{bill_id}/print', 'Admin\buyBillsController@print_bill');
 
 //base bills
 		Route::resource('base_bills', 'Admin\baseBillsController');

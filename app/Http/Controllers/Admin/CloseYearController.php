@@ -17,11 +17,10 @@ use App\Models\Outgoing;
 
 class CloseYearController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware(['permission:Lock a fiscal year']);
+    }
     public function index()
     {
         //This to Outgoing part

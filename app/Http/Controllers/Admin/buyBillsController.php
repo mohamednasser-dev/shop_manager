@@ -10,11 +10,13 @@ use Illuminate\Http\Request;
 
 class buyBillsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public $today ;
+    public function __construct()
+    {
+        $this->middleware(['permission:bills']);
+        $mytime = Carbon::now();
+        $this->today =  Carbon::parse($mytime->toDateTimeString())->format('Y-m-d');
+    }
     public function index()
     {
         $customer_bills = CustomerBill::where('date', Carbon::now()->toDateString())->get();
@@ -27,9 +29,11 @@ class buyBillsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
+    public function print_bill( $bill_id){
+        $today = $this->today;
+        $CustomerBill = CustomerBill::find($bill_id);
+        $BillProduct =  BillProduct::where('bill_id',$bill_id)->get();
+        return view('admin.buy.bill_design',compact('today','CustomerBill','BillProduct'));
     }
 
     /**

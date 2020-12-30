@@ -69,5 +69,8 @@ class Kernel extends HttpKernel
         'monitor'=>\App\Http\Middleware\monitorMiddleware::class,
         'editor'=>\App\Http\Middleware\editorMiddleware::class,
         'lang'=> \App\Http\Middleware\lang::class,
+        'role' => \Spatie\Permission\Middlewares\RoleMiddleware::class,
+        'permission' => \Spatie\Permission\Middlewares\PermissionMiddleware::class,
+        'role_or_permission' => \Spatie\Permission\Middlewares\RoleOrPermissionMiddleware::class,
     ];
 }

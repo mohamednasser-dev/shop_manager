@@ -9,7 +9,6 @@
         <div class="col-md-7 align-self-center">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">{{trans('admin.print_bill')}}</li>
-                <li class="breadcrumb-item active"><a href="{{url('buy/part')}}">{{trans('admin.nav_buy_part')}}</a></li>
                 <li class="breadcrumb-item active"><a href="{{url('home')}}">{{trans('admin.nav_home')}}</a></li>
             </ol>
         </div>
@@ -73,11 +72,8 @@
                 </div>
             </div>
             <div class="text-left">
-                {{ Form::open( ['method'=>'post' ,'route'=>'back'] ) }}
-                    {{ csrf_field() }}
                     <button id="print" class="btn btn-success" type="button"> <i class="fa fa-print"></i>{{trans('admin.print')}}</button>
-                    <button  class="btn btn-default btn-outline" type="submit" id="back"> <span>{{trans('admin.back')}} </span> </button>
-                {{ Form::close() }}
+                    <a href="{{ URL::previous() }}">{{trans('admin.back')}}</a>
             </div>
         </div>
     </div>

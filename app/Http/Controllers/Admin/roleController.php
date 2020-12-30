@@ -12,6 +12,10 @@ use Auth;
 
 class RoleController extends Controller
 { 
+    public function __construct()
+    {
+        $this->middleware(['permission:permissions']);
+    }
 
     public function index()
     {
@@ -32,25 +36,15 @@ class RoleController extends Controller
     }
     public function store_permission(Request $request)
     {
-        $arrayData= ['Add New Product', 'Products', 'Categories', 'Subcategory',
-             'Sub Subcategory', 'Brand', 'Suppliers', 'Attribute', 'All Orders', 'Pich-up Point Order', 'Customer List', 'Classified Products', 'Classified Packages',
-             'All Seller', 'Payouts', 'Payout Requests', 'Sellers Verification Form',
-             'In House Product Sale', 'Seller Products Sale', 'Products Stock', 'User Searches',
-             'Flash Deals', 'Coupon',
-             'Ticket', 'Header', 'Footer',
-             'Pages', 'Appearance', 'General settings', 'Features Activation',
-             'Languages', 'Pickup Point', 'SMTP Settings',
-             'Payment Methods', 'File System Configuration', 'Social media Logins', 'Analytics Tools', 'Facebook Chat', 'Google ReCAPTICHA', 'Shipping Configuration', 'Shipping Countries', 'Shipping Cities', 'All Staffs', 'Staff Permissions'];
-  
-                for ($i=0; $i < 44 ; $i++) { 
-                    # code...
-                    if($i == 44){
-                        return 0;
-                    }
-                    $permission = Permission::create(['name' => $arrayData[$i]]);
-                }
-      
-     
+        $arrayData= ['buy part', 'buy gomla', 'buy back', 'categories',
+             'products', 'bases', 'add base bill', 'customers', 'suppliers', 'employees', 'add new employee', 'permissions', 'Account statement','bills', 'income', 'outgoings', 'Lock a fiscal year'];
+        for ($i=0; $i < 17 ; $i++) { 
+            # code...
+            if($i == 44){
+                return 0;
+            }
+            $permission = Permission::create(['name' => $arrayData[$i]]);
+        }
     }
     public function show($id)
     {

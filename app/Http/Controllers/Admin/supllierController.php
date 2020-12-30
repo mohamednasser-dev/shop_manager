@@ -15,6 +15,7 @@ class supllierController extends Controller
     public $today ;
     public function __construct()
     {
+        $this->middleware(['permission:suppliers']);
         $mytime = Carbon::now();
         $this->today =  Carbon::parse($mytime->toDateTimeString())->format('Y-m-d');
     }

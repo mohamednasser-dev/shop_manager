@@ -16,7 +16,7 @@ class CreateCustomerBillsTable extends Migration
         Schema::create('customer_bills', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('cust_id')->unsigned()->nullable();
-            $table->foreign('cust_id')->references('id')->on('customers')->onDelete('set null');
+            $table->foreign('cust_id')->references('id')->on('customers')->onDelete('restrict');
             $table->string('bill_num')->nullable();
             $table->float('total')->default('0');
             $table->float('pay')->default('0');
@@ -26,7 +26,7 @@ class CreateCustomerBillsTable extends Migration
             $table->string('notes')->nullable();
             $table->enum('type',['buy','back'])->default('buy');
             $table->bigInteger('user_id')->unsigned()->nullable();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('restrict');
             $table->timestamps();
         });
     }

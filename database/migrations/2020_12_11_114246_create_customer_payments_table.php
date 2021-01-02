@@ -18,11 +18,11 @@ class CreateCustomerPaymentsTable extends Migration
             $table->float('money');
             $table->string('notes')->nullable();
             $table->bigInteger('bill_id')->unsigned()->nullable();
-            $table->foreign('bill_id')->references('id')->on('customer_bills')->onDelete('set null');
+            $table->foreign('bill_id')->references('id')->on('customer_bills')->onDelete('restrict');
             $table->bigInteger('cust_id')->unsigned()->nullable();
-            $table->foreign('cust_id')->references('id')->on('customers')->onDelete('set null');
+            $table->foreign('cust_id')->references('id')->on('customers')->onDelete('restrict');
             $table->bigInteger('user_id')->unsigned()->nullable();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('restrict');
             $table->timestamps();
         });
     }

@@ -16,16 +16,16 @@ class CreateBillProductsTable extends Migration
         Schema::create('bill_products', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('product_id')->unsigned()->nullable();
-            $table->foreign('product_id')->references('id')->on('products')->onDelete('set null');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('restrict');
             $table->bigInteger('bill_id')->unsigned()->nullable();
-            $table->foreign('bill_id')->references('id')->on('customer_bills')->onDelete('set null');
+            $table->foreign('bill_id')->references('id')->on('customer_bills')->onDelete('restrict');
             $table->string('name');
             $table->bigInteger('quantity');
             $table->float('price');
             $table->float('total');
             $table->date('date');
             $table->bigInteger('user_id')->unsigned()->nullable();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('restrict');
             $table->timestamps();
         });
     }

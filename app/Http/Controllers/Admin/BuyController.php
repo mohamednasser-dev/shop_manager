@@ -109,6 +109,8 @@ class BuyController extends Controller
                         $totalPrice = $row->total_cost + ( $row->total_cost * $row->part_percent )/100;
                     }else if($type == 'gomla'){
                         $totalPrice = $row->total_cost + ( $row->total_cost * $row->gomla_percent )/100;
+                    }else if($type == 'back'){
+                        $totalPrice = $row->total_cost + ( $row->total_cost * $row->gomla_percent )/100;
                     }
                     $output .= '
                     <tr>
@@ -142,7 +144,7 @@ class BuyController extends Controller
             'product_id' => 'required',
             'bill_id'  => 'required',
             'quantity'  => 'required',
-            'price'  => 'required',
+            'price'  => 'required|numeric|between:0,9999.9',
         ]);
         $error_array = array();
         $success_output = '';

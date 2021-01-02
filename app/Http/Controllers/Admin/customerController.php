@@ -79,12 +79,11 @@ class customerController extends Controller
         return response()->json(['data' => $data]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
+    public function update_Actived(Request $request){
+        $data['status'] = $request->status ;
+        $user = Customer::where('id', $request->id)->update($data);
+        return 1;
+    }
     public function payment(Request $request)
     {
         $data = $this->validate(\request(),
@@ -120,10 +119,11 @@ class customerController extends Controller
                 'notes' => ''
             ]);
         $data['user_id'] = Auth::user()->id;
+        $data['bill_num'] =trans('admin.old_payment');
         $data['date'] = $this->today;
         $data['total'] = $request->input('remain');
         CustomerBill::create($data);
-        session()->flash('success', trans('admin.payment_success'));
+        session()->flash('success', trans('admin.old_pay_success'));
         return back();
     }
 
@@ -160,7 +160,19 @@ class customerController extends Controller
             $user->delete();
             session()->flash('success', trans('admin.deleteSuccess'));
         } catch (Exception $exception) {
-            session()->flash('danger', 'لا يمكن حذف العميل');
+            session()->flash('danger', trans('admin.delete_no_Success'));
+        }
+        return back();
+    }
+
+    public function destroy_payment($id)
+    {
+        $user = CustomerBill::where('id', $id)->first();
+        try {
+            $user->delete();
+            session()->flash('success', trans('admin.deleteSuccess'));
+        } catch (Exception $exception) {
+            session()->flash('danger', trans('admin.payment_no_delete') );
         }
         return back();
     }

@@ -116,7 +116,9 @@
                                             <th class="text-lg-center">{{trans('admin.pay')}}</th>
                                             <th class="text-lg-center">{{trans('admin.remain')}}</th>
                                             <th class="text-lg-center">{{trans('admin.date')}}</th>
+                                            <th class="text-lg-center">{{trans('admin.notes')}}</th>
                                             <th class="text-lg-center">{{trans('admin.actions')}}</th>
+                                            <th class="text-lg-center">{{trans('admin.public_delete')}}</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -127,12 +129,35 @@
                                                 <td class="text-lg-center">{{$supplierBill->pay}}</td>
                                                 <td class="text-lg-center">{{$supplierBill->remain}}</td>
                                                 <td class="text-lg-center">{{$supplierBill->date}}</td>
+                                                <td class="text-lg-center">{{$supplierBill->notes}}</td>
                                                 <td class="text-lg-center">
                                                     @if($supplierBill->remain != 0)
                                                         <a class='btn btn-raised btn-success btn-sml'
                                                            data-bill-id="{{$supplierBill->id}}" data-bill-remain="{{$supplierBill->remain}}" id="payment"
                                                            alt="default" data-toggle="modal" data-target="#edit-modal">{{trans('admin.payment')}}
                                                         </a>
+                                                    @endif
+                                                </td>
+                                                <td class="text-lg-center">
+                                                    @if($supplierBill->bill_num > 0 )
+                                                    @else
+                                                        <form method="get" id='delete-form-{{ $supplierBill->id }}'
+                                                              action="{{url('supplier_payment/'.$supplierBill->id.'/delete')}}"
+                                                              style='display: none;'>
+                                                            {{csrf_field()}}
+                                                            <!-- {{method_field('delete')}} -->
+                                                        </form>
+                                                        <button onclick="
+                                                            if(confirm('{{trans('admin.deleteConfirmation')}}'))
+                                                            {
+                                                                event.preventDefault();
+                                                                document.getElementById('delete-form-{{ $supplierBill->id }}').submit();
+                                                            }else {
+                                                                event.preventDefault();
+                                                            }"
+                                                            class='btn btn-danger btn-circle' href=" ">
+                                                            <i class="fa fa-trash" aria-hidden='true'></i>
+                                                        </button>
                                                     @endif
                                                 </td>
                                             </tr>

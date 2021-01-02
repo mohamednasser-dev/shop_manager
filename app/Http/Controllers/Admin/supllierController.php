@@ -9,6 +9,7 @@ use App\Models\SupplierSale;
 use Illuminate\Http\Request;
 use App\Models\Supplier;
 use Carbon\Carbon;
+use Exception;
 
 class supllierController extends Controller
 {
@@ -118,17 +119,15 @@ class supllierController extends Controller
         $data['date'] = $this->today ;
         $data['total'] =  $request->input('remain');
         SupplierSale::create($data);
-        session()->flash('success', trans('admin.payment_success'));
+        session()->flash('success', trans('admin.old_pay_success'));
         return back();
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    public function update_Actived(Request $request){
+        $data['status'] = $request->status ;
+        $user = Supplier::where('id', $request->id)->update($data);
+        return 1;
+    }
     public function update(Request $request)
     {
         $data = $this->validate(\request(),
@@ -155,7 +154,19 @@ class supllierController extends Controller
             $user->delete();
             session()->flash('success', trans('admin.deleteSuccess'));
         }catch(Exception $exception){
-            session()->flash('danger', 'لا يمكن حذف المورد');
+            session()->flash('danger',trans('admin.delete_no_Success'));
+        }
+        return back();
+    }
+
+    public function destroy_payment($id)
+    {
+        $user = SupplierSale::where('id', $id)->first();
+        try {
+            $user->delete();
+            session()->flash('success', trans('admin.deleteSuccess'));
+        }catch(Exception $exception){
+            session()->flash('danger', trans('admin.payment_no_delete'));
         }
         return back();
     }

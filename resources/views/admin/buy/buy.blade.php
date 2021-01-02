@@ -6,6 +6,8 @@
                 <h3 class="text-themecolor">{{trans('admin.nav_buy_part')}}</h3>
             @elseif($type == 'gomla')
                 <h3 class="text-themecolor">{{trans('admin.nav_buy_gomla')}}</h3>
+            @elseif($type == 'back')  
+                <h3 class="text-themecolor">{{trans('admin.nav_buy_back')}}</h3>  
             @endif
         </div>
         <div class="col-md-7 align-self-center">
@@ -14,6 +16,8 @@
                     <li class="breadcrumb-item">{{trans('admin.nav_buy_part')}}</li>
                 @elseif($type == 'gomla')
                     <li class="breadcrumb-item">{{trans('admin.nav_buy_gomla')}}</li>
+                @elseif($type == 'back')
+                    <li class="breadcrumb-item">{{trans('admin.nav_buy_back')}}</li>
                 @endif
                 <li class="breadcrumb-item active"><a href="{{url('home')}}" >{{trans('admin.nav_home')}}</a> </li>
             </ol>
@@ -56,10 +60,10 @@
                                                 <div class="col-md-9">
                                                     <div id="parent">
                                                         @if($customer_bills_selected != null)
-                                                            {{ Form::select('cust_id',App\Models\Customer::pluck('name','id'),$customer_bills_selected->cust_id
+                                                            {{ Form::select('cust_id',App\Models\Customer::where('status','active')->pluck('name','id'),$customer_bills_selected->cust_id
                                                               ,["class"=>"select2 form-control custom-select" ,"id"=>"cmb_cust_id","style"=>"width: 100%; height:36px;",'placeholder'=>trans('admin.choose_cust') ]) }}
                                                         @else  
-                                                            {{ Form::select('cust_id',App\Models\Customer::pluck('name','id'),null
+                                                            {{ Form::select('cust_id',App\Models\Customer::where('status','active')->pluck('name','id'),null
                                                               ,["class"=>"select2 form-control custom-select" ,"id"=>"cmb_cust_id",'placeholder'=>trans('admin.choose_cust') ]) }}
                                                         @endif     
                                                     </div>
@@ -228,7 +232,7 @@
                             <div class="form-group">
                                 <label for="recipient-name"
                                        class="control-label">{{trans('admin.price')}}</label>
-                                {{ Form::number('price',null,["class"=>"form-control" ,"required",'id'=>'txt_price','min'=>'1']) }}
+                                {{ Form::number('price',null,["class"=>"form-control" ,"required",'step' =>'0.01','id'=>'txt_price','min'=>'1']) }}
                             </div>
                         </div>
                         <div class="modal-footer">

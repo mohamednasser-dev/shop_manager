@@ -18,11 +18,11 @@ class CreateSupplierPaymentsTable extends Migration
             $table->float('money');
             $table->string('notes')->nullable();
             $table->bigInteger('bill_id')->unsigned()->nullable();
-            $table->foreign('bill_id')->references('id')->on('supplier_sales')->onDelete('set null');
+            $table->foreign('bill_id')->references('id')->on('supplier_sales')->onDelete('restrict');
             $table->bigInteger('supplier_id')->unsigned()->nullable();
-            $table->foreign('supplier_id')->references('id')->on('suppliers')->onDelete('set null');
+            $table->foreign('supplier_id')->references('id')->on('suppliers')->onDelete('restrict');
             $table->bigInteger('user_id')->unsigned()->nullable();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('restrict');
             $table->timestamps();
         });
     }

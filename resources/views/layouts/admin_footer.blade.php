@@ -106,7 +106,15 @@
         });
         $('#example23').DataTable({
             dom: 'Bfrtip',
-            buttons: []
+            buttons: [],
+             "language": {
+                "paginate": {
+                    "next": "{{trans('admin.next')}}",
+                    "previous" : "{{trans('admin.befor')}}"
+                },
+                "search":"{{trans('admin.search')}}:",
+                "lengthMenu":     " ",
+            },
         });
     </script>
     </body>

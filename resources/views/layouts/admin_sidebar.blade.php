@@ -19,7 +19,7 @@
                                 <li><a href="{{url('buy/gomla')}}">{{trans('admin.nav_buy_gomla')}}</a></li>
                             @endcan 
                             @can('buy back')
-                                <li><a href="{{url('buy/back')}}">{{trans('admin.nav_buy_back')}}</a></li>
+                                <!-- <li><a href="{{url('buy/back')}}">{{trans('admin.nav_buy_back')}}</a></li> -->
                             @endcan 
                         </ul>
                     </li>

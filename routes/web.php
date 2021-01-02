@@ -10,11 +10,13 @@
 	Route::get('forgot', 'ForgotPasswordController@forgot');
 	Route::post('reset', 'ForgotPasswordController@reset');
 	Route::get('/home', 'HomeController@index')->name('home');
+	Route::post('/login_user', 'Admin\LoginController@login')->name('login_user');
 
 	Route::group(['middleware' => ['auth']], function () {
 //users  routes
 		Route::resource('users', 'Admin\UsersController');
 		Route::get('users/{id}/delete', 'Admin\UsersController@destroy');
+		Route::post('users/actived', 'Admin\UsersController@update_Actived')->name('users.actived');
 
 //user permissions and roles
 		Route::resource('roles','Admin\roleController');
@@ -64,19 +66,23 @@
 //suppliers
 		Route::resource('supplier', 'Admin\supllierController');
 		Route::post('editsupplier', 'Admin\supllierController@update');
+		Route::post('supplier/actived', 'Admin\supllierController@update_Actived')->name('supplier.actived');
 		Route::get('supplier/{id}/delete', 'Admin\supllierController@destroy');
     //supplier account
 		Route::get('supplier/{id}/account', 'Admin\supllierController@account');
 		Route::post('supplier_payment', 'Admin\supllierController@payment');
+		Route::get('supplier_payment/{id}/delete', 'Admin\supllierController@destroy_payment');
 		Route::post('supplier_manula_bill', 'Admin\supllierController@manula_bill');
 //cusromers
 		Route::resource('customer', 'Admin\customerController');
 		Route::post('editcustomer', 'Admin\customerController@update');
+		Route::post('customer/actived', 'Admin\customerController@update_Actived')->name('customer.actived');
 		Route::get('customer/{id}/delete', 'Admin\customerController@destroy');
 	//Customer Account
 		Route::get('customer/{id}/account', 'Admin\customerController@account');
 		Route::post('cust_payment', 'Admin\customerController@payment');
 		Route::post('cust_manula_bill', 'Admin\customerController@manula_bill');
+		Route::get('customer_payment/{id}/delete', 'Admin\customerController@destroy_payment');
 //	products Components
 
         Route::resource('products', 'Admin\productComponentsController');

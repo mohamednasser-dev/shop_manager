@@ -21,13 +21,13 @@ class CreateSupplierBillBasesTable extends Migration
             $table->float('total');
             $table->date('date');
             $table->bigInteger('supplier_sale_id')->unsigned()->nullable();
-            $table->foreign('supplier_sale_id')->references('id')->on('supplier_sales')->onDelete('set null');
+            $table->foreign('supplier_sale_id')->references('id')->on('supplier_sales')->onDelete('restrict');
             $table->bigInteger('supplier_id')->unsigned()->nullable();
-            $table->foreign('supplier_id')->references('id')->on('suppliers')->onDelete('set null');
+            $table->foreign('supplier_id')->references('id')->on('suppliers')->onDelete('restrict');
             $table->bigInteger('base_id')->unsigned()->nullable();
-            $table->foreign('base_id')->references('id')->on('bases')->onDelete('set null');
+            $table->foreign('base_id')->references('id')->on('bases')->onDelete('restrict');
             $table->bigInteger('user_id')->unsigned()->nullable();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('restrict');
             $table->timestamps();
         });
     }

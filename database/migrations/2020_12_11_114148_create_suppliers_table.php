@@ -18,8 +18,9 @@ class CreateSuppliersTable extends Migration
             $table->string('name');
             $table->bigInteger('phone');
             $table->string('address');
+            $table->enum('status',['active','unactive'])->default('active');
             $table->bigInteger('user_id')->unsigned()->nullable();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('restrict');
             $table->timestamps();
         });
     }

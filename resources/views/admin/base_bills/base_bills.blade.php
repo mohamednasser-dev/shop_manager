@@ -65,10 +65,10 @@
                                                 <div class="col-md-9">
                                                     <div id="parent">
                                                         @if($supplier_sales_selected != null)
-                                                            {{ Form::select('supplier_id',App\Models\Supplier::pluck('name','id'),$supplier_sales_selected->supplier_id
+                                                            {{ Form::select('supplier_id',App\Models\Supplier::where('status','active')->pluck('name','id'),$supplier_sales_selected->supplier_id
                                                               ,["class"=>"select2 form-control custom-select" ,"id"=>"cmb_supplier_id","style"=>"width: 100%; height:36px;",'placeholder'=>trans('admin.choose_supplier') ]) }}
                                                         @else  
-                                                            {{ Form::select('supplier_id',App\Models\Supplier::pluck('name','id'),null
+                                                            {{ Form::select('supplier_id',App\Models\Supplier::where('status','active')->pluck('name','id'),null
                                                               ,["class"=>"select2 form-control custom-select" ,"id"=>"cmb_supplier_id",'placeholder'=>trans('admin.choose_supplier') ]) }}
                                                         @endif     
                                                     </div>

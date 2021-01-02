@@ -74,6 +74,7 @@
                 <div class="col-sm-12 col-md-4">
                     <div class="card">
                         <div class="card-body" style="text-align: center;">
+                            <h5 class="center">{{trans('admin.old_payment')}}</h5>
                             {{ Form::open( ['url'  => ['cust_manula_bill'],'method'=>'post' , 'class'=>'form'] ) }}
                                 {{ csrf_field() }}
                                 {{ Form::hidden('cust_id',$customer->id,["class"=>"form-control" ,"required"]) }}
@@ -92,7 +93,7 @@
                                     </div>
                                     <br>
                                     <div class="row col-md-12" >
-                                        <button type="submit" class="btn btn-rounded btn-block btn-success">{{trans('admin.pay_it')}}</button>
+                                        <button type="submit" class="btn btn-rounded btn-block btn-success">{{trans('admin.public_Save')}}</button>
                                     </div>
                                 </div>
                             {{ Form::close() }}
@@ -113,7 +114,9 @@
                                             <th class="text-lg-center">{{trans('admin.pay')}}</th>
                                             <th class="text-lg-center">{{trans('admin.remain')}}</th>
                                             <th class="text-lg-center">{{trans('admin.date')}}</th>
+                                            <th class="text-lg-center">{{trans('admin.notes')}}</th>
                                             <th class="text-lg-center">{{trans('admin.actions')}}</th>
+                                            <th class="text-lg-center">{{trans('admin.public_delete')}}</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -124,12 +127,35 @@
                                                 <td class="text-lg-center">{{$custBill->pay}}</td>
                                                 <td class="text-lg-center">{{$custBill->remain}}</td>
                                                 <td class="text-lg-center">{{$custBill->date}}</td>
+                                                <td class="text-lg-center">{{$custBill->notes}}</td>
                                                 <td class="text-lg-center">
                                                     @if($custBill->remain != 0)
                                                         <a class='btn btn-raised btn-success btn-sml'
                                                            data-bill-id="{{$custBill->id}}" data-bill-remain="{{$custBill->remain}}" id="payment"
                                                            alt="default" data-toggle="modal" data-target="#edit-modal">{{trans('admin.payment')}}
                                                         </a>
+                                                    @endif
+                                                </td>
+                                                <td class="text-lg-center">
+                                                    @if($custBill->bill_num > 0 )
+                                                    @else
+                                                        <form method="get" id='delete-form-{{ $custBill->id }}'
+                                                              action="{{url('customer_payment/'.$custBill->id.'/delete')}}"
+                                                              style='display: none;'>
+                                                            {{csrf_field()}}
+                                                            <!-- {{method_field('delete')}} -->
+                                                        </form>
+                                                        <button onclick="
+                                                            if(confirm('{{trans('admin.deleteConfirmation')}}'))
+                                                            {
+                                                                event.preventDefault();
+                                                                document.getElementById('delete-form-{{ $custBill->id }}').submit();
+                                                            }else {
+                                                                event.preventDefault();
+                                                            }"
+                                                            class='btn btn-danger btn-circle' href=" ">
+                                                            <i class="fa fa-trash" aria-hidden='true'></i>
+                                                        </button>
                                                     @endif
                                                 </td>
                                             </tr>

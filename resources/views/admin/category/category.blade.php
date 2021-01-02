@@ -23,7 +23,7 @@
                 </div>
                 <div class="card-body">
                     <!-- Start home table -->
-                    <table id="example23" class="table full-color-table full-primary-table">
+                    <table class="table full-color-table full-primary-table">
                         <thead>
                         <tr>
                             <th class="text-lg-center">{{trans('admin.name')}}</th>

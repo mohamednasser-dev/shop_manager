@@ -16,6 +16,7 @@ return [
     'added_bill_product' => 'تم بيع المنتج بنجاح',
     'website_title' => 'عنوان الموقع',
     'preventAlert' => 'لا تملك الصلاحية لدخول هذه الصفحة !!!',
+    'not_auth' => 'غير مصرح لك الدخول .... غير مفعل',
 
     'close' => 'اغلاق',
     'print' => 'طباعه',
@@ -27,14 +28,23 @@ return [
     'addedsuccess' => 'تم الاضافة بنجاح',
     'statuschanged' => 'تم تعديل الحالة',
     'deleteSuccess' => 'تم الحذف بنجاح',
+    'delete_no_Success' => 'لا يمكن حذف العميل',
     'deleteError' => 'لا يمكنك الحذف',
     'updatSuccess' => 'تم التعديل بنجاح',
     'adsAddedSuccess' => 'تم اضافة الاعلان بتجاح',
     'payment_success' => 'تم الدفع بنجاح',
+    'old_pay_success' => 'تم حفظ مبلغ الحساب القديم',
     'adsExisting' => 'هذا المنتج يوجد له اعلان بالفعل',
     'formationAdded' => 'تم اضافة تشكيل الفريق بنجاح',
     'not_found' => 'حدث خطأ ما يرجى المحاولة مره اخرى',
     'error' => 'يوجد خطأ',
+    'emp_no_delete' => 'لا يمكن حذف الموظف .. لوجود بيانات يحملها',
+    'payment_no_delete' => 'لا يمكن الحذف لوجود مبلغ مدفوع فى الفاتورة',
+
+    // Datatable
+    'next' => 'التالى',
+    'befor' => 'السابق',
+    'search' => 'بحث',
 
     //navigation  sidebar
     'nav_home' => 'الصفحة الرئيسية',
@@ -127,6 +137,8 @@ return [
     //users
     'name' => 'الاسم',
     'user_info' => 'بيانات الموظف',
+    'edit_user' => 'تعديل بيانات الموظف',
+    'active' => 'تفعيل',
 
     //roles
     'add_new_role' => 'أضافة وظيفه',

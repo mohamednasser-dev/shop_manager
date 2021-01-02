@@ -23,7 +23,7 @@
                 </div>
                 <div class="card-body">
                     <!-- Start home table -->
-                    <table id="table-8344"
+                    <table id="example23"
                            class="tablesaw table-striped table-hover table-bordered table tablesaw-columntoggle">
                         <thead>
                         <tr>
@@ -32,44 +32,53 @@
                             <th class="text-center">{{trans('admin.address')}}</th>
                             <th class="text-center">{{trans('admin.employee')}}</th>
                             <th class="text-center">{{trans('admin.actions')}}</th>
+                            <th class="text-center">{{trans('admin.public_delete')}}</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($supllier as $user)
+                        @foreach($supllier as $sup)
                             <tr>
-                                <td class="text-center">{{$user->name}}</td>
-                                <td class="text-center">{{$user->phone}}</td>
-                                <td class="text-center">{{$user->address}}</td>
-                                <td class="text-center">{{$user->employee->name}}</td>
-
+                                <td class="text-center">{{$sup->name}}</td>
+                                <td class="text-center">{{$sup->phone}}</td>
+                                <td class="text-center">{{$sup->address}}</td>
+                                <td class="text-center">{{$sup->employee->name}}</td>
                                 <td class="text-lg-center">
                                     <a class='btn btn-raised btn-primary btn-sml'
-                                       href=" {{url('supplier/'.$user->id.'/account')}}">
+                                       href=" {{url('supplier/'.$sup->id.'/account')}}">
                                        {{trans('admin.supplier_account')}}
                                     </a>
                                     <a class='btn btn-raised btn-success btn-circle'
-                                       href=" {{url('supplier/'.$user->id.'/edit')}}"
-                                       data-editid="{{$user->id}}" id="edit"
-                                       alt="default" data-toggle="modal" data-target="#edit-modal"><i class="fa fa-edit"></i></a>
-
-                                    <form method="get" id='delete-form-{{ $user->id }}'
-                                          action="{{url('supplier/'.$user->id.'/delete')}}"
-                                          style='display: none;'>
-                                    {{csrf_field()}}
-                                    <!-- {{method_field('delete')}} -->
-                                    </form>
-                                    <button onclick="if(confirm('{{trans('admin.deleteConfirmation')}}'))
-                                        {
-                                        event.preventDefault();
-                                        document.getElementById('delete-form-{{ $user->id }}').submit();
-                                        }else {
-                                        event.preventDefault();
-                                        }"
-                                            class='btn btn-danger btn-circle' href=" "><i
-                                            class="fa fa-trash" aria-hidden='true'>
-                                        </i>
-                                    </button>
+                                       href=" {{url('supplier/'.$sup->id.'/edit')}}"
+                                       data-editid="{{$sup->id}}" id="edit"
+                                       alt="default" data-toggle="modal" data-target="#edit-modal"><i class="fa fa-edit"></i>
+                                   </a>
                                 </td>
+                                <td class="text-lg-center">
+                                    @if(count($sup->SupplierSale) == 0)
+                                        <form method="get" id='delete-form-{{ $sup->id }}'
+                                              action="{{url('supplier/'.$sup->id.'/delete')}}"
+                                              style='display: none;'>
+                                            {{csrf_field()}}
+                                            <!-- {{method_field('delete')}} -->
+                                        </form>
+                                        <button onclick="if(confirm('{{trans('admin.deleteConfirmation')}}'))
+                                            {
+                                                event.preventDefault();
+                                                document.getElementById('delete-form-{{ $sup->id }}').submit();
+                                            }else {
+                                                event.preventDefault();
+                                            }"
+                                            class='btn btn-danger btn-circle' href=" ">
+                                            <i class="fa fa-trash" aria-hidden='true'></i>
+                                        </button>
+                                    @else
+                                        <div class="switch">
+                                            <label>
+                                                <input onchange="update_active(this)" value="{{ $sup->id }}" type="checkbox" <?php if($sup->status == 'active') echo "checked";?> >
+                                                <span class="lever switch-col-indigo"></span>
+                                            </label>
+                                        </div>
+                                    @endif
                             </tr>
                         @endforeach
                         </tbody>
@@ -180,5 +189,24 @@
             })
         });
     </script>
+    <script type="text/javascript">
+      function update_active(el){
+            if(el.checked){
+                var status = 'active';
+            }
+            else{
+                var status = 'unactive';
+            }
+            $.post('{{ route('supplier.actived') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status}, function(data){
+                if(data == 1){
+                    console.log('daaa = '.data);
+                    toastr.success("{{trans('admin.statuschanged')}}");
+                }
+                else{
+                    toastr.error("{{trans('admin.statuschanged')}}");
+                }
+            });
+        }
+  </script>
 @endsection
 

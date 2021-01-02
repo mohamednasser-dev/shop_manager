@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Exception;
+
 class usersController extends Controller{
     public $objectName;
     public $folderView;
@@ -93,10 +95,20 @@ class usersController extends Controller{
         }
     }
 
+    public function update_Actived(Request $request){
+        $data['status'] = $request->status ;
+        $user = User::where('id', $request->id)->update($data);
+        return 1;
+    }
+
     public function destroy($id){
         $user = $this->objectName::where('id', $id)->first();
-        $user->delete();
-        session()->flash('success',trans('admin.deleteSuccess'));
+        try {
+            $user->delete();
+            session()->flash('success', trans('admin.deleteSuccess'));
+        }catch(Exception $exception){
+            session()->flash('danger', trans('admin.emp_no_delete'));
+        }
         return back();
     }
 }

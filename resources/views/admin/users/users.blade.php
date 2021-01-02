@@ -47,11 +47,12 @@
                                      <a  class="btn btn-success btn-circle" href=" {{url('users/'.$user->id.'/edit')}}">
                                         <i class="fa fa-edit"></i> 
                                     </a>
+                                    <!--
                                     <form method="get" id='delete-form-{{ $user->id }}'
                                           action="{{url('users/'.$user->id.'/delete')}}"
                                           style='display: none;'>
                                         {{csrf_field()}}
-                                        <!-- {{method_field('delete')}} -->
+                                        {{method_field('delete')}} 
                                     </form>
                                     <button onclick="if(confirm('{{trans('admin.deleteConfirmation')}}'))
                                         {
@@ -63,6 +64,7 @@
                                         class='btn btn-danger btn-circle' href=" ">
                                         <i class="fa fa-trash" aria-hidden='true'></i>
                                     </button>
+                                    -->
                                 </td>
                             </tr>
                         @endforeach

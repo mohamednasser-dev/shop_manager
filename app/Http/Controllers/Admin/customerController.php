@@ -121,6 +121,7 @@ class customerController extends Controller
         $data['user_id'] = Auth::user()->id;
         $data['bill_num'] =trans('admin.old_payment');
         $data['date'] = $this->today;
+        $data['is_bill'] = 'n';
         $data['total'] = $request->input('remain');
         CustomerBill::create($data);
         session()->flash('success', trans('admin.old_pay_success'));

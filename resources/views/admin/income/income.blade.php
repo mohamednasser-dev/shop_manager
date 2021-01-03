@@ -21,13 +21,13 @@
                     <div class="card">
                         <div class="card-body">
                             {{ Form::open( ['url' => ['income_search'],'method'=>'post'] ) }}
-                                {{ csrf_field() }}  
+                                {{ csrf_field() }}
                                 <h4 class="card-title">{{trans('admin.Search_area')}}</h4>
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="form-group row">
                                             <label class="custom-control custom-radio">
-                                                <input id="radio4" name="selected_method" value="daily" type="radio" 
+                                                <input id="radio4" name="selected_method" value="daily" type="radio"
                                                 <?php if($selected_method == 'daily') echo "checked";?> class="custom-control-input">
                                                     <span class="custom-control-indicator"></span>
                                                 <span>{{trans('admin.daily')}}</span>
@@ -48,7 +48,7 @@
                                     </div>
                                     <div class="col-md-4">
                                         <label class="custom-control custom-radio">
-                                            <input id="radio3" name="selected_method" value="yearly" type="radio" 
+                                            <input id="radio3" name="selected_method" value="yearly" type="radio"
                                             <?php if($selected_method == 'yearly') echo "checked";?> class="custom-control-input">
                                             <span class="custom-control-indicator"></span>
                                             <span>{{trans('admin.yearly')}}</span>
@@ -245,9 +245,9 @@
                                         <tbody>
                                         @foreach($supplierPayments as $user)
                                             <tr>
-                                                <td class="text-lg-center">{{$user->bill_id}}</td>
+                                                <td class="text-lg-center">{{$user->bill_num}}</td>
                                                 <td class="text-lg-center">{{$user->Supplier->name}}</td>
-                                                <td class="text-lg-center">{{$user->money}}</td>
+                                                <td class="text-lg-center">{{$user->pay}}</td>
                                                 <td class="text-lg-center">{{$user->created_at->format('Y-m-d')}}</td>
                                             </tr>
                                         @endforeach

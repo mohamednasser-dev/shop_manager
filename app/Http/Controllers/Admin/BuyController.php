@@ -28,9 +28,9 @@ class BuyController extends Controller
         $today = $this->today;
         $products = Product::pluck('id', 'name');
         $products = json_encode($products);
-        
+
         $customers = Customer::all();
-        $customer_bills = CustomerBill::all();
+        $customer_bills = CustomerBill::where('is_bill','y')->get();
         $bill_num = null;
         $customer_bills_selected = null;
         $customer_bills_products = null;
@@ -70,7 +70,7 @@ class BuyController extends Controller
         $bill_products = BillProduct::select('name','barcode','quantity','price','total')->where('bill_id',$bill_id)->get();
         return Datatables::of($bill_products)->make(true);
     }
-    
+
     public function bill_design(Request $request , $bill_id){
         $today = $this->today;
         $data['pay'] = $request->pay ;
@@ -120,7 +120,7 @@ class BuyController extends Controller
                         <td class = "center" >'.$totalPrice.'</td>
                         <td class = "center" >
                             <a class="btn btn-success btn-circle" data-product-id="'.$row->id.'"  data-price="'.$totalPrice.'" data-quantity="'.$row->quantity.'" id="sale_btn" alt="default" data-toggle="modal" data-target="#sale-modal" >
-                                <i class="fa fa-shopping-cart" ></i> 
+                                <i class="fa fa-shopping-cart" ></i>
                             </a></td>
                     </tr>
                     ';
@@ -180,7 +180,7 @@ class BuyController extends Controller
                 }
             }
         }
-        
+
     }
 
     /**

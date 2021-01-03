@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\CustomerBill;
 use App\Models\Outgoing;
 use App\Models\SupplierPayment;
+use App\Models\SupplierSale;
 use Carbon\Carbon;
 
 class IncomeController extends Controller
@@ -24,11 +25,11 @@ class IncomeController extends Controller
         $today = $this->today ;
         $customer_bills = CustomerBill::where('date', $today)->paginate(20);
         $outgoings = Outgoing::where('date', $today)->paginate(20);
-        $supplierPayments = SupplierPayment::where('created_at', $today)->paginate(20);
+        $supplierPayments = SupplierSale::where('date', $today)->paginate(20);
 
         $total_pay =CustomerBill::where('date',$today)->sum('pay');
         $total_outgoing =Outgoing::where('date',$today)->sum('cost');
-        $total_supplierPayment =SupplierPayment::where('created_at',$today)->sum('money');
+        $total_supplierPayment =SupplierSale::where('date',$today)->sum('pay');
         $remain = $total_pay - ($total_outgoing + $total_supplierPayment);
         $selected_method = 'daily';
         $selected_month = Carbon::now()->month ;
@@ -76,11 +77,11 @@ class IncomeController extends Controller
 
             $customer_bills = CustomerBill::where('date', $request->date)->paginate(20);
             $outgoings = Outgoing::where('date', $request->date)->paginate(20);
-            $supplierPayments = SupplierPayment::where('created_at', $request->date)->paginate(20);
+            $supplierPayments = SupplierSale::where('date', $request->date)->paginate(20);
 
             $total_pay =CustomerBill::where('date',$request->date)->sum('pay');
             $total_outgoing =Outgoing::where('date',$request->date)->sum('cost');
-            $total_supplierPayment =SupplierPayment::where('created_at',$request->date)->sum('money');
+            $total_supplierPayment =SupplierSale::where('date',$request->date)->sum('pay');
             $remain = $total_pay - ($total_outgoing + $total_supplierPayment);
             $today = $request->date ;
             $selected_method = 'daily';
@@ -92,13 +93,13 @@ class IncomeController extends Controller
 
             $customer_bills = CustomerBill::whereMonth('date', $request->month)->whereYear('date', $request->year)->paginate(20);
             $outgoings = Outgoing::whereMonth('date', $request->month)->whereYear('date', $request->year)->paginate(20);
-            $supplierPayments = SupplierPayment::whereMonth('created_at', $request->month)->whereYear('created_at', $request->year)->paginate(20);
+            $supplierPayments = SupplierSale::whereMonth('date', $request->month)->whereYear('date', $request->year)->paginate(20);
 
             $total_pay =CustomerBill::whereMonth('date', $request->month)->whereYear('date', $request->year)->sum('pay');
             $total_outgoing =Outgoing::whereMonth('date', $request->month)->whereYear('date', $request->year)->sum('cost');
-            $total_supplierPayment =SupplierPayment::whereMonth('created_at', $request->month)
-                                                    ->whereYear('created_at', $request->year)
-                                                    ->sum('money');
+            $total_supplierPayment =SupplierSale::whereMonth('date', $request->month)
+                                                    ->whereYear('date', $request->year)
+                                                    ->sum('pay');
             $remain = $total_pay - ($total_outgoing + $total_supplierPayment);
             $today = '' ;
             $selected_method = 'monthly';
@@ -110,16 +111,16 @@ class IncomeController extends Controller
 
             $customer_bills = CustomerBill::whereYear('date', $request->year)->paginate(20);
             $outgoings = Outgoing::whereYear('date', $request->year)->paginate(20);
-            $supplierPayments = SupplierPayment::whereYear('created_at', $request->year)->paginate(20);
+            $supplierPayments = SupplierSale::whereYear('date', $request->year)->paginate(20);
 
             $total_pay =CustomerBill::whereYear('date', $request->year)->sum('pay');
             $total_outgoing =Outgoing::whereYear('date', $request->year)->sum('cost');
-            $total_supplierPayment =SupplierPayment::whereYear('created_at', $request->year)
-                                                    ->sum('money');
+            $total_supplierPayment =SupplierSale::whereYear('date', $request->year)
+                                                    ->sum('pay');
             $remain = $total_pay - ($total_outgoing + $total_supplierPayment);
             $today = '' ;
             $selected_method = 'yearly';
-            
+
             $selected_month = $request->month ;
             $selected_year = $request->year ;
         }

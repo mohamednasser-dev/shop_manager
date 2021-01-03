@@ -101,7 +101,7 @@
                                     <div class="form-group">
                                         <label for="recipient-name" class="control-label">{{trans('admin.quantity')}}</label>
 
-                                        {{ Form::number('quantity',null,["class"=>"form-control" ,"required"]) }}
+                                        {{ Form::number('quantity',null,["class"=>"form-control" ,"required", "min" => "1"]) }}
                                         {{ Form::hidden('id',null,["class"=>"form-control" ,"required",'id'=>'pro-id']) }}
                                     </div>
 

@@ -92,6 +92,7 @@ return [
     'employee' => 'الموظف',
     'bases' => 'المواد الخام',
     'add_bases' => 'اضافه ماده خام',
+    'edit_base' => 'تعديل المادة الخام',
 
     //products
     'add_product' => 'اضافة منتج جديد',

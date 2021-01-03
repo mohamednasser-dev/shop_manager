@@ -6,8 +6,8 @@
                 <h3 class="text-themecolor">{{trans('admin.nav_buy_part')}}</h3>
             @elseif($type == 'gomla')
                 <h3 class="text-themecolor">{{trans('admin.nav_buy_gomla')}}</h3>
-            @elseif($type == 'back')  
-                <h3 class="text-themecolor">{{trans('admin.nav_buy_back')}}</h3>  
+            @elseif($type == 'back')
+                <h3 class="text-themecolor">{{trans('admin.nav_buy_back')}}</h3>
             @endif
         </div>
         <div class="col-md-7 align-self-center">
@@ -49,8 +49,8 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div> 
-                            <div class="col-lg-6">   
+                            </div>
+                            <div class="col-lg-6">
                                 <div class="card">
                                     <div class="card-body" style="height: 85px;">
                                         <div class="card-block" style="margin-top: -40px;">
@@ -62,10 +62,10 @@
                                                         @if($customer_bills_selected != null)
                                                             {{ Form::select('cust_id',App\Models\Customer::where('status','active')->pluck('name','id'),$customer_bills_selected->cust_id
                                                               ,["class"=>"select2 form-control custom-select" ,"id"=>"cmb_cust_id","style"=>"width: 100%; height:36px;",'placeholder'=>trans('admin.choose_cust') ]) }}
-                                                        @else  
+                                                        @else
                                                             {{ Form::select('cust_id',App\Models\Customer::where('status','active')->pluck('name','id'),null
                                                               ,["class"=>"select2 form-control custom-select" ,"id"=>"cmb_cust_id",'placeholder'=>trans('admin.choose_cust') ]) }}
-                                                        @endif     
+                                                        @endif
                                                     </div>
                                                 </div>
                                             </div>
@@ -93,7 +93,7 @@
                                             {!! Form::text('name',null,['class'=>'form-control center','id' => 'search_product']) !!}
                                         </div>
                                     </div>
-                                </div>  
+                                </div>
                                 <div class="row">
                                     <h3 align="center">{{trans('admin.total_data')}}<span id="total_records"></span></h3>
                                     <table id="search_table" class="table color-table warning-table">
@@ -107,10 +107,10 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                     
+
                                         </tbody>
-                                    </table> 
-                                </div>      
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -122,10 +122,10 @@
                                 {{ Form::open( ['url' => ['bill_products/'.$customer_bills_selected->id.'/destroy_all'],'method'=>'post'] ) }}
                                     {{ csrf_field() }}
                                     <button type="submit" class="btn btn-outline-danger btn-rounded">
-                                        <i class="fa fa-trash"></i> 
+                                        <i class="fa fa-trash"></i>
                                         {{trans('admin.delete_all')}}
                                     </button>
-                                {{ Form::close() }}    
+                                {{ Form::close() }}
                                 <br>
                                 <table id="bill_product_tbl" class="table full-color-table full-primary-table">
                                     <thead>
@@ -167,7 +167,7 @@
                                         </tr>
                                         @endforeach
                                     </tbody>
-                                </table> 
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -185,7 +185,7 @@
                                     </tr>
                                     <tr>
                                         <td class="col-md-5">{{trans('admin.sale_pay')}}</td>
-                                        <td class="col-md-7 text-right font-medium">{!! Form::number('pay',$customer_bills_selected->pay,['class'=>'form-control center','id' =>'txt_pay','max'=>$customer_bills_selected->total,'min'=>'0' ]) !!}</td>
+                                        <td class="col-md-7 text-right font-medium">{!! Form::number('pay',$customer_bills_selected->pay,['class'=>'form-control center','step' =>'0.01','id' =>'txt_pay','max'=>$customer_bills_selected->total,'min'=>'0' ]) !!}</td>
                                     </tr>
                                     <tr>
                                         <td class="col-md-5">{{trans('admin.sale_remain')}}</td>
@@ -198,7 +198,7 @@
                                         {{trans('admin.public_Save')}}
                                     </button>
                                 </div>
-                            {{ Form::close() }}   
+                            {{ Form::close() }}
                         </div>
                     </div>
                 </div>
@@ -293,8 +293,8 @@
             $(document).on('keyup', '#txt_pay', function() {
 
                 //To View Updated remain value afer pay on view
-                pay = document.getElementById("txt_pay").value; 
-                total = document.getElementById("lbl_total").value; 
+                pay = document.getElementById("txt_pay").value;
+                total = document.getElementById("lbl_total").value;
                 final_total = total-pay;
                 $("#lbl_remain").val(final_total);
             });

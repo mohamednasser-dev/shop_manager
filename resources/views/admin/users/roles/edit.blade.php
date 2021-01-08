@@ -41,7 +41,11 @@
                                 @foreach($permissions as $permission)
                                 <div class="row">
                                     <div class="col-md-10">
-                                        <label class="col-from-label">{{ $permission->name }}</label>
+                                        @if(app()->getLocale() == 'en')
+                                            <label class="col-from-label">{{ $permission->name }}</label>
+                                        @elseif(app()->getLocale() == 'ar')
+                                            <label class="col-from-label">{{ $permission->name_ar }}</label>
+                                        @endif
                                     </div>
                                     <div class="col-md-2">
                                         <div class="switch">

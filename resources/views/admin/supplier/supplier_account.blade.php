@@ -118,6 +118,7 @@
                                             <th class="text-lg-center">{{trans('admin.date')}}</th>
                                             <th class="text-lg-center">{{trans('admin.notes')}}</th>
                                             <th class="text-lg-center">{{trans('admin.actions')}}</th>
+                                            <th class="text-lg-center">{{trans('admin.bill_details')}}</th>
                                             <th class="text-lg-center">{{trans('admin.public_delete')}}</th>
                                         </tr>
                                     </thead>
@@ -135,6 +136,13 @@
                                                         <a class='btn btn-raised btn-success btn-sml'
                                                            data-bill-id="{{$supplierBill->id}}" data-bill-remain="{{$supplierBill->remain}}" id="payment"
                                                            alt="default" data-toggle="modal" data-target="#edit-modal">{{trans('admin.payment')}}
+                                                        </a>
+                                                    @endif
+                                                </td>
+                                                <td class="text-lg-center">
+                                                    @if($supplierBill->bill_num > 0 )
+                                                        <a  class="btn btn-secondary btn-circle" href=" {{url('supplier/'.$supplierBill->id.'/show_bill')}}">
+                                                            <i class="fa fa-eye"></i> 
                                                         </a>
                                                     @endif
                                                 </td>

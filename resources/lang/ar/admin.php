@@ -131,6 +131,13 @@ return [
     'print_bill' => 'طباعة الفاتورة',
     'back' => 'رجوع',
     'bill_address' => 'العنوان :',
+    'bill' => 'فاتورة',
+    'NO_bill' => 'NO : ',
+    'product_bill' => 'الصـــــــــنف',
+    'quantity_bill' => 'العدد',
+    'price_bill' => 'سعر الوحدة',
+    'mrs' => 'أسم العميل / ',
+    'bill_date' => 'التاريخ / ',
     'bill_phone' => 'تليفون : ',
     'bill_address_txt' => 'شارع احمد حسن المتفرع من الشارع الرئيسي لشارع احمد حلمى',
     'bill_phone_txt' => '010 94 64 1332  - 01111 65 14 15',
@@ -162,6 +169,8 @@ return [
     'address' => 'العنوان',
     'supplier_account' => 'حساب المورد',
     'old_payment' => 'حساب قديم',
+    'bill_details' => 'تفاصيل الفاتورة',
+    'bill' => 'الفاتورة',
 
     // Supplier Bills
     'supplier_name' => 'اسم المورد',

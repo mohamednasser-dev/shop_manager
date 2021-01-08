@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Models\SupplierPayment;
 use App\Models\SupplierSale;
+use App\Models\SupplierBillBase;
 use Illuminate\Http\Request;
 use App\Models\Supplier;
 use Carbon\Carbon;
@@ -169,6 +170,15 @@ class supllierController extends Controller
             session()->flash('danger', trans('admin.payment_no_delete'));
         }
         return back();
+    }
+
+    
+    public function show_bill($id)
+    {
+        $bill_bases  = SupplierBillBase::where('supplier_sale_id', $id)->paginate(30);
+        $bill = SupplierSale::where('id', $id)->first();
+        $supplier_id = $bill->supplier_id;
+        return view('admin.supplier.bill_bases', compact('bill_bases','supplier_id'));
     }
 
 }

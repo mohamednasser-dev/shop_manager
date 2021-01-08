@@ -45,7 +45,7 @@
                     <form class="form-horizontal form-material" id="loginform" method="POST" action="{{route('login_user') }}">
                          @csrf
                         <a href="javascript:void(0)" class="text-center db">
-                            <img src="{{ asset('/assets/images/logo-text.png') }}" style="width: 220px;" alt="Home" />
+                            <img src="{{ asset('/assets/images/logo.png') }}" style="width: 150px; height: 150px;" alt="Home" />
                         </a>
                         @include('layouts.errors')
                         @include('layouts.messages')

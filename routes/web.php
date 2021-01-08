@@ -41,6 +41,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 		Route::get('{id?}/ajaxdata/get_bill_product_data', 'Admin\BuyController@get_bill_product_data')->name('ajaxdata.get_bill_product_data');
 		Route::get('buy/{id}/delete', 'Admin\BuyController@destroy');
 		Route::post('buy_bill_design/{bill_id}/print', 'Admin\BuyController@bill_design');
+		Route::get('buy_bill_design_last/{bill_id}/print', 'Admin\BuyController@bill_design_last');
 
 //buy bills
 		Route::resource('buy-bills', 'Admin\buyBillsController');
@@ -73,6 +74,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 		Route::get('supplier/{id}/delete', 'Admin\supllierController@destroy');
     //supplier account
 		Route::get('supplier/{id}/account', 'Admin\supllierController@account');
+		Route::get('supplier/{id}/show_bill', 'Admin\supllierController@show_bill');
 		Route::post('supplier_payment', 'Admin\supllierController@payment');
 		Route::get('supplier_payment/{id}/delete', 'Admin\supllierController@destroy_payment');
 		Route::post('supplier_manula_bill', 'Admin\supllierController@manula_bill');

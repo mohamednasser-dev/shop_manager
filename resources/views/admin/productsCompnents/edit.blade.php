@@ -97,7 +97,7 @@
                                             </div>
                                             <div class='col-sm-6'>
 
-                                                {{ Form::number('rows[' .$key . '][quantity]',$product_comp->quantity,["class"=>"form-control" ,"required",'placeholder'=>trans('admin.quantity')]) }}
+                                                {{ Form::number('rows[' .$key . '][quantity]',$product_comp->quantity,["step" =>'0.01',"class"=>"form-control" ,"required",'placeholder'=>trans('admin.quantity')]) }}
 
                                             </div>
                                         </div>
@@ -142,7 +142,7 @@
 
                     '</select></div>';
 
-                html += "<div class='col-sm-6'><input name='rows[" + i + "][quantity]' class='form-control' type='number' value='0' placeholder='الكمية'></div>" +
+                html += "<div class='col-sm-6'><input name='rows[" + i + "][quantity]' class='form-control' type='number' step ='0.01' value='0' placeholder='الكمية'></div>" +
                     "</div>";
                 $('#parent').append(html);
 

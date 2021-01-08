@@ -44,7 +44,7 @@
                                 <td class="text-center">{{$sup->employee->name}}</td>
                                 <td class="text-lg-center">
                                     <a class='btn btn-raised btn-primary btn-sml'
-                                       href=" {{url('supplier/'.$sup->id.'/account')}}">
+                                       href="{{url('supplier/'.$sup->id.'/account')}}">
                                        {{trans('admin.supplier_account')}}
                                     </a>
                                     <a class='btn btn-raised btn-success btn-circle'

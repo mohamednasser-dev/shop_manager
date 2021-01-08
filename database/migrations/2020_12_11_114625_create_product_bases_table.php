@@ -19,7 +19,7 @@ class CreateProductBasesTable extends Migration
             $table->foreign('base_id')->references('id')->on('bases')->onDelete('restrict');
             $table->bigInteger('product_id')->unsigned()->nullable();
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
-            $table->bigInteger('quantity');
+            $table->float('quantity');
             $table->timestamps();
         });
     }

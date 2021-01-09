@@ -81,6 +81,13 @@ class BuyController extends Controller
         return view('admin.buy.bill_design',compact('today','CustomerBill','BillProduct'));
     }
 
+    public function bill_design_last($bill_id){
+        $today = $this->today;
+        $CustomerBill = CustomerBill::find($bill_id);
+        $BillProduct =  BillProduct::where('bill_id',$bill_id)->get();
+        return view('admin.buy.last_bill',compact('today','CustomerBill','BillProduct'));
+    }
+
     public function live_search(Request $request)
     {
         if($request->ajax()){

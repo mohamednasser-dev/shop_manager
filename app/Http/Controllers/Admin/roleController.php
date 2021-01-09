@@ -24,7 +24,7 @@ class RoleController extends Controller
     }
     public function create()
     {
-        $permissions = Permission::all();
+        $permissions = Permission::where('visable','1')->get();
         return view('admin.users.roles.create',compact('permissions'));
     }
     public function store(Request $request)
@@ -53,7 +53,7 @@ class RoleController extends Controller
     public function edit(Request $request, $id)
     {
         $role = Role::findOrFail($id);
-        $permissions = Permission::all();
+        $permissions = Permission::where('visable','1')->get();
         $r_permissions[] = null ;
         $role_permissions = DB::table('role_has_permissions')
                         ->where('role_id', $id)

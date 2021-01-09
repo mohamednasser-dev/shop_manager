@@ -113,7 +113,7 @@
 
                     '</select></div>';
 
-                html += "<div class='col-sm-6'><input name='rows[" + i + "][quantity]' class='form-control' type='number' value='0' min='0' placeholder='الكمية'></div>" +
+                html += "<div class='col-sm-6'><input name='rows[" + i + "][quantity]' class='form-control' type='number' step ='0.01' value='0' min='0' placeholder='الكمية'></div>" +
                     "</div>";
                 $('#parent').append(html);
 

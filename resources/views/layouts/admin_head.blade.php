@@ -21,19 +21,10 @@
                 <!-- ============================================================== -->
                 <div class="navbar-header">
                     <a class="navbar-brand" href="index.html">
-                        <!-- Logo icon --><b>
-                            <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
-                            <!-- Dark Logo icon -->
-                     <!--        <img src="{{ asset('/assets/images/logo-icon.png') }}" alt="homepage" class="dark-logo" />
-                            Light Logo icon
-                            <img src="{{ asset('/assets/images/logo-light-icon.png') }}" alt="homepage" class="light-logo" /> -->
-                        </b>
-                        <!--End Logo icon -->
-                        <!-- Logo text --><span>
-                         <!-- dark Logo text -->
-                         <img src="{{ asset('/assets/images/logo-text.png') }}" alt="homepage" class="dark-logo" style="width: 220px;"/>
-                         <!-- Light Logo text -->    
-                         <img src="{{ asset('/assets/images/logo-light-text.png') }}" class="light-logo" alt="homepage"  /></span> </a>
+                        <span>
+                            <img src="{{ asset('/assets/images/side_bar_image.png') }}" alt="homepage" class="dark-logo" style="width: 200px; height: 45px;"/> 
+                        </span> 
+                    </a>
                 </div>
                 <!-- ============================================================== -->
                 <!-- End Logo -->

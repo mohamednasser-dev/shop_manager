@@ -27,10 +27,9 @@ https://templatemo.com/tm-534-parallo
         <div class="row tm-brand-row">
             <div class="col-lg-4 col-11">
                 <div class="tm-brand-container tm-bg-white-transparent">
-                    <i class="fas fa-2x fa-pen tm-brand-icon"></i>
+                    <img src="{{ asset('/assets/images/landing_page/logo.png') }}" alt="homepage" class="dark-logo" style="width: 200px; height: 140px;"/> 
                     <div class="tm-brand-texts">
                         <h1 class="text-uppercase tm-brand-name">Sobhy Group</h1>
-                        <p class="small">عنوان </p>
                     </div>
                 </div>
             </div>

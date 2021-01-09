@@ -67,7 +67,6 @@ class buyBillsController extends Controller
     {
         $bill_product  = BillProduct::where('bill_id', $id)->get();
         return view('admin.buy_bills.bill_product', compact('bill_product'));
-
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\front;
 
 use App\Http\Controllers\Controller;
+use App\Models\Inbox;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -69,9 +70,18 @@ class landingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+
+        $data = $this->validate(\request(),
+            [
+                'user_name' => 'required',
+                'email' => 'required|email',
+                'phone' => 'required|numeric',
+                'message' => 'required',
+            ]);
+        Inbox::create($data);
+        return redirect(url('/'));
     }
 
     /**

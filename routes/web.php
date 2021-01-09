@@ -6,6 +6,7 @@
 Route::get('/', 'front\landingController@index');
 Route::get('our-products', 'front\landingController@create');
 Route::get('contact-us', 'front\landingController@store');
+Route::post('send', 'front\landingController@update');
 
 
 // this route for login and register

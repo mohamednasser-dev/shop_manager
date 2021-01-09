@@ -93,26 +93,34 @@ https://templatemo.com/tm-534-parallo
         </section>
 
         <section class="row tm-contact-row">
-            <div class="col-lg-6 tm-contact-col-left">
-                <form action="#" method="POST" id="tmContactForm" class="tm-bg-black-transparent tm-contact-form">
-                    <div class="form-group">
-                        <input type="text" id="contact_name" name="contact_name"
+            <div class="col-lg-6 tm-contact-col-left" >
+                <form action="{{url('send')}}" method="POST" id="tmContactForm" accept-charset="UTF-8" class="tm-bg-black-transparent tm-contact-form">
+                    <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
+
+                    <div class="form-group"  >
+
+                        <input type="text" id="user_name" name="user_name"
                                class="form-control rounded-0 border-top-0 border-right-0 border-left-0"
-                               placeholder="Name" required="">
+                               placeholder="الاسم" required="">
                     </div>
                     <div class="form-group">
-                        <input type="email" id="contact_email" name="contact_email"
+                        <input type="text" id="phone" name="phone"
                                class="form-control rounded-0 border-top-0 border-right-0 border-left-0"
-                               placeholder="Email" required="">
+                               placeholder="رقم التلفون" required="">
                     </div>
                     <div class="form-group">
-                        <textarea rows="6" id="contact_message" name="contact_message"
+                        <input type="email" id="email" name="email"
+                               class="form-control rounded-0 border-top-0 border-right-0 border-left-0"
+                               placeholder="البريد الاليكترونى" required="">
+                    </div>
+                    <div class="form-group ">
+                        <textarea rows="6" id="message" name="message"
                                   class="form-control rounded-0 border-top-0 border-right-0 border-left-0"
-                                  placeholder="Message" required=""></textarea>
+                                  placeholder="الرساله" required=""></textarea>
                     </div>
-                    <div class="text-right">
-                        <button type="submit" class="btn btn-primary tm-btn-submit rounded-0">
-                            Submit
+                    <div class="text-center">
+                        <button type="submit" class="btn  btn-primary tm-btn-submit rounded-circle">
+                            ارسال
                         </button>
                     </div>
                 </form>

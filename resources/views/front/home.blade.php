@@ -123,7 +123,9 @@
 <!-- Call to Action -->
 <section class="row" id="tmCallToAction">
     <div class="col-12 tm-call-to-action-col">
-        <img src="{{ asset('front/img/call-to-action.jpg')}}" alt="Image" class="img-fluid tm-call-to-action-image"/>
+        <img src="{{ asset('front/img/call-to-action.jpg')}}" alt="Image" class="img-fluid" style="margin-right: 20px;
+width: 400px;
+height: 405px;" />
         <div class="tm-bg-white tm-call-to-action-text" style="text-align: right">
             <h2 class="tm-call-to-action-title">Images by Unsplash</h2>
             <p class="tm-call-to-action-description">

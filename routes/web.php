@@ -62,6 +62,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 //categories
 		Route::resource('categories', 'Admin\categoryController');
 		Route::get('categories/{id}/delete', 'Admin\categoryController@destroy');
+		Route::get('inbox', 'Admin\categoryController@inbox');
 
 //bases
 		Route::resource('bases', 'Admin\baseController');

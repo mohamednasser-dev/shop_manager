@@ -10,92 +10,96 @@
                     <li>
                         @if(Gate::check('buy part') || Gate::check('buy gomla')|| Gate::check('buy back'))
                             <a class="has-arrow waves-effect waves-dark" aria-expanded="false"><i class="mdi mdi-cart"></i><span class="hide-menu">{{trans('admin.nav_buy')}}</span></a>
-                        @endif 
+                        @endif
                         <ul aria-expanded="false" class="collapse">
                             @can('buy part')
                                 <li><a href="{{url('buy/part')}}">{{trans('admin.nav_buy_part')}}</a></li>
-                            @endcan 
+                            @endcan
                             @can('buy gomla')
                                 <li><a href="{{url('buy/gomla')}}">{{trans('admin.nav_buy_gomla')}}</a></li>
-                            @endcan 
+                            @endcan
                             @can('buy back')
                                 <!-- <li><a href="{{url('buy/back')}}">{{trans('admin.nav_buy_back')}}</a></li> -->
-                            @endcan 
+                            @endcan
                         </ul>
                     </li>
                     @can('categories')
                         <li>
                             <a class="waves-effect waves-dark" href="{{url('categories')}}" aria-expanded="false"><i class="mdi mdi-animation"></i><span class="hide-menu">{{trans('admin.categories')}}</span></a>
                         </li>
-                    @endcan 
+                    @endcan
                     @can('products')
                         <li>
                             <a class="waves-effect waves-dark" href="{{url('products')}}" aria-expanded="false"><i class="mdi mdi-rocket"></i><span class="hide-menu">{{trans('admin.nav_products')}}</span>
                             </a>
                         </li>
-                    @endcan 
+                    @endcan
 
                     <li>
                         @if(Gate::check('bases') || Gate::check('add base bill'))
                             <a class="has-arrow waves-effect waves-dark" aria-expanded="false"><i class="mdi mdi-scale"></i><span class="hide-menu">{{trans('admin.nav_bases')}}</span></a>
-                        @endif  
+                        @endif
                         <ul aria-expanded="false" class="collapse">
                             @can('bases')
                                 <li><a href="{{url('bases')}}">{{trans('admin.view_bases')}}</a></li>
-                            @endcan 
+                            @endcan
                             @can('add base bill')
                                 <li><a href="{{url('base_bills')}}">{{trans('admin.nav_base_bills')}}</a></li>
-                            @endcan 
+                            @endcan
                         </ul>
                     </li>
                     @can('customers')
                         <li>
                             <a class="waves-effect waves-dark" href="{{url('customer')}}" aria-expanded="false"><i class="mdi mdi-account-multiple"></i><span class="hide-menu">{{trans('admin.nav_customers')}}</span></a>
                         </li>
-                    @endcan 
+                    @endcan
                     @can('suppliers')
                         <li>
                             <a class="waves-effect waves-dark" href="{{url('supplier')}}" aria-expanded="false"><i class="mdi mdi-account-star-variant"></i><span class="hide-menu">{{trans('admin.nav_suppliers')}}</span></a>
                         </li>
-                    @endcan 
+                    @endcan
                     <li>
                         @if(Gate::check('employees') || Gate::check('permissions'))
                             <a class="has-arrow waves-effect waves-dark" aria-expanded="false"><i class="mdi mdi-account-location"></i><span class="hide-menu">{{trans('admin.nav_users')}}</span></a>
-                        @endif 
+                        @endif
                         <ul aria-expanded="false" class="collapse">
                             @can('employees')
                                 <li><a href="{{url('users')}}">{{trans('admin.view_users')}}</a></li>
                             @endcan
                             @can('permissions')
                                 <li><a href="{{url('roles')}} ">{{trans('admin.nav_permissions')}}</a></li>
-                            @endcan 
+                            @endcan
                         </ul>
                     </li>
                     @can('Account statement')
                         <li>
                             <a class="waves-effect waves-dark" href="{{url('accounts')}}" aria-expanded="false"><i class="fa fa-file-code-o"></i><span class="hide-menu">{{trans('admin.nav_account_list')}}</span></a>
                         </li>
-                    @endcan 
+                    @endcan
                     @can('bills')
                         <li>
                             <a class="waves-effect waves-dark" href="{{url('buy-bills')}}" aria-expanded="false"><i class="mdi mdi-file-find"></i><span class="hide-menu">{{trans('admin.nav_bills')}}</span></a>
                         </li>
-                    @endcan 
+                    @endcan
                     @can('income')
                         <li>
                             <a class="waves-effect waves-dark" href="{{url('income')}}" aria-expanded="false"><i class="mdi mdi-pin"></i><span class="hide-menu">{{trans('admin.nav_income')}}</span></a>
                         </li>
-                    @endcan 
+                    @endcan
                     @can('outgoings')
                         <li>
                             <a class="waves-effect waves-dark" href="{{url('outgoing')}}" aria-expanded="false"><i class="mdi mdi-square-inc-cash"></i><span class="hide-menu">{{trans('admin.nav_outgoing')}}</span></a>
                         </li>
-                    @endcan 
+
+                    @endcan
+                    <li>
+                        <a class="waves-effect waves-dark" href="{{url('inbox')}}" aria-expanded="false"><i class="fa fa-inbox"></i><span class="hide-menu">{{trans('admin.inbox')}}</span></a>
+                    </li>
                     @can('Lock a fiscal year')
                         <li>
                             <a class="waves-effect waves-dark" href="{{url('finatial_year')}}" aria-expanded="false"><i class="mdi mdi-cake-variant"></i><span class="hide-menu">{{trans('admin.nav_close_year')}}</span></a>
                         </li>
-                    @endcan 
+                    @endcan
                 </ul>
             </nav>
             <!-- End Sidebar navigation -->

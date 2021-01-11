@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Model\Inbox;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Exception;
@@ -26,9 +27,11 @@ class categoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function inbox()
     {
-        //
+        $categories =Inbox::paginate(10);
+        return view('admin.category.inbox',compact('categories'));
+
     }
 
     /**

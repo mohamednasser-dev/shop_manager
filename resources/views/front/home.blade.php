@@ -4,7 +4,7 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-    <title>Parallo - App Landing Page</title>
+    <title>Sobhy Group</title>
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('/assets/images/favicon.png') }}">
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,600"/>
@@ -123,23 +123,17 @@
 <!-- Call to Action -->
 <section class="row" id="tmCallToAction">
     <div class="col-12 tm-call-to-action-col">
-<<<<<<< HEAD
-
-        <img src="{{ asset('front/img/call-to-action.jpg')}}"  height="50px" alt="Image" class=" tm-call-to-action-image"/>
-
-=======
         <img src="{{ asset('front/img/call-to-action.jpg')}}" alt="Image" class="img-fluid" style="margin-right: 20px;
 width: 400px;
 height: 405px;" />
->>>>>>> 6cdfcdad38042816dd8cf31a0eaa234d6821d775
-        <div class="tm-bg-white tm-call-to-action-text" style="text-align: right">
+         <div class="tm-bg-white tm-call-to-action-text" style="text-align: right">
             <h2 class="tm-call-to-action-title">Images by Unsplash</h2>
             <p class="tm-call-to-action-description">
                 You may browse website for the
                 collection of CSS templates for your projects. Aliquam erat volutpat. Nulla eros est,
                 imperdiet vel feugiat non, ullamcorper mattis nulla.
             </p>
-            <a href="contact.html" class="btn btn-outline-primary">تواصل معنا</a>
+            <a href="{{url('contact-us')}}" class="btn btn-outline-primary">تواصل معنا</a>
 
         </div>
     </div>

@@ -27,7 +27,7 @@ https://templatemo.com/tm-534-parallo
         <div class="row tm-brand-row">
             <div class="col-lg-4 col-11">
                 <div class="tm-brand-container tm-bg-white-transparent">
-                    <img src="{{ asset('/assets/images/landing_page/logo.png') }}" alt="homepage" class="dark-logo" style="width: 200px; height: 140px;"/> 
+                    <img src="{{ asset('/assets/images/landing_page/logo.png') }}" alt="homepage" class="dark-logo" style="width: 200px; height: 140px;"/>
                     <div class="tm-brand-texts">
                         <h1 class="text-uppercase tm-brand-name">Sobhy Group</h1>
                     </div>
@@ -118,8 +118,8 @@ https://templatemo.com/tm-534-parallo
         <!-- Page footer -->
         <footer class="row">
             <p class="col-12 text-white text-center tm-copyright-text">
-                Copyright &copy; 2020 App Landing Page.
-                Designed by <a href="#" class="tm-copyright-link">TemplateMo</a>
+                Copyright &copy; 2021 TE-solutions.
+
             </p>
         </footer>
     </div>

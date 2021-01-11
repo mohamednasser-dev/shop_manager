@@ -19,18 +19,18 @@
             <div class="card card-body printableArea">
                 <div class="row">
                     <div class="col-md-5">
-                         <img src="{{ asset('/assets/images/bill_images/bill_header.png') }}" alt="homepage" class="dark-logo" style="width: 200px; height: 100px;"/> 
+                         <img src="{{ asset('/assets/images/bill_images/bill_header.png') }}" alt="homepage" class="dark-logo" style="width: 200px; height: 100px;"/>
                     </div>
                     <div class="col-md-3">
                         <div class="row">
-                            <img src="{{ asset('/assets/images/bill_images/main_logo.png') }}" alt="homepage" class="dark-logo" style="width: 200px; height: 120px;"/> 
+                            <img src="{{ asset('/assets/images/bill_images/main_logo.png') }}" alt="homepage" class="dark-logo" style="width: 200px; height: 120px;"/>
                         </div>
                         <div class="row center" style="margin-right: 40px;">
                             <button type="button" class="btn waves-effect waves-light btn-rounded btn-outline-dark">{{trans('admin.bill')}}</button>
                         </div>
                     </div>
                     <div class="col-md-4 center">
-                        <img src="{{ asset('/assets/images/bill_images/bill_phones.png') }}" alt="homepage" class="dark-logo" style="width: 200px; height: 70px;"/> 
+                        <img src="{{ asset('/assets/images/bill_images/bill_phones.png') }}" alt="homepage" class="dark-logo" style="width: 200px; height: 70px;"/>
                     </div>
                 </div>
                 <div class="row">
@@ -102,6 +102,7 @@
                 <a id="print" class="btn btn-success" href=" {{url('buy_bill_design_last/'.$CustomerBill->id.'/print')}}" target="_blank">
                     <i class="fa fa-print"></i>{{trans('admin.print')}}
                 </a>
+
                 <a href="{{ URL::previous() }}">{{trans('admin.back')}}</a>
             </div>
         </div>
@@ -109,18 +110,18 @@
 @endsection
 @section('scripts')
 <script src="{{ asset('/js/jquery.PrintArea.js') }}" type="text/JavaScript"></script>
-<script>
-    // $(document).ready(function() {
-    //     $("#print").click(function() {
-    //         var mode = 'iframe'; //popup
-    //         var close = mode == "popup";
-    //         var options = {
-    //             mode: mode,
-    //             popClose: close
-    //         };
-    //         $("div.printableArea").printArea(options);
-    //     });
-    // });
-    </script>
+{{--<script>--}}
+{{--    $(document).ready(function() {--}}
+{{--        $("#print").click(function() {--}}
+{{--            var mode = 'iframe'; //popup--}}
+{{--            var close = mode == "popup";--}}
+{{--            var options = {--}}
+{{--                mode: mode,--}}
+{{--                popClose: close--}}
+{{--            };--}}
+{{--            $("div.printableArea").printArea(options);--}}
+{{--        });--}}
+{{--    });--}}
+{{--    </script>--}}
 @endsection
 

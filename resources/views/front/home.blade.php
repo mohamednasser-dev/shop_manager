@@ -20,7 +20,7 @@
         <div class="row tm-brand-row">
             <div class="col-lg-4 col-11">
                 <div class="tm-brand-container tm-bg-white-transparent">
-                    <img src="{{ asset('/assets/images/landing_page/logo.png') }}" alt="homepage" class="dark-logo" style="width: 200px; height: 140px;"/> 
+                    <img src="{{ asset('/assets/images/landing_page/logo.png') }}" alt="homepage" class="dark-logo" style="width: 200px; height: 140px;"/>
                     <div class="tm-brand-texts">
                         <h1 class="text-uppercase tm-brand-name">Sobhy Group</h1>
                     </div>
@@ -123,7 +123,9 @@
 <!-- Call to Action -->
 <section class="row" id="tmCallToAction">
     <div class="col-12 tm-call-to-action-col">
-        <img src="{{ asset('front/img/call-to-action.jpg')}}" alt="Image" class="img-fluid tm-call-to-action-image"/>
+
+        <img src="{{ asset('front/img/call-to-action.jpg')}}"  height="50px" alt="Image" class=" tm-call-to-action-image"/>
+
         <div class="tm-bg-white tm-call-to-action-text" style="text-align: right">
             <h2 class="tm-call-to-action-title">Images by Unsplash</h2>
             <p class="tm-call-to-action-description">

@@ -14,6 +14,9 @@
                 font-family: 'Droid Arabic Kufi', serif !important;
                 font-size: 48px;
             }
+            .col-xs-12 {
+                width: 100%;
+            }
         </style>
         <!-- Favicon icon -->
         <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('/assets/images/favicon.png') }}">
@@ -30,7 +33,7 @@
         <!-- Custom CSS -->
         <link href="{{ asset('/css/style.css') }}" rel="stylesheet">
         <link href="{{ asset('/css/myStyles.css') }}" rel="stylesheet">
-        
+
         <!-- Dashboard 1 Page CSS -->
         <link href="{{ asset('/css/pages/dashboard1.css') }}" rel="stylesheet">
         <!-- You can change the theme colors from here -->
@@ -51,33 +54,33 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card card-body printableArea">
-                    <div class="row">
-                        <div class="col-md-5">
-                             <img src="{{ asset('/assets/images/bill_images/bill_header.png') }}" alt="homepage" class="dark-logo" style="width: 200px; height: 100px;"/> 
+                    <div class="row col-xs-12" style="text-align: left">
+                        <div class="col-xs-5 ">
+                             <img src="{{ asset('/assets/images/bill_images/bill_header.png') }}" alt="homepage" class="dark-logo" style="width: 200px; height: 100px;"/>
                         </div>
-                        <div class="col-md-3">
-                            <div class="row">
-                                <img src="{{ asset('/assets/images/bill_images/main_logo.png') }}" alt="homepage" class="dark-logo" style="width: 200px; height: 120px;"/> 
-                            </div>
-                            <div class="row center" style="margin-right: 40px;">
-                                <button type="button" class="btn waves-effect waves-light btn-rounded btn-outline-dark">{{trans('admin.bill')}}</button>
-                            </div>
+
+                        <br>
+                        <div class="col-md-3 center">
+
+                                <img src="{{ asset('/assets/images/bill_images/main_logo.png') }}" alt="homepage" class="dark-logo" style="width: 200px; height: 120px;"/>
+
+
                         </div>
-                        <div class="col-md-4 center">
-                            <img src="{{ asset('/assets/images/bill_images/bill_phones.png') }}" alt="homepage" class="dark-logo" style="width: 200px; height: 70px;"/> 
-                        </div>
+
+
                     </div>
                     <div class="row">
                         <div class="col-md-6">
                             <h3><p class="m-t-10"><b>{{trans('admin.bill_date')}}</b></i>{{$CustomerBill->date}}</p></h3>
                         </div>
-                        <div class="col-md-6">
-                            <h3><span class="pull-right"><b class="text-danger">{{trans('admin.NO_bill')}}{{$CustomerBill->bill_num}}</b></span></h3>
-                        </div>
+
                     </div>
                     <div class="row">
                         <div class="col-md-6">
                             <h3><p class="m-t-10"><b>{{trans('admin.mrs')}}</b></i>{{$CustomerBill->Customer->name}}</p></h3>
+                        </div>
+                        <div class="col-md-6">
+                            <h3><span class="pull-left"><b class="text-danger">{{trans('admin.NO_bill')}}{{$CustomerBill->bill_num}}</b></span></h3>
                         </div>
                     </div>
                     <hr>

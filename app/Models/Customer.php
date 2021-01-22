@@ -3,11 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
-class Customer extends Model
+use Illuminate\Foundation\Auth\User as Authenticatable;
+class Customer extends Authenticatable
 {
     protected $fillable = [
-        'name', 'phone','address', 'status' ,'user_id'
+        'name', 'email', 'password', 'phone','address', 'status' ,'user_id'
 
     ];
 

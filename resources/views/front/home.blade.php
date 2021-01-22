@@ -11,7 +11,14 @@
     <link rel="stylesheet" href="{{ asset('front/css/all.min.css')}}"/>
     <link rel="stylesheet" href="{{ asset('front/css/bootstrap.min.css')}}"/>
     <link rel="stylesheet" href="{{ asset('front/css/templatemo-style.css')}}"/>
-
+<!--     <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif !important;
+            font-size: 48px;
+        }
+    </style> -->
 </head>
 <body>
 
@@ -40,14 +47,6 @@
                                     <div class="tm-nav-link-highlight"></div>
                                     <a class="nav-link" href="{{url('/')}}">الرئيسيه <span class="sr-only">(current)</span></a>
                                 </li>
-                                <!--                    <li class="nav-item">-->
-                                <!--                      <div class="tm-nav-link-highlight"></div>-->
-                                <!--                      <a class="nav-link" href="about.html">About</a>-->
-                                <!--                    </li>-->
-                                <!--                                <li class="nav-item">-->
-                                <!--                                    <div class="tm-nav-link-highlight"></div>-->
-                                <!--                                    <a class="nav-link" href="services.html">منتجاتنا</a>-->
-                                <!--                                </li>-->
                                 <li class="nav-item">
                                     <div class="tm-nav-link-highlight"></div>
                                     <a class="nav-link" href="{{url('our-products')}}">منتجاتنا</a>
@@ -55,6 +54,10 @@
                                 <li class="nav-item">
                                     <div class="tm-nav-link-highlight"></div>
                                     <a class="nav-link" href="{{url('contact-us')}}">اتصل بنا</a>
+                                </li>
+                                <li class="nav-item">
+                                    <div class="tm-nav-link-highlight"></div>
+                                    <a class="nav-link" href="{{url('/customer_login')}}">تسجيل الدخول </a>
                                 </li>
                             </ul>
                         </div>

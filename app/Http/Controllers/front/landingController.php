@@ -3,20 +3,57 @@
 namespace App\Http\Controllers\front;
 
 use App\Http\Controllers\Controller;
-use App\Models\Inbox;
-use App\Models\Product;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Models\Product;
+use App\Models\Inbox;
 
 class landingController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-              return view('front.home');
+        return view('front.home');
+    } 
+
+    public function show_login()
+    {
+        if(\Auth::guard('web')->check()){
+            return redirect('/home');
+        }else if(\Auth::guard('customer')->check()){
+            return redirect('customer_home');
+        }
+        return view('front.login');
+    }
+
+    public function login(Request $request){
+
+        if(\Auth::guard('web')->check()){
+            return redirect('/home');
+        }else if(\Auth::guard('customer')->check()){
+            return redirect('customer_home');
+        }
+
+            // dd($request);
+        $remeber=Request('Remember')==1? true:false ;
+        if(auth::guard('customer')->attempt( ['email'=>Request('email'),'password'=>Request('password') ],$remeber) ){ 
+            //Check if active user or not 
+            if(Auth::user() != null){
+                if(Auth::user()->status != 'active'){
+                     \Auth::guard('customer')->logout();
+                    session()->flash('danger', trans('admin.not_auth')); 
+                    return redirect('/customer_login');
+                }else{
+                    return redirect('/customer_home');
+                }
+            }else{
+                session()->flash('danger',trans('admin.invaldemailorpassword'));
+                return redirect('/customer_login');
+            }
+
+        }else{
+            session()->flash('danger',trans('admin.invaldemailorpassword'));
+            return redirect('/customer_login');
+        }
     }
 
     /**

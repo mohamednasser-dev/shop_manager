@@ -16,11 +16,8 @@
 
 
 </head>
-<!--
-Parallo Template
-https://templatemo.com/tm-534-parallo
--->
 <body id="servicesPage">
+
 
 <div class="parallax-window" data-parallax="scroll" data-image-src="{{ asset('front/img/bg-01.jpg')}}">
     <div class="container-fluid">
@@ -45,17 +42,10 @@ https://templatemo.com/tm-534-parallo
                             <ul class="navbar-nav">
                                 <li class="nav-item ">
                                     <div class="tm-nav-link-highlight"></div>
-                                    <a class="nav-link" href="{{url('/')}}">الرئيسيه <span class="sr-only">(current)</span></a>
+                                    <a class="nav-link" href="{{url('/')}}">الرئيسيه <span
+                                            class="sr-only">(current)</span></a>
                                 </li>
-                                <!--                    <li class="nav-item">-->
-                                <!--                      <div class="tm-nav-link-highlight"></div>-->
-                                <!--                      <a class="nav-link" href="about.html">About</a>-->
-                                <!--                    </li>-->
-                                <!--                                <li class="nav-item">-->
-                                <!--                                    <div class="tm-nav-link-highlight"></div>-->
-                                <!--                                    <a class="nav-link" href="services.html">منتجاتنا</a>-->
-                                <!--                                </li>-->
-                                <li class="nav-item active">
+                                <li class="nav-item ">
                                     <div class="tm-nav-link-highlight"></div>
                                     <a class="nav-link" href="{{url('our-products')}}">منتجاتنا</a>
                                 </li>
@@ -63,7 +53,7 @@ https://templatemo.com/tm-534-parallo
                                     <div class="tm-nav-link-highlight"></div>
                                     <a class="nav-link" href="{{url('contact-us')}}">اتصل بنا</a>
                                 </li>
-                                <li class="nav-item">
+                                <li class="nav-item active">
                                     <div class="tm-nav-link-highlight"></div>
                                     <a class="nav-link" href="{{url('/customer_login')}}">تسجيل الدخول </a>
                                 </li>
@@ -73,57 +63,52 @@ https://templatemo.com/tm-534-parallo
                 </div>
             </div>
         </div>
-
-        <!-- Testimonials header -->
-        <section class="row" id="tmServices">
-            <div class="col-12">
-
-
-
-                <div class="parallax-window tm-services-parallax-header tm-testimonials-parallax-header"
-                     data-parallax="scroll"
-                     data-z-index="101"
-                     data-image-src="img/ice-mountain.jpg">
-
-                    <div class="tm-bg-black-transparent text-center tm-services-header tm-testimonials-header">
-                        <h2 class="text-uppercase tm-services-page-title tm-testimonials-page-title">منتجاتنا</h2>
-                        <p class="tm-services-description mb-0 small">
-                           تتميز منتجاتنا بالجوده وال بلا بلا بلا بلا بلا
-                        </p>
+        <section class="row tm-contact-row">
+            <div class="col-lg-6 tm-contact-col-left" >
+                <form action="{{url('/customer/login')}}" method="POST" id="tmContactForm" accept-charset="UTF-8" class="tm-bg-black-transparent tm-contact-form">
+                    @csrf
+                    <div class="form-group">
+                        <input type="email" id="email" name="email"
+                               class="form-control rounded-0 border-top-0 border-right-0 border-left-0"
+                               placeholder="البريد الاليكترونى" required="">
                     </div>
-                </div>
-
-
-
+                    <div class="form-group"  >
+                        <input type="password" id="password" name="password"
+                               class="form-control rounded-0 border-top-0 border-right-0 border-left-0"
+                               required="">
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn  btn-primary tm-btn-submit rounded-circle">
+                            تسجيل الدخول
+                        </button>
+                    </div>
+                </form>
             </div>
-        </section>
+            <div class="col-lg-6 tm-contact-col-right">
+                <div class="tm-bg-black-transparent tm-contact-text">
 
-        <section class="row tm-testimonials-section">
-            <div class="col-12 tm-carousel">
+                    <i class="mx-auto mb-5 fas fa-3x fa-address-card tm-app-feature-icon"></i>
 
-                @foreach($products as $product)
-                <div class="tm-bg-black-transparent tm-testimonial-box text-center">
-                    <div class="tm-person-img-container">
-                        <img src="{{url($product->image)}}" width="300px" height="300px" alt="product image" class=" mx-auto"/>
-                    </div>
-                    <h3 class="tm-about-name tm-uppercase">{{$product->name}}</h3>
-                    <p class="tm-about-description">
-                        {{$product->Category->name}}
+                    <h3 class="tm-service-tab-title">تسجيل الدخول</h3>
+                    <p class="tm-service-tab-p">
+                        Proin rutrum massa quis erat mollis iaculis. Vestibulum
+                        a risus ex. Nunc rhoncus, justo at blandit cursus, orci
+                        erat molestie felis, id ullamcorper mauris felis eu eros.
                     </p>
-
+                    <p class="mb-0">
+                        Donec turpis augue, mollis eu erat in, posuere congue
+                        sapien. Maecenas facilisis dui sit amet ornare aliquam.
+                        Paesent malesuada mi a est pulvinar.
+                    </p>
                 </div>
-                @endforeach
-
             </div>
         </section>
-
 
 
         <!-- Page footer -->
         <footer class="row">
             <p class="col-12 text-white text-center tm-copyright-text">
                 Copyright &copy; 2021 TE-solutions.
-
             </p>
         </footer>
     </div>
@@ -134,7 +119,6 @@ https://templatemo.com/tm-534-parallo
 <script src="{{ asset('front/js/parallax.min.js')}}"></script>
 <script src="{{ asset('front/js/bootstrap.min.js')}}"></script>
 <script src="{{ asset('front/slick/slick.min.js')}}"></script>
-
 <script>
     $(function () {
         $('.tabgroup > div').hide();
@@ -198,7 +182,6 @@ https://templatemo.com/tm-534-parallo
             ]
         });
     });
-
 </script>
 </body>
 </html>

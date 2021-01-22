@@ -236,4 +236,5 @@ return [
     'image' => 'صورة المنتج',
     'search_form_date' => ' من تاريخ',
     'search_to_date' => 'الى تاريخ',
+    'invaldemailorpassword' => 'الرقم السرى او البريد الالكترونى خطأ .. !',
 ];

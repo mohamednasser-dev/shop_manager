@@ -16,10 +16,6 @@
 
 
 </head>
-<!--
-Parallo Template
-https://templatemo.com/tm-534-parallo
--->
 <body id="servicesPage">
 
 
@@ -49,14 +45,6 @@ https://templatemo.com/tm-534-parallo
                                     <a class="nav-link" href="{{url('/')}}">الرئيسيه <span
                                             class="sr-only">(current)</span></a>
                                 </li>
-                                <!--                    <li class="nav-item">-->
-                                <!--                      <div class="tm-nav-link-highlight"></div>-->
-                                <!--                      <a class="nav-link" href="about.html">About</a>-->
-                                <!--                    </li>-->
-                                <!--                                <li class="nav-item">-->
-                                <!--                                    <div class="tm-nav-link-highlight"></div>-->
-                                <!--                                    <a class="nav-link" href="services.html">منتجاتنا</a>-->
-                                <!--                                </li>-->
                                 <li class="nav-item ">
                                     <div class="tm-nav-link-highlight"></div>
                                     <a class="nav-link" href="{{url('our-products')}}">منتجاتنا</a>
@@ -64,6 +52,10 @@ https://templatemo.com/tm-534-parallo
                                 <li class="nav-item active">
                                     <div class="tm-nav-link-highlight"></div>
                                     <a class="nav-link" href="{{url('contact-us')}}">اتصل بنا</a>
+                                </li>
+                                <li class="nav-item">
+                                    <div class="tm-nav-link-highlight"></div>
+                                    <a class="nav-link" href="{{url('/customer_login')}}">تسجيل الدخول </a>
                                 </li>
                             </ul>
                         </div>

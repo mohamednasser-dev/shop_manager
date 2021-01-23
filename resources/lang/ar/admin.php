@@ -237,4 +237,26 @@ return [
     'search_form_date' => ' من تاريخ',
     'search_to_date' => 'الى تاريخ',
     'invaldemailorpassword' => 'الرقم السرى او البريد الالكترونى خطأ .. !',
+
+    'car_type' => 'نوع السيارة',
+    'car_model' => 'موديل السيارة',
+    'in_color' => 'لون الطقم الداخلى',
+    'out_color' => 'لون الطقم الخارجى',
+    'double_thread_color' => 'لون الخيط الدوبل',
+    'design_type' => 'نوع التصميم',
+    'normal' => 'عادى',
+    'threeD' => '3D',
+    'recieved_date' => 'تاريخ الاستلام',
+    'special_request' => 'طلبات خاصة',
+    'chaire_image' => 'صوره الكرسي',
+    'sofa_image' => 'صورة الكنبة',
+    'bill_type' => 'نوع الفاتورة',
+
+    'gomla' => 'جملة',
+    'part' => 'قطاعي',
+
+    'sent' => 'تم ارسال الطلب',
+    'recieved' => 'تم استلام الطلب',
+    'done' => 'تم انهاء الطلب',
+    'status'=>'حالة الطلب'
 ];

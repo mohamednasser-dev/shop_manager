@@ -16,7 +16,8 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header">
-                    <button alt="default" data-toggle="modal" data-target="#responsive-modal" class="btn btn-info btn-bg">
+                    <button alt="default" data-toggle="modal" data-target="#responsive-modal"
+                            class="btn btn-info btn-bg">
                         {{trans('admin.add_customer')}}
                     </button>
                 </div>
@@ -25,14 +26,14 @@
                     <table id="example23"
                            class="tablesaw table-striped table-hover table-bordered table tablesaw-columntoggle">
                         <thead>
-                            <tr>
-                                <th class="text-center">{{trans('admin.name')}}</th>
-                                <th class="text-center">{{trans('admin.phone')}}</th>
-                                <th class="text-center">{{trans('admin.address')}}</th>
-                                <th class="text-center">{{trans('admin.employee')}}</th>
-                                <th class="text-center">{{trans('admin.actions')}}</th>
-                                <th class="text-center">{{trans('admin.public_delete')}}</th>
-                            </tr>
+                        <tr>
+                            <th class="text-center">{{trans('admin.name')}}</th>
+                            <th class="text-center">{{trans('admin.phone')}}</th>
+                            <th class="text-center">{{trans('admin.address')}}</th>
+                            <th class="text-center">{{trans('admin.employee')}}</th>
+                            <th class="text-center">{{trans('admin.actions')}}</th>
+                            <th class="text-center">{{trans('admin.public_delete')}}</th>
+                        </tr>
                         </thead>
                         <tbody>
                         @foreach($customers as $cust)
@@ -44,12 +45,13 @@
                                 <td class="text-lg-center">
                                     <a class='btn btn-raised btn-primary btn-sml'
                                        href=" {{url('customer/'.$cust->id.'/account')}}">
-                                       {{trans('admin.cust_account')}}
+                                        {{trans('admin.cust_account')}}
                                     </a>
                                     <a class='btn btn-raised btn-success btn-sml'
                                        href=" {{url('customer/'.$cust->id.'/edit')}}"
                                        data-editid="{{$cust->id}}" id="edit"
-                                       alt="default" data-toggle="modal" data-target="#edit-modal"><i class="fa fa-edit"></i>
+                                       alt="default" data-toggle="modal" data-target="#edit-modal"><i
+                                            class="fa fa-edit"></i>
                                     </a>
                                 </td>
                                 <td class="text-lg-center">
@@ -57,24 +59,25 @@
                                         <form method="get" id='delete-form-{{ $cust->id }}'
                                               action="{{url('customer/'.$cust->id.'/delete')}}"
                                               style='display: none;'>
-                                            {{csrf_field()}}
-                                            <!-- {{method_field('delete')}} -->
+                                        {{csrf_field()}}
+                                        <!-- {{method_field('delete')}} -->
                                         </form>
                                         <button onclick="
                                             if(confirm('{{trans('admin.deleteConfirmation')}}'))
                                             {
-                                                event.preventDefault();
-                                                document.getElementById('delete-form-{{ $cust->id }}').submit();
+                                            event.preventDefault();
+                                            document.getElementById('delete-form-{{ $cust->id }}').submit();
                                             }else {
-                                                event.preventDefault();
+                                            event.preventDefault();
                                             }"
-                                            class='btn btn-danger btn-circle' href=" ">
+                                                class='btn btn-danger btn-circle' href=" ">
                                             <i class="fa fa-trash" aria-hidden='true'></i>
                                         </button>
                                     @else
                                         <div class="switch">
                                             <label>
-                                                <input onchange="update_active(this)" value="{{ $cust->id }}" type="checkbox" <?php if($cust->status == 'active') echo "checked";?> >
+                                                <input onchange="update_active(this)" value="{{ $cust->id }}"
+                                                       type="checkbox" <?php if ($cust->status == 'active') echo "checked";?> >
                                                 <span class="lever switch-col-indigo"></span>
                                             </label>
                                         </div>
@@ -92,26 +95,41 @@
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h4 class="modal-title">{{trans('admin.add_customer')}}</h4>
-                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×
+                                    </button>
                                 </div>
                                 <div class="modal-body">
                                     {{ Form::open( ['url'  => ['customer'],'method'=>'post' , 'class'=>'form'] ) }}
                                     {{ csrf_field() }}
                                     <div class="form-group">
-                                        <label for="recipient-name" class="control-label">{{trans('admin.name')}}</label>
+                                        <label for="recipient-name"
+                                               class="control-label">{{trans('admin.name')}}</label>
                                         {{ Form::text('name',null,["class"=>"form-control" ,"required"]) }}
                                     </div>
                                     <div class="form-group">
-                                        <label for="recipient-name" class="control-label">{{trans('admin.phone')}}</label>
+                                        <label for="recipient-name"
+                                               class="control-label">{{trans('admin.phone')}}</label>
                                         {{ Form::number('phone',null,["class"=>"form-control" ,"required"]) }}
                                     </div>
                                     <div class="form-group">
-                                        <label for="recipient-name" class="control-label">{{trans('admin.address')}}</label>
+                                        <label for="recipient-name"
+                                               class="control-label">{{trans('admin.address')}}</label>
                                         {{ Form::text('address',null,["class"=>"form-control" ,"required"]) }}
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="recipient-name"
+                                               class="control-label">{{trans('admin.email')}}</label>
+                                        {{ Form::email('email',null,["class"=>"form-control" ,"required"]) }}
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="recipient-name"  class="control-label">{{trans('admin.password')}}</label>
+                                        {{ Form::password('password',null,["class"=>"form-control" ,"required"]) }}
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">
+                                        Close
+                                    </button>
                                     {{ Form::submit( trans('admin.public_Add') ,['class'=>'btn btn-info','style'=>'margin:10px']) }}
                                     {{ Form::close() }}
                                 </div>
@@ -149,9 +167,20 @@
                                                class="control-label">{{trans('admin.address')}}</label>
                                         {{ Form::text('address',null,["class"=>"form-control" ,"required",'id'=>'address']) }}
                                     </div>
+                                    <div class="form-group">
+                                        <label for="recipient-name"
+                                               class="control-label">{{trans('admin.email')}}</label>
+                                        {{ Form::email('email',null,["class"=>"form-control" ,"required",'id'=>'email']) }}
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="recipient-name"  class="control-label">{{trans('admin.password')}}</label>
+                                        {{ Form::password('password',null,["class"=>"form-control" ,"required"]) }}
+                                    </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">
+                                        Close
+                                    </button>
                                     {{ Form::submit( trans('admin.public_Add') ,['class'=>'btn btn-info','style'=>'margin:10px']) }}
                                     {{ Form::close() }}
                                 </div>
@@ -166,39 +195,42 @@
 @section('scripts')
     <script>
         var id;
-        $(document).on('click', '#edit', function() {
+        $(document).on('click', '#edit', function () {
             id = $(this).data('editid');
             console.log(id);
             $.ajax({
                 url: "customer/" + id,
                 dataType: "json",
-                success: function(html) {
+                success: function (html) {
                     $('#id').val(html.data.id);
                     $('#name').val(html.data.name);
                     $('#phone').val(html.data.phone);
                     $('#address').val(html.data.address);
+                    $('#email').val(html.data.email);
                 }
             })
         });
     </script>
     <script type="text/javascript">
-      function update_active(el){
-            if(el.checked){
+        function update_active(el) {
+            if (el.checked) {
                 var status = 'active';
-            }
-            else{
+            } else {
                 var status = 'unactive';
             }
-            $.post('{{ route('customer.actived') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status}, function(data){
-                if(data == 1){
+            $.post('{{ route('customer.actived') }}', {
+                _token: '{{ csrf_token() }}',
+                id: el.value,
+                status: status
+            }, function (data) {
+                if (data == 1) {
                     console.log('daaa = '.data);
                     toastr.success("{{trans('admin.statuschanged')}}");
-                }
-                else{
+                } else {
                     toastr.error("{{trans('admin.statuschanged')}}");
                 }
             });
         }
-  </script>
+    </script>
 @endsection
 

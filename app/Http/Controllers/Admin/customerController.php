@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Exception;
 use App\Models\Customer;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Hash;
 
 class customerController extends Controller
 {
@@ -56,10 +57,13 @@ class customerController extends Controller
         $data = $this->validate(\request(),
             [
                 'name' => 'required|unique:customers',
+                'email' => 'required|unique:customers',
                 'phone' => 'required|unique:customers',
                 'address' => 'required',
+                'password' => 'required',
             ]);
         $data['user_id'] = Auth::user()->id;
+        $data['password'] = Hash::make($request->password);
         $user = Customer::create($data);
         $user->save();
         session()->flash('success', trans('admin.addedsuccess'));
@@ -139,10 +143,14 @@ class customerController extends Controller
     {
         $data = $this->validate(\request(),
             [
-                'name' => 'required|unique:suppliers,name,' . $request->id,
-                'phone' => 'required|unique:suppliers,phone,' . $request->id,
-                'address' => 'required',
-            ]);
+                'name' => 'required|unique:customers,name,' . $request->id,
+                'email' => 'required|unique:customers,email,' . $request->id,
+                'phone' => 'required|unique:customers,phone,' . $request->id,
+                'password' => 'sometimes|nullable',
+             ]);
+        if($request->password){
+            $data['password'] = Hash::make($request->password);
+        }
         $user = Customer::whereId($request->id)->update($data);
         session()->flash('success', trans('admin.updatSuccess'));
         return redirect(url('customer'));

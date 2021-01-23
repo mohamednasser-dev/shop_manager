@@ -65,9 +65,11 @@
         </div>
         <section class="row tm-contact-row">
             <div class="col-lg-6 tm-contact-col-left" >
+
                 <form action="{{url('/customer/login')}}" method="POST" id="tmContactForm" accept-charset="UTF-8" class="tm-bg-black-transparent tm-contact-form">
                     @csrf
-                    <div class="form-group">
+                    <i class="mx-auto mb-5 fas fa-3x fa-user tm-app-feature-icon"></i>
+                     <div class="form-group">
                         <input type="email" id="email" name="email"
                                class="form-control rounded-0 border-top-0 border-right-0 border-left-0"
                                placeholder="البريد الاليكترونى" required="">
@@ -75,14 +77,14 @@
                     <div class="form-group"  >
                         <input type="password" id="password" name="password"
                                class="form-control rounded-0 border-top-0 border-right-0 border-left-0"
-                               required="">
+                               placeholder="كلمة المرور"  required="">
                     </div>
                     <div class="text-center">
                         <button type="submit" class="btn  btn-primary tm-btn-submit rounded-circle">
                             تسجيل الدخول
                         </button>
                     </div>
-                </form>
+                 </form>
             </div>
             <div class="col-lg-6 tm-contact-col-right">
                 <div class="tm-bg-black-transparent tm-contact-text">
@@ -95,11 +97,7 @@
                         a risus ex. Nunc rhoncus, justo at blandit cursus, orci
                         erat molestie felis, id ullamcorper mauris felis eu eros.
                     </p>
-                    <p class="mb-0">
-                        Donec turpis augue, mollis eu erat in, posuere congue
-                        sapien. Maecenas facilisis dui sit amet ornare aliquam.
-                        Paesent malesuada mi a est pulvinar.
-                    </p>
+
                 </div>
             </div>
         </section>

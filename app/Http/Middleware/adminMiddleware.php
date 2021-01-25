@@ -17,7 +17,7 @@ class adminMiddleware
      */
     public function handle($request, Closure $next)
     {
-          if (Auth::check() && Auth::user()->type == 'admin') {
+          if (Auth::check() && Auth::user()->type == 'admin' || Auth::check() && Auth::user()->type == 'user') {
             return $next($request);
         } else {
             return redirect()->route('home')->with('danger',trans('admin.preventAlert'));

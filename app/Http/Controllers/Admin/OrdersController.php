@@ -38,7 +38,6 @@ class OrdersController extends Controller
      */
     public function store(Request $request)
     {
-        //
     }
 
     /**
@@ -60,7 +59,8 @@ class OrdersController extends Controller
      */
     public function edit($id)
     {
-        //
+        $order = Order::whereId($id)->first();
+        return view('admin.order.edit', compact(  'order'));
     }
 
     /**
@@ -72,7 +72,15 @@ class OrdersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $this->validate(\request(),
+            [
+                'status' => 'required',
+
+            ]);
+
+        $user = Order::whereId($id)->update($data);
+        session()->flash('success', trans('admin.updatSuccess'));
+        return redirect(url('orders'));
     }
 
     /**
@@ -83,6 +91,7 @@ class OrdersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $order = Order::wheerId($id)->delete();
+        return redirect(url('orders'));
     }
 }

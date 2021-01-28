@@ -11,14 +11,14 @@
     <link rel="stylesheet" href="{{ asset('front/css/all.min.css')}}"/>
     <link rel="stylesheet" href="{{ asset('front/css/bootstrap.min.css')}}"/>
     <link rel="stylesheet" href="{{ asset('front/css/templatemo-style.css')}}"/>
-<!--     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Cairo', sans-serif !important;
-            font-size: 48px;
-        }
-    </style> -->
+    <!--     <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300&display=swap" rel="stylesheet">
+        <style>
+            body {
+                font-family: 'Cairo', sans-serif !important;
+                font-size: 48px;
+            }
+        </style> -->
 
 </head>
 <body>
@@ -28,7 +28,8 @@
         <div class="row tm-brand-row">
             <div class="col-lg-4 col-11">
                 <div class="tm-brand-container tm-bg-white-transparent">
-                    <img src="{{ asset('/assets/images/landing_page/logo.png') }}" alt="homepage" class="dark-logo" style="width: 200px; height: 140px;"/>
+                    <img src="{{ asset('/assets/images/landing_page/logo.png') }}" alt="homepage" class="dark-logo"
+                         style="width: 200px; height: 140px;"/>
                     <div class="tm-brand-texts">
                         <h1 class="text-uppercase tm-brand-name">Sobhy Group</h1>
                     </div>
@@ -46,7 +47,8 @@
                             <ul class="navbar-nav">
                                 <li class="nav-item active">
                                     <div class="tm-nav-link-highlight"></div>
-                                    <a class="nav-link" href="{{url('/')}}">الرئيسيه <span class="sr-only">(current)</span></a>
+                                    <a class="nav-link" href="{{url('/')}}">الرئيسيه <span
+                                            class="sr-only">(current)</span></a>
                                 </li>
                                 <li class="nav-item">
                                     <div class="tm-nav-link-highlight"></div>
@@ -69,89 +71,89 @@
 
 
         <section class="row" id="tmHome">
-    <div class="col-12 tm-home-container">
-        <div class="text-white tm-home-left" style="text-align: right">
-            <p class="text-uppercase tm-slogan">ماذا نصنع؟</p>
-            <hr class="tm-home-hr"/>
-            <h2 class="tm-home-title">جلد كراسي السيارات </h2>
-            <p class="tm-home-text">
-                نمتلك خبره ف صناعه كسوة كراسي السيارات
-                نمتلك خبره ف صناعه كسوة كراسي السيارات
-            </p>
-            <a href="#tmFeatures" class="btn btn-primary">المزيد</a>
-        </div>
-        <div class="tm-home-right">
-            {{--                        <img src="{{ asset('front/img/mobile-screen.png')}}" alt="App on Mobile mockup"/>--}}
-        </div>
-    </div>
-</section>
+            <div class="col-12 tm-home-container">
+                <div class="text-white tm-home-left" style="text-align: right">
+                    <p class="text-uppercase tm-slogan">ماذا نصنع؟</p>
+                    <hr class="tm-home-hr"/>
+                    <h2 class="tm-home-title">جلد كراسي السيارات </h2>
+                    <p class="tm-home-text">
+                        نمتلك خبره ف صناعه كسوة كراسي السيارات
+                        نمتلك خبره ف صناعه كسوة كراسي السيارات
+                    </p>
+                    <a href="#tmFeatures" class="btn btn-primary">المزيد</a>
+                </div>
+                <div class="tm-home-right">
+                    <img src="{{ asset('front/img/mobile-screen.png')}}" alt="App on Mobile mockup"/>
+                </div>
+            </div>
+        </section>
 
-<!-- Features -->
-<div class="row" id="tmFeatures">
-    <div class="col-lg-4">
-        <div class="tm-bg-white-transparent tm-feature-box">
-            <h3 class="tm-feature-name">High Performance</h3>
+        <!-- Features -->
+        <div class="row" id="tmFeatures">
+            <div class="col-lg-4">
+                <div class="tm-bg-white-transparent tm-feature-box">
+                    <h3 class="tm-feature-name">High Performance</h3>
 
-            <div class="tm-feature-icon-container">
-                <i class="fas fa-3x fa-server"></i>
+                    <div class="tm-feature-icon-container">
+                        <i class="fas fa-3x fa-server"></i>
+                    </div>
+
+                    <p class="text-center">Download and use this layout for your sites. Total 5 HTML pages included.</p>
+                </div>
             </div>
 
-            <p class="text-center">Download and use this layout for your sites. Total 5 HTML pages included.</p>
-        </div>
-    </div>
+            <div class="col-lg-4">
+                <div class="tm-bg-white-transparent tm-feature-box">
+                    <h3 class="tm-feature-name">Fast Support</h3>
 
-    <div class="col-lg-4">
-        <div class="tm-bg-white-transparent tm-feature-box">
-            <h3 class="tm-feature-name">Fast Support</h3>
-
-            <div class="tm-feature-icon-container">
-                <i class="fas fa-3x fa-headphones"></i>
+                    <div class="tm-feature-icon-container">
+                        <i class="fas fa-3x fa-headphones"></i>
+                    </div>
+                    <p class="text-center">You are allowed to use this for commercial purpose or personal site.
+                    </p>
+                </div>
             </div>
-            <p class="text-center">You are allowed to use this for commercial purpose or personal site.
-            </p>
-        </div>
-    </div>
 
-    <div class="col-lg-4">
-        <div class="tm-bg-white-transparent tm-feature-box">
-            <h3 class="tm-feature-name">App Marketing</h3>
+            <div class="col-lg-4">
+                <div class="tm-bg-white-transparent tm-feature-box">
+                    <h3 class="tm-feature-name">App Marketing</h3>
 
-            <div class="tm-feature-icon-container">
-                <i class="fas fa-3x fa-satellite-dish"></i>
+                    <div class="tm-feature-icon-container">
+                        <i class="fas fa-3x fa-satellite-dish"></i>
+                    </div>
+                    <p class="text-center">You are NOT allowed to redistribute this template on any download site.
+                    </p>
+                </div>
             </div>
-            <p class="text-center">You are NOT allowed to redistribute this template on any download site.
-            </p>
         </div>
-    </div>
-</div>
-<!-- Call to Action -->
-<section class="row" id="tmCallToAction">
-    <div class="col-12 tm-call-to-action-col">
-        <img src="{{ asset('front/img/call-to-action.jpg')}}" alt="Image" class="img-fluid" style="margin-right: 20px;
+        <!-- Call to Action -->
+        <section class="row" id="tmCallToAction">
+            <div class="col-12 tm-call-to-action-col">
+                <img src="{{ asset('front/img/call-to-action.jpg')}}" alt="Image" class="img-fluid" style="margin-right: 20px;
 width: 400px;
-height: 405px;" />
-         <div class="tm-bg-white tm-call-to-action-text" style="text-align: right">
-            <h2 class="tm-call-to-action-title">Images by Unsplash</h2>
-            <p class="tm-call-to-action-description">
-                You may browse website for the
-                collection of CSS templates for your projects. Aliquam erat volutpat. Nulla eros est,
-                imperdiet vel feugiat non, ullamcorper mattis nulla.
+height: 405px;"/>
+                <div class="tm-bg-white tm-call-to-action-text" style="text-align: right">
+                    <h2 class="tm-call-to-action-title">Images by Unsplash</h2>
+                    <p class="tm-call-to-action-description">
+                        You may browse website for the
+                        collection of CSS templates for your projects. Aliquam erat volutpat. Nulla eros est,
+                        imperdiet vel feugiat non, ullamcorper mattis nulla.
+                    </p>
+                    <a href="{{url('contact-us')}}" class="btn btn-outline-primary">تواصل معنا</a>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Page footer -->
+        <footer class="row">
+            <p class="col-12 text-white text-center tm-copyright-text">
+                Copyright &copy; 2021 TE-solutions.
+                <!--                Designed by <a href="#" class="tm-copyright-link">TemplateMo</a>-->
             </p>
-            <a href="{{url('contact-us')}}" class="btn btn-outline-primary">تواصل معنا</a>
-
-        </div>
+        </footer>
     </div>
-</section>
-
-<!-- Page footer -->
-<footer class="row">
-    <p class="col-12 text-white text-center tm-copyright-text">
-        Copyright &copy; 2021 TE-solutions.
-        <!--                Designed by <a href="#" class="tm-copyright-link">TemplateMo</a>-->
-    </p>
-</footer>
-</div>
-<!-- .container-fluid -->
+    <!-- .container-fluid -->
 </div>
 
 

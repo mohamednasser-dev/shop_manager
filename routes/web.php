@@ -112,6 +112,8 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
 
     //account list
     Route::resource('accounts', 'Admin\AccountListController');
+    //order list
+    Route::resource('orders', 'Admin\OrdersController');
 });
 
 Route::get('/customer_login', 'front\landingController@show_login');

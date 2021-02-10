@@ -95,6 +95,9 @@
                     <li>
                         <a class="waves-effect waves-dark" href="{{url('inbox')}}" aria-expanded="false"><i class="fa fa-inbox"></i><span class="hide-menu">{{trans('admin.inbox')}}</span></a>
                     </li>
+                    <li>
+                        <a class="waves-effect waves-dark" href="{{url('orders')}}" aria-expanded="false"><i class="fa fa-file"></i><span class="hide-menu">{{trans('admin.orders')}}</span></a>
+                    </li>
                     @can('Lock a fiscal year')
                         <li>
                             <a class="waves-effect waves-dark" href="{{url('finatial_year')}}" aria-expanded="false"><i class="mdi mdi-cake-variant"></i><span class="hide-menu">{{trans('admin.nav_close_year')}}</span></a>

@@ -72,8 +72,9 @@
                     </div>
                     <div class="form-group" style="text-decoration-color: #0A0A0A">
                         <label for="recipient-name" class="control-label">{{trans('admin.status')}}</label>
-                        {!! Form::select('status', ['sent'=>(trans('admin.sent')),'recieved'=>(trans('admin.recieved')),'done'=>(trans('admin.done')) ]
-                        , trans('admin.'.$order->status), ['class'=>'form-control','required']) !!}
+                        {!! Form::select('status', ['sent'=>(trans('admin.sent')),
+                'recieved'=>(trans('admin.recieved')),'done'=>(trans('admin.done')) ]
+                        , $order->status, ['class'=>'form-control','required']) !!}
                     </div>
 
 

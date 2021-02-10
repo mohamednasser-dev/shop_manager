@@ -83,7 +83,7 @@
                     <a href="#tmFeatures" class="btn btn-primary">المزيد</a>
                 </div>
                 <div class="tm-home-right">
-                    <img src="{{ asset('front/img/mobile-screen.png')}}" alt="App on Mobile mockup"/>
+                    <img src="{{ asset('front/img/mobile-screen2.png')}}" alt=""/>
                 </div>
             </div>
         </section>
@@ -149,8 +149,7 @@ height: 405px;"/>
         <footer class="row">
             <p class="col-12 text-white text-center tm-copyright-text">
                 Copyright &copy; 2021 TE-solutions.
-                <!--                Designed by <a href="#" class="tm-copyright-link">TemplateMo</a>-->
-            </p>
+             </p>
         </footer>
     </div>
     <!-- .container-fluid -->

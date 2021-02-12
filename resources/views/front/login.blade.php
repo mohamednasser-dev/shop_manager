@@ -23,10 +23,11 @@
     <div class="container-fluid">
         <div class="row tm-brand-row">
             <div class="col-lg-4 col-11">
-                <div class="tm-brand-container tm-bg-white-transparent">
-                    <img src="{{ asset('/assets/images/landing_page/logo.png') }}" alt="homepage" class="dark-logo" style="width: 200px; height: 140px;"/>
+                <div class="tm-brand-container tm-bg-black-transparent">
+                    <img src="{{ asset('front/img/011.png')}}" alt="homepage" class="dark-logo"
+                         style="width: 200px; height: 140px;"/>
                     <div class="tm-brand-texts">
-                        <h1 class="text-uppercase tm-brand-name">Sobhy Group</h1>
+                        <h1 class="text-uppercase tm-brand-name"></h1>
                     </div>
                 </div>
             </div>
@@ -89,14 +90,16 @@
             <div class="col-lg-6 tm-contact-col-right">
                 <div class="tm-bg-black-transparent tm-contact-text">
 
-                    <i class="mx-auto mb-5 fas fa-3x fa-address-card tm-app-feature-icon"></i>
+                    <img src="{{ asset('front/img/02.png')}}" alt="Image" class="img-fluid" />
 
-                    <h3 class="tm-service-tab-title">تسجيل الدخول</h3>
-                    <p class="tm-service-tab-p">
-                        Proin rutrum massa quis erat mollis iaculis. Vestibulum
-                        a risus ex. Nunc rhoncus, justo at blandit cursus, orci
-                        erat molestie felis, id ullamcorper mauris felis eu eros.
-                    </p>
+                    {{--                    <i class="mx-auto mb-5 fas fa-3x fa-address-card tm-app-feature-icon"></i>--}}
+
+{{--                    <h3 class="tm-service-tab-title">تسجيل الدخول</h3>--}}
+{{--                    <p class="tm-service-tab-p">--}}
+{{--                        Proin rutrum massa quis erat mollis iaculis. Vestibulum--}}
+{{--                        a risus ex. Nunc rhoncus, justo at blandit cursus, orci--}}
+{{--                        erat molestie felis, id ullamcorper mauris felis eu eros.--}}
+{{--                    </p>--}}
 
                 </div>
             </div>

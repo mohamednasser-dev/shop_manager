@@ -11,7 +11,7 @@ use App\RoleTranslation;
 use Auth;
 
 class RoleController extends Controller
-{ 
+{
     public function __construct()
     {
         $this->middleware(['permission:permissions']);
@@ -38,7 +38,7 @@ class RoleController extends Controller
     {
         $arrayData= ['buy part', 'buy gomla', 'buy back', 'categories',
              'products', 'bases', 'add base bill', 'customers', 'suppliers', 'employees', 'add new employee', 'permissions', 'Account statement','bills', 'income', 'outgoings', 'Lock a fiscal year'];
-        for ($i=0; $i < 17 ; $i++) { 
+        for ($i=0; $i < 17 ; $i++) {
             # code...
             if($i == 44){
                 return 0;
@@ -53,14 +53,14 @@ class RoleController extends Controller
     public function edit(Request $request, $id)
     {
         $role = Role::findOrFail($id);
-        $permissions = Permission::where('visable','1')->get();
+        $permissions = Permission::where('visible','1')->get();
         $r_permissions[] = null ;
         $role_permissions = DB::table('role_has_permissions')
                         ->where('role_id', $id)
                         ->get();
         foreach ($role_permissions as $key => $permission) {
             $r_permissions[] = $permission->permission_id;
-        }         
+        }
         return view('admin.users.roles.edit', compact('role','permissions','r_permissions'));
     }
     public function update(Request $request, $id)

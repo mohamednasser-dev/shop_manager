@@ -38,7 +38,7 @@
                                 <th class="text-center">{{trans('admin.name')}}</th>
                                 <th class="text-center">{{trans('admin.category')}}</th>
                                 <th class="text-center">{{trans('admin.quantity')}}</th>
-                                <th class="text-center">{{trans('admin.alarm_quantity')}}</th>
+{{--                                <th class="text-center">{{trans('admin.alarm_quantity')}}</th>--}}
                                 <th class="text-center">{{trans('admin.price')}}</th>
                                 <th class="text-center">{{trans('admin.purchas_price')}}</th>
                                 <th class="text-center">{{trans('admin.barcode')}}</th>
@@ -54,7 +54,7 @@
                                     <td class="text-center">{{$user->name}}</td>
                                     <td class="text-center">{{$user->Category->name}}</td>
                                     <td class="text-center">{{$user->quantity}}</td>
-                                    <td class="text-center">{{$user->alarm_quantity}}</td>
+{{--                                    <td class="text-center">{{$user->alarm_quantity}}</td>--}}
                                     <td class="text-center">{{$user->price}}</td>
                                     <td class="text-center">{{$user->purchas_price}}</td>
                                     <td class="text-center">{{$user->barcode}}</td>
@@ -123,11 +123,11 @@
                                                class="control-label">{{trans('admin.quantity')}}</label>
                                         {{ Form::number('quantity',0,["class"=>"form-control" ,"required",]) }}
                                     </div>
-                                    <div class="form-group">
-                                        <label for="recipient-name"
-                                               class="control-label">{{trans('admin.alarm_quantity')}}</label>
-                                        {{ Form::number('alarm_quantity',1,["class"=>"form-control" ,"required",]) }}
-                                    </div>
+{{--                                    <div class="form-group">--}}
+{{--                                        <label for="recipient-name"--}}
+{{--                                               class="control-label">{{trans('admin.alarm_quantity')}}</label>--}}
+{{--                                        {{ Form::number('alarm_quantity',1,["class"=>"form-control" ]) }}--}}
+{{--                                    </div>--}}
                                     <div class="form-group">
                                         <label for="recipient-name"
                                                class="control-label">{{trans('admin.price')}}</label>
@@ -195,11 +195,11 @@
                                                class="control-label">{{trans('admin.quantity')}}</label>
                                         {{ Form::number('quantity',0,["class"=>"form-control" ,"required",'id'=>'quantity']) }}
                                     </div>
-                                    <div class="form-group">
-                                        <label for="recipient-name"
-                                               class="control-label">{{trans('admin.alarm_quantity')}}</label>
-                                        {{ Form::number('alarm_quantity',1,["class"=>"form-control" ,"required",'id'=>'alarm_quantity']) }}
-                                    </div>
+{{--                                    <div class="form-group">--}}
+{{--                                        <label for="recipient-name"--}}
+{{--                                               class="control-label">{{trans('admin.alarm_quantity')}}</label>--}}
+{{--                                        {{ Form::number('alarm_quantity',1,["class"=>"form-control" ,"required",'id'=>'alarm_quantity']) }}--}}
+{{--                                    </div>--}}
                                     <div class="form-group">
                                         <label for="recipient-name"
                                                class="control-label">{{trans('admin.price')}}</label>
@@ -256,7 +256,7 @@
                     $('#name').val(html.data.name);
                     $('#category_id').val(html.data.category_id);
                     $('#quantity').val(html.data.quantity);
-                    $('#alarm_quantity').val(html.data.alarm_quantity);
+                    // $('#alarm_quantity').val(html.data.alarm_quantity);
                     $('#price').val(html.data.price);
                     $('#purchas_price').val(html.data.purchas_price);
                     $('#barcode').val(html.data.barcode);

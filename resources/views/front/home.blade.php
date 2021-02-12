@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="{{ asset('front/css/all.min.css')}}"/>
     <link rel="stylesheet" href="{{ asset('front/css/bootstrap.min.css')}}"/>
     <link rel="stylesheet" href="{{ asset('front/css/templatemo-style.css')}}"/>
+    <link href='https://fonts.googleapis.com/css?family=Cairo' rel='stylesheet'>
+
     <!--     <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300&display=swap" rel="stylesheet">
         <style>
@@ -27,11 +29,11 @@
     <div class="container-fluid">
         <div class="row tm-brand-row">
             <div class="col-lg-4 col-11">
-                <div class="tm-brand-container tm-bg-white-transparent">
-                    <img src="{{ asset('/assets/images/landing_page/logo.png') }}" alt="homepage" class="dark-logo"
+                <div class="tm-brand-container tm-bg--transparent">
+                    <img src="{{ asset('front/img/011.png')}}" alt="homepage" class="dark-logo"
                          style="width: 200px; height: 140px;"/>
                     <div class="tm-brand-texts">
-                        <h1 class="text-uppercase tm-brand-name">Sobhy Group</h1>
+                        <h1 class="text-uppercase tm-brand-name"></h1>
                     </div>
                 </div>
             </div>
@@ -70,21 +72,21 @@
         </div>
 
 
-        <section class="row" id="tmHome">
-            <div class="col-12 tm-home-container">
-                <div class="text-white tm-home-left" style="text-align: right">
-                    <p class="text-uppercase tm-slogan">ماذا نصنع؟</p>
+        <section class="row tm-bg-black-transparent" id="tmHome">
+            <div class="col-12 tm-home-container ">
+                <div class="text-white tm-home-left " >
+                    <p class="text-uppercase tm-slogan" style="text-align: center"> من نحن؟</p>
                     <hr class="tm-home-hr"/>
-                    <h2 class="tm-home-title">جلد كراسي السيارات </h2>
-                    <p class="tm-home-text">
-                        نمتلك خبره ف صناعه كسوة كراسي السيارات
-                        نمتلك خبره ف صناعه كسوة كراسي السيارات
+                    <h2 class="tm-home-title" style="text-align: center">صبحي جروب </h2>
+                    <p class="tm-home-text" style="text-align: right">
+                        تكنولوجيا جديدة فى تصنيع فرش السيارات
+                        مع صبحى جروب تقدر تفصل الفرش باحدث التقنيات المستخدمه فى فرش السيارات باسرع وقت وافضل خامه وجوده
                     </p>
                     <a href="#tmFeatures" class="btn btn-primary">المزيد</a>
                 </div>
-                <div class="tm-home-right">
-                    <img src="{{ asset('front/img/mobile-screen2.png')}}" alt=""/>
-                </div>
+{{--                <div class="tm-home-right">--}}
+{{--                    <img src="{{ asset('front/img/mobile-screen2.png')}}" alt=""/>--}}
+{{--                </div>--}}
             </div>
         </section>
 
@@ -92,53 +94,61 @@
         <div class="row" id="tmFeatures">
             <div class="col-lg-4">
                 <div class="tm-bg-white-transparent tm-feature-box">
-                    <h3 class="tm-feature-name">High Performance</h3>
+                    <img src="{{ asset('front/img/06.png')}}" alt="Image" class="img-fluid" />
 
-                    <div class="tm-feature-icon-container">
-                        <i class="fas fa-3x fa-server"></i>
-                    </div>
+                    {{--                    <h3 class="tm-feature-name">High Performance</h3>--}}
 
-                    <p class="text-center">Download and use this layout for your sites. Total 5 HTML pages included.</p>
+{{--                    <div class="tm-feature-icon-container">--}}
+{{--                        <i class="fas fa-3x fa-server"></i>--}}
+{{--                    </div>--}}
+
+{{--                    <p class="text-center">Download and use this layout for your sites. Total 5 HTML pages included.</p>--}}
                 </div>
             </div>
 
             <div class="col-lg-4">
                 <div class="tm-bg-white-transparent tm-feature-box">
-                    <h3 class="tm-feature-name">Fast Support</h3>
+                    <img src="{{ asset('front/img/04.png')}}" alt="Image" class="img-fluid" />
 
-                    <div class="tm-feature-icon-container">
-                        <i class="fas fa-3x fa-headphones"></i>
-                    </div>
-                    <p class="text-center">You are allowed to use this for commercial purpose or personal site.
-                    </p>
+                    {{--                    <h3 class="tm-feature-name">Fast Support</h3>--}}
+
+{{--                    <div class="tm-feature-icon-container">--}}
+{{--                        <i class="fas fa-3x fa-headphones"></i>--}}
+{{--                    </div>--}}
+{{--                    <p class="text-center">You are allowed to use this for commercial purpose or personal site.--}}
+{{--                    </p>--}}
                 </div>
             </div>
 
             <div class="col-lg-4">
                 <div class="tm-bg-white-transparent tm-feature-box">
-                    <h3 class="tm-feature-name">App Marketing</h3>
+                    <img src="{{ asset('front/img/05.png')}}" alt="Image" class="img-fluid" />
 
-                    <div class="tm-feature-icon-container">
-                        <i class="fas fa-3x fa-satellite-dish"></i>
-                    </div>
-                    <p class="text-center">You are NOT allowed to redistribute this template on any download site.
-                    </p>
+                    {{--                    <h3 class="tm-feature-name">App Marketing</h3>--}}
+
+{{--                    <div class="tm-feature-icon-container">--}}
+{{--                        <i class="fas fa-3x fa-satellite-dish"></i>--}}
+{{--                    </div>--}}
+{{--                    <p class="text-center">You are NOT allowed to redistribute this template on any download site.--}}
+{{--                    </p>--}}
                 </div>
             </div>
         </div>
         <!-- Call to Action -->
-        <section class="row" id="tmCallToAction">
-            <div class="col-12 tm-call-to-action-col">
+        <section class="row" id="tmCallToAction" style="font-family: Cairo">
+            <div class="col-12 tm-call-to-action-col" style="text-align: center">
                 <img src="{{ asset('front/img/call-to-action.jpg')}}" alt="Image" class="img-fluid" style="margin-right: 20px;
 width: 400px;
 height: 405px;"/>
-                <div class="tm-bg-white tm-call-to-action-text" style="text-align: right">
-                    <h2 class="tm-call-to-action-title">Images by Unsplash</h2>
-                    <p class="tm-call-to-action-description">
-                        You may browse website for the
-                        collection of CSS templates for your projects. Aliquam erat volutpat. Nulla eros est,
-                        imperdiet vel feugiat non, ullamcorper mattis nulla.
-                    </p>
+                <div class="tm-bg-white tm-call-to-action-text" >
+                    <img src="{{ asset('front/img/07.png')}}" alt="Image" class="img-fluid" style="width: 700px;height: 250px;" />
+
+                    {{--                    <h2 class="tm-call-to-action-title" style="color: red;font-size: large" >اختار التصميم المناسب لعربيتك</h2>--}}
+{{--                    <p class="tm-call-to-action-description" style="color: darkblue">--}}
+{{--وسيب الباقي علينا                          </p>--}}
+{{--                    <p class="tm-call-to-action-description">--}}
+{{--                يتم تصنيع الفرش باحدث الاجهزة والخامات القياسيه--}}
+{{--                          </p>--}}
                     <a href="{{url('contact-us')}}" class="btn btn-outline-primary">تواصل معنا</a>
 
                 </div>

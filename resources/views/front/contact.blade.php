@@ -23,10 +23,11 @@
     <div class="container-fluid">
         <div class="row tm-brand-row">
             <div class="col-lg-4 col-11">
-                <div class="tm-brand-container tm-bg-white-transparent">
-                    <img src="{{ asset('/assets/images/landing_page/logo.png') }}" alt="homepage" class="dark-logo" style="width: 200px; height: 140px;"/>
+                <div class="tm-brand-container tm-bg-black-transparent">
+                    <img src="{{ asset('front/img/011.png')}}" alt="homepage" class="dark-logo"
+                         style="width: 200px; height: 140px;"/>
                     <div class="tm-brand-texts">
-                        <h1 class="text-uppercase tm-brand-name">Sobhy Group</h1>
+                        <h1 class="text-uppercase tm-brand-name"></h1>
                     </div>
                 </div>
             </div>
@@ -74,10 +75,9 @@
                      data-image-src="img/people.jpg">
 
                     <div class="tm-bg-black-transparent text-center tm-services-header tm-testimonials-header">
-                        <h2 class="text-uppercase tm-services-page-title tm-testimonials-page-title">Contact</h2>
+                        <h2 class="text-uppercase tm-services-page-title tm-testimonials-page-title">اتصل بنا</h2>
                         <p class="tm-services-description mb-0 small">
-                            Parallax movement background page "people" for contact page
-                        </p>
+                         </p>
                     </div>
                 </div>
             </div>
@@ -119,19 +119,20 @@
             <div class="col-lg-6 tm-contact-col-right">
                 <div class="tm-bg-black-transparent tm-contact-text">
 
-                    <i class="mx-auto mb-5 fas fa-3x fa-address-card tm-app-feature-icon"></i>
+{{--                    <i class="mx-auto mb-5 fas fa-3x fa-address-card tm-app-feature-icon"></i>--}}
+                    <img src="{{ asset('front/img/02.png')}}" alt="Image" class="img-fluid" />
 
-                    <h3 class="tm-service-tab-title">Maecenas in aliquam lorem</h3>
-                    <p class="tm-service-tab-p">
-                        Proin rutrum massa quis erat mollis iaculis. Vestibulum
-                        a risus ex. Nunc rhoncus, justo at blandit cursus, orci
-                        erat molestie felis, id ullamcorper mauris felis eu eros.
-                    </p>
-                    <p class="mb-0">
-                        Donec turpis augue, mollis eu erat in, posuere congue
-                        sapien. Maecenas facilisis dui sit amet ornare aliquam.
-                        Paesent malesuada mi a est pulvinar.
-                    </p>
+                    {{--                    <h3 class="tm-service-tab-title">Maecenas in aliquam lorem</h3>--}}
+{{--                    <p class="tm-service-tab-p">--}}
+{{--                        Proin rutrum massa quis erat mollis iaculis. Vestibulum--}}
+{{--                        a risus ex. Nunc rhoncus, justo at blandit cursus, orci--}}
+{{--                        erat molestie felis, id ullamcorper mauris felis eu eros.--}}
+{{--                    </p>--}}
+{{--                    <p class="mb-0">--}}
+{{--                        Donec turpis augue, mollis eu erat in, posuere congue--}}
+{{--                        sapien. Maecenas facilisis dui sit amet ornare aliquam.--}}
+{{--                        Paesent malesuada mi a est pulvinar.--}}
+{{--                    </p>--}}
                 </div>
             </div>
         </section>

@@ -43,7 +43,7 @@ class baseController extends Controller
             [
                 'name' => 'required|unique:bases',
                 'quantity' => 'required',
-                'alarm_quantity' => 'required',
+//                'alarm_quantity' => 'required',
                 'price' => 'required',
                 'purchas_price' => 'required',
                 'barcode' => 'required|unique:bases',
@@ -92,7 +92,7 @@ class baseController extends Controller
             [
                 'name' => 'required|unique:bases,name,'.$request->id,
                 'quantity' => 'required',
-                'alarm_quantity' => 'required',
+//                'alarm_quantity' => 'required',
                 'price' => 'required',
                 'purchas_price' => 'required',
                 'barcode' => 'required|unique:bases,barcode,'.$request->id,

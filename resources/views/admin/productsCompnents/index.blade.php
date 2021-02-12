@@ -31,7 +31,7 @@
                             <th class="text-center">{{trans('admin.name')}}</th>
                             <th class="text-center">{{trans('admin.barcode')}}</th>
                             <th class="text-center">{{trans('admin.quantity')}}</th>
-                            <th class="text-center">{{trans('admin.alarm_quantity')}}</th>
+{{--                            <th class="text-center">{{trans('admin.alarm_quantity')}}</th>--}}
                             <th class="text-center">{{trans('admin.total_cost')}}</th>
                             <th class="text-center">{{trans('admin.gomla_percent')}}</th>
                             <th class="text-center">{{trans('admin.part_percent')}}</th>
@@ -46,7 +46,7 @@
                                 <td class="text-center">{{$user->name}}</td>
                                 <td class="text-center">{{$user->barcode}}</td>
                                 <td class="text-center">{{$user->quantity}}</td>
-                                <td class="text-center">{{$user->alarm_quantity}}</td>
+{{--                                <td class="text-center">{{$user->alarm_quantity}}</td>--}}
                                 <td class="text-center">{{$user->total_cost}}</td>
                                 <td class="text-center">{{$user->gomla_percent}}</td>
                                 <td class="text-center">{{$user->part_percent}}</td>

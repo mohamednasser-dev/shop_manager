@@ -26,10 +26,11 @@ https://templatemo.com/tm-534-parallo
     <div class="container-fluid">
         <div class="row tm-brand-row">
             <div class="col-lg-4 col-11">
-                <div class="tm-brand-container tm-bg-white-transparent">
-                    <img src="{{ asset('/assets/images/landing_page/logo.png') }}" alt="homepage" class="dark-logo" style="width: 200px; height: 140px;"/>
+                <div class="tm-brand-container tm-bg-black-transparent">
+                    <img src="{{ asset('front/img/011.png')}}" alt="homepage" class="dark-logo"
+                         style="width: 200px; height: 140px;"/>
                     <div class="tm-brand-texts">
-                        <h1 class="text-uppercase tm-brand-name">Sobhy Group</h1>
+                        <h1 class="text-uppercase tm-brand-name"></h1>
                     </div>
                 </div>
             </div>
@@ -88,8 +89,7 @@ https://templatemo.com/tm-534-parallo
                     <div class="tm-bg-black-transparent text-center tm-services-header tm-testimonials-header">
                         <h2 class="text-uppercase tm-services-page-title tm-testimonials-page-title">منتجاتنا</h2>
                         <p class="tm-services-description mb-0 small">
-                           تتميز منتجاتنا بالجوده وال بلا بلا بلا بلا بلا
-                        </p>
+                         </p>
                     </div>
                 </div>
 

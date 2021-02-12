@@ -21,7 +21,7 @@ class HomeController extends Controller
     public function index()
     {
         $bases = Base::all()->count();
-        $products = product::all()->count();
+        $products = Product::all()->count();
         $bills = CustomerBill::where('is_bill','y')->count();
         $suppliers = Supplier::all()->count();
         $customers = Customer::all()->count();

@@ -35,13 +35,13 @@
                             {{--                            {{ Form::hidden('quantity',0,["class"=>"form-control" ,"required",'placeholder'=>trans('admin.barcode')]) }}--}}
                         </div>
                     </div>
-                    <div class="form-group m-t-40 row">
-                        <label for="example-text-input"
-                               class="col-md-2 col-form-label">{{trans('admin.alarm_quantity')}}</label>
-                        <div class="col-md-10">
-                            {{ Form::number('alarm_quantity',$product->alarm_quantity,["class"=>"form-control" ,"required",'placeholder'=>trans('admin.alarm_quantity')]) }}
-                        </div>
-                    </div>
+{{--                    <div class="form-group m-t-40 row">--}}
+{{--                        <label for="example-text-input"--}}
+{{--                               class="col-md-2 col-form-label">{{trans('admin.alarm_quantity')}}</label>--}}
+{{--                        <div class="col-md-10">--}}
+{{--                            {{ Form::number('alarm_quantity',$product->alarm_quantity,["class"=>"form-control" ,"required",'placeholder'=>trans('admin.alarm_quantity')]) }}--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
                     {{ Form::hidden('price',0,["class"=>"form-control" ,"required",'placeholder'=>trans('admin.price')]) }}
                     {{ Form::hidden('total_cost',$product->total_cost,["class"=>"form-control" ,"required",'placeholder'=>trans('admin.price')]) }}
 

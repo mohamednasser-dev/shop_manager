@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\CustomerBill;
 use App\Models\BillProduct;
 use App\Models\Outgoing;
-use App\Models\product;
+use App\Models\Product;
 use App\Models\Base;
 
 class CloseYearController extends Controller
@@ -36,7 +36,7 @@ class CloseYearController extends Controller
         $total_bases = $base_now_quantity + $base_out_quantity ;
 
          //This for products
-        $products_now_quantity = product::all()->sum('quantity');
+        $products_now_quantity = Product::all()->sum('quantity');
         $products_out_quantity = BillProduct::all()->sum('quantity');
         $total_products = $base_now_quantity + $base_out_quantity ;
         // compact('categories')

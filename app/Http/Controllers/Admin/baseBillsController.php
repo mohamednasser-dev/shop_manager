@@ -21,11 +21,11 @@ class baseBillsController extends Controller
         $mytime = Carbon::now();
         $this->today =  Carbon::parse($mytime->toDateTimeString())->format('Y-m-d');
     }
-    
+
     public function index(){
         $bases = Base::pluck('id', 'name');
         $bases = json_encode($bases);
-        
+
         $suppliers = Supplier::all();
         $supplier_sales = SupplierSale::all();
 
@@ -33,7 +33,7 @@ class baseBillsController extends Controller
             $bill_num = 1 ;
             $supplier_sales_selected = null;
             $supplier_bill_bases = null;
-            return view('admin.base_bills.base_bills',compact('bill_num','supplier_sales_selected','suppliers','$supplier_bill_bases'));
+            return view('admin.base_bills.base_bills',compact('bill_num','supplier_sales_selected','suppliers','supplier_bill_bases'));
         }else{
             $supplier_sales_selected = SupplierSale::where('is_bill','y')->latest('bill_num')->first();
             $bill_num = $supplier_sales_selected->bill_num ;
@@ -178,8 +178,8 @@ class baseBillsController extends Controller
             }
         }
         $total = SupplierBillBase::where('supplier_sale_id',$data['supplier_sale_id'])->sum('total');
-        $update_total['total'] = $total ; 
-        $update_total['remain'] = $total ; 
+        $update_total['total'] = $total ;
+        $update_total['remain'] = $total ;
         SupplierSale::where('id',$data['supplier_sale_id'])->update($update_total);
         session()->flash('success', trans('admin.addedsuccess'));
         return back();
@@ -195,11 +195,11 @@ class baseBillsController extends Controller
 
             $supplierBillBase->delete();
 
-            
+
 
             $total = SupplierBillBase::where('supplier_sale_id',$supplierBillBase->supplier_sale_id)->sum('total');
-            $update_total['total'] = $total ; 
-            $update_total['remain'] = $total ; 
+            $update_total['total'] = $total ;
+            $update_total['remain'] = $total ;
             SupplierSale::where('id',$supplierBillBase->supplier_sale_id)->update($update_total);
             session()->flash('success', trans('admin.deleteSuccess'));
         }catch(Exception $exception){

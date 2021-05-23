@@ -26,7 +26,7 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
 
     //user permissions and roles
     Route::resource('roles', 'Admin\roleController');
-    // Route::post('/store_permission', 'Admin\roleController@store_permission')->name('store_permission');
+//    Route::get('/store_permission', 'Admin\roleController@store_permission')->name('store_permission');
     Route::get('/roles/edit/{id}', 'Admin\roleController@edit')->name('roles.edit');
     Route::post('/roles/update_permission/{id}', 'Admin\roleController@update')->name('roles.update_permission');
     Route::post('roles/store_permission', 'Admin\roleController@store_permission')->name('roles.store_permission');

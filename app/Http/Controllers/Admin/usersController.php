@@ -36,7 +36,7 @@ class usersController extends Controller{
             'email' => 'required|unique:users',
             'role_id' => 'required|exists:roles,id',
             'password' => 'required|min:6|confirmed',
-            'password_confirmation' => 'required|min:6', 
+            'password_confirmation' => 'required|min:6',
         ]);
         if($request['password'] != null  && $request['password_confirmation'] != null ){
             $data['password'] = bcrypt(request('password'));

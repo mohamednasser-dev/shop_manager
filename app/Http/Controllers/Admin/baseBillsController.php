@@ -33,7 +33,8 @@ class baseBillsController extends Controller
             $bill_num = 1 ;
             $supplier_sales_selected = null;
             $supplier_bill_bases = null;
-            return view('admin.base_bills.base_bills',compact('bill_num','supplier_sales_selected','suppliers','supplier_bill_bases'));
+//            dd($supplier_bill_bases);
+            return view('admin.base_bills.base_bills',compact('bill_num','supplier_sales_selected','suppliers','supplier_bill_bases','bases'));
         }else{
             $supplier_sales_selected = SupplierSale::where('is_bill','y')->latest('bill_num')->first();
             $bill_num = $supplier_sales_selected->bill_num ;

@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Base;
-use App\Models\Product;
-use App\Models\ProductBase;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+use App\Models\ProductBase;
+use App\Models\Product;
+use App\Models\Base;
 
 class productComponentsController extends Controller
 {

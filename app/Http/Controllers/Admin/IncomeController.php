@@ -5,9 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\CustomerBill;
-use App\Models\Outgoing;
-use App\Models\SupplierPayment;
 use App\Models\SupplierSale;
+use App\Models\Outgoing;
 use Carbon\Carbon;
 
 class IncomeController extends Controller

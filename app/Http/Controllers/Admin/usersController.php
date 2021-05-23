@@ -1,7 +1,7 @@
 <?php
 namespace App\Http\Controllers\Admin;
+
 use Spatie\Permission\Models\Model_has_role;
-use Illuminate\Database\QueryException;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;

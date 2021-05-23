@@ -4,13 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 use App\Models\CustomerPayment;
 use App\Models\CustomerBill;
 use Illuminate\Http\Request;
-use Exception;
 use App\Models\Customer;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Hash;
+use Exception;
 
 class customerController extends Controller
 {

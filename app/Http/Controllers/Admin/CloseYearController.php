@@ -8,12 +8,9 @@ use App\Models\SupplierPayment;
 use Illuminate\Http\Request;
 use App\Models\CustomerBill;
 use App\Models\BillProduct;
-use App\Models\Supplier;
-use App\Models\Customer;
+use App\Models\Outgoing;
 use App\Models\product;
 use App\Models\Base;
-use App\Models\User;
-use App\Models\Outgoing;
 
 class CloseYearController extends Controller
 {

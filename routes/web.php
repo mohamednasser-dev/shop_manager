@@ -20,9 +20,9 @@ Route::post('/login_user', 'Admin\LoginController@login')->name('login_user');
 
 Route::group(['middleware' => ['auth', 'admin']], function () {
     //users  routes
-    Route::resource('users', 'Admin\UsersController');
-    Route::get('users/{id}/delete', 'Admin\UsersController@destroy');
-    Route::post('users/actived', 'Admin\UsersController@update_Actived')->name('users.actived');
+    Route::resource('users', 'Admin\usersController');
+    Route::get('users/{id}/delete', 'Admin\usersController@destroy');
+    Route::post('users/actived', 'Admin\usersController@update_Actived')->name('users.actived');
 
     //user permissions and roles
     Route::resource('roles', 'Admin\roleController');

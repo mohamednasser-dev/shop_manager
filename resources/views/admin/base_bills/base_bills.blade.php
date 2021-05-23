@@ -54,8 +54,8 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div> 
-                            <div class="col-lg-6">   
+                            </div>
+                            <div class="col-lg-6">
                                 <div class="card">
                                     <div class="card-body" style="height: 85px;">
                                         <div class="card-block" style="margin-top: -40px;">
@@ -67,10 +67,10 @@
                                                         @if($supplier_sales_selected != null)
                                                             {{ Form::select('supplier_id',App\Models\Supplier::where('status','active')->pluck('name','id'),$supplier_sales_selected->supplier_id
                                                               ,["class"=>"select2 form-control custom-select" ,"id"=>"cmb_supplier_id","style"=>"width: 100%; height:36px;",'placeholder'=>trans('admin.choose_supplier') ]) }}
-                                                        @else  
+                                                        @else
                                                             {{ Form::select('supplier_id',App\Models\Supplier::where('status','active')->pluck('name','id'),null
                                                               ,["class"=>"select2 form-control custom-select" ,"id"=>"cmb_supplier_id",'placeholder'=>trans('admin.choose_supplier') ]) }}
-                                                        @endif     
+                                                        @endif
                                                     </div>
                                                 </div>
                                             </div>
@@ -131,14 +131,14 @@
                                             @else
                                                 <h2 class="m-t-0">0</h2>
                                             @endif
-                                        </div>    
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>   
+            </section>
             @if($supplier_sales_selected != null)
                 {{ Form::open( ['url' => ['supplier_bill_bases'],'method'=>'post'] ) }}
                 {{ csrf_field() }}
@@ -166,66 +166,68 @@
                 <div class="center">
                     <button type="submit" class="btn btn-info" style="margin:10px" >
                         {{trans('admin.public_Save')}}
-                    </button>    
+                    </button>
                 </div>
-            {{ Form::close() }}   
+            {{ Form::close() }}
             @endif
-            @if(count($supplier_bill_bases) > 0)
-                <section id="html-headings-default" class="row match-height">
-                    <div class="col-sm-12 col-md-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h3>{{trans('admin.supplier_bill')}}</h3>
-                            </div>
-                            <div class="card-body">
-                                <!-- Start home table -->
-                                <table id="myTable" class="table full-color-table full-primary-table">
-                                    <thead>
-                                    <tr>
-                                        <th class="text-lg-center">{{trans('admin.name')}}</th>
-                                        <th class="text-lg-center">{{trans('admin.quantity')}}</th>
-                                        <th class="text-lg-center">{{trans('admin.purchas_price')}}</th>
-                                        <th class="text-lg-center">{{trans('admin.total')}}</th>
-                                        <th class="text-lg-center">{{trans('admin.date')}}</th>
-                                        <th class="text-lg-center">{{trans('admin.actions')}}</th>
-                                    </tr>
-                                    </thead>
-
-                                    <tbody>
-                                    @foreach($supplier_bill_bases as $supplier_base)
+            @if($supplier_bill_bases != null)
+                @if(count($supplier_bill_bases) > 0)
+                    <section id="html-headings-default" class="row match-height">
+                        <div class="col-sm-12 col-md-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3>{{trans('admin.supplier_bill')}}</h3>
+                                </div>
+                                <div class="card-body">
+                                    <!-- Start home table -->
+                                    <table id="myTable" class="table full-color-table full-primary-table">
+                                        <thead>
                                         <tr>
-                                            <td class="text-lg-center">{{$supplier_base->name}}</td>
-                                            <td class="text-lg-center">{{$supplier_base->quantity}}</td>
-                                            <td class="text-lg-center">{{$supplier_base->purchas_price}}</td>
-                                            <td class="text-lg-center">{{$supplier_base->total}}</td>
-                                            <td class="text-lg-center">{{$supplier_base->date}}</td>
-                                            <td class="text-lg-center">
-                                                <form method="get" id='delete-form-{{ $supplier_base->id }}'
-                                                      action="{{url('supplier_bill_bases/'.$supplier_base->id.'/delete')}}"
-                                                      style='display: none;'>
-                                                {{csrf_field()}}
-                                                <!-- {{method_field('delete')}} -->
-                                                </form>
-                                                <button onclick="if(confirm('{{trans('admin.deleteConfirmation')}}'))
-                                                    {
-                                                    event.preventDefault();
-                                                    document.getElementById('delete-form-{{ $supplier_base->id }}').submit();
-                                                    }else {
-                                                    event.preventDefault();
-                                                    }"
-                                                    class='btn btn-danger btn-circle' href=" ">
-                                                    <i class="fa fa-trash" aria-hidden='true'></i>
-                                                </button>
-                                            </td>
+                                            <th class="text-lg-center">{{trans('admin.name')}}</th>
+                                            <th class="text-lg-center">{{trans('admin.quantity')}}</th>
+                                            <th class="text-lg-center">{{trans('admin.purchas_price')}}</th>
+                                            <th class="text-lg-center">{{trans('admin.total')}}</th>
+                                            <th class="text-lg-center">{{trans('admin.date')}}</th>
+                                            <th class="text-lg-center">{{trans('admin.actions')}}</th>
                                         </tr>
-                                    @endforeach
-                                    </tbody>
-                                </table>
-                                {{$supplier_bill_bases->links()}}
+                                        </thead>
+
+                                        <tbody>
+                                        @foreach($supplier_bill_bases as $supplier_base)
+                                            <tr>
+                                                <td class="text-lg-center">{{$supplier_base->name}}</td>
+                                                <td class="text-lg-center">{{$supplier_base->quantity}}</td>
+                                                <td class="text-lg-center">{{$supplier_base->purchas_price}}</td>
+                                                <td class="text-lg-center">{{$supplier_base->total}}</td>
+                                                <td class="text-lg-center">{{$supplier_base->date}}</td>
+                                                <td class="text-lg-center">
+                                                    <form method="get" id='delete-form-{{ $supplier_base->id }}'
+                                                          action="{{url('supplier_bill_bases/'.$supplier_base->id.'/delete')}}"
+                                                          style='display: none;'>
+                                                    {{csrf_field()}}
+                                                    <!-- {{method_field('delete')}} -->
+                                                    </form>
+                                                    <button onclick="if(confirm('{{trans('admin.deleteConfirmation')}}'))
+                                                        {
+                                                        event.preventDefault();
+                                                        document.getElementById('delete-form-{{ $supplier_base->id }}').submit();
+                                                        }else {
+                                                        event.preventDefault();
+                                                        }"
+                                                        class='btn btn-danger btn-circle' href=" ">
+                                                        <i class="fa fa-trash" aria-hidden='true'></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+                                    {{$supplier_bill_bases->links()}}
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </section>
+                    </section>
+                @endif
             @endif
         </div>
     </div>
@@ -247,11 +249,11 @@
                 html += ' <div class="col-sm-6 ">';
                 html += '<select class="select2 form-control custom-select col-12 " id="base_id" name="rows[' + i + '][base_id]">' +
                         '<option selected="selected" value="">أختر المنتج الخام</option>' + options +
-                        '</select></div>';       
+                        '</select></div>';
                 html += "<div class='col-sm-3'><input name='rows[" + i + "][quantity]' class='form-control' type='number' min='0' value='0' placeholder='{{trans('admin.quantity')}}'></div>" ;
 
                 html += "<div class='col-sm-3'><input name='rows[" + i + "][purchas_price]' class='form-control' type='number' min='0' alue='0' placeholder='{{trans('admin.purchas_price')}}'></div>" +
-                        "</div>";        
+                        "</div>";
                 $('#parent_store').append(html);
                 i++;
             });
@@ -338,8 +340,8 @@
                 templateResult: formatRepo, // omitted for brevity, see the source of this page
                 templateSelection: formatRepoSelection // omitted for brevity, see the source of this page
             });
-        });  
+        });
     </script>
-        
+
 @endsection
 
